@@ -1,0 +1,83 @@
+project: tsfm-covariate-faithfulness
+working_title: "Right Forecast, Wrong Reason? Auditing Covariate Response Faithfulness in Zero-Shot Time-Series Foundation Models"
+status: topic_frozen_pre_inference_contract_design
+core_question: >-
+  Do zero-shot time-series foundation models respond faithfully to controlled changes
+  in known-future covariates, beyond achieving low observational forecast error?
+primary_claim:
+  id: C1
+  statement: >-
+    Observational forecast accuracy is not sufficient evidence of faithful covariate
+    use; controlled future-covariate interventions can reveal reproducible errors in
+    response direction, magnitude, temporal localization, or placebo sensitivity.
+  status: hypothesis_pending_p0
+secondary_claims:
+  - id: C2
+    statement: >-
+      CovIntervene provides a reproducible benchmark that separates forecast skill from
+      four complementary dimensions of future-covariate response faithfulness.
+    status: planned
+  - id: C3
+    statement: >-
+      Response failure profiles differ across structural mechanisms and frozen TSFM
+      backbones in ways that aggregate forecast loss does not capture.
+    status: hypothesis_pending_p0
+  - id: C4
+    statement: >-
+      If P0 identifies a stable failure mode, a lightweight safeguard can reduce that
+      failure without materially degrading clean forecast skill.
+    status: optional_not_authorized_before_p0
+novelty_hypothesis: >-
+  Prior work evaluates covariate-aware forecast accuracy, explains single-domain model
+  predictions, studies generic TSFM pattern responses, or improves robustness to
+  corrupted exogenous inputs. The proposed gap is a controlled cross-model benchmark
+  of whether the forecast response to a known-future covariate matches a known
+  structural intervention.
+planned_metrics:
+  directional_sign_agreement: fraction of paired interventions with correct response sign
+  normalized_response_error: absolute predicted-versus-true response error normalized by true effect scale
+  temporal_localization_score: agreement between predicted and true horizon-wise response support
+  placebo_response_ratio: response magnitude to an irrelevant covariate divided by response to the active covariate
+  observational_forecast_skill: SQL and WQL with point metrics as secondary
+p0_scope:
+  mechanisms:
+    - contemporaneous_linear
+    - delayed_distributed_lag
+    - threshold_saturation
+    - irrelevant_placebo
+  backbones: [chronos_2, timesfm_3]
+  series_per_mechanism: 64
+  horizon: 24
+  independent_generator_seeds: [11, 29, 47]
+p0_continuation_gate:
+  minimum_fidelity_envelope:
+    directional_sign_agreement_at_least: 0.80
+    median_response_gain_ratio_range: [0.50, 1.50]
+    placebo_response_ratio_at_most: 0.20
+  pass_if: >-
+    At least two backbone-by-mechanism cells violate at least one applicable envelope
+    bound with a paired series-bootstrap 95% confidence interval entirely on the failure
+    side, and the violations span either two mechanisms or both backbones.
+  complementary_accuracy_condition: >-
+    At least one verified fidelity violation occurs in a cell where the covariate-aware
+    forecast is not worse than target-only by more than 2% relative SQL, showing that
+    the audit is not merely rediscovering gross forecast failure.
+  fail_action: stop_or_redesign_on_new_untouched_evidence_without_lowering_this_gate
+  pass_actions:
+    - freeze_paper_eligible_benchmark_protocol
+    - decide_evaluation_only_or_optional_safeguard_branch_before_new_evidence
+risk_factors:
+  - A recent causal-analysis paper already intervenes on synthetic target-generating patterns; differentiation must remain specifically about future-covariate response.
+  - Synthetic mechanisms may be criticized as unrealistic unless parameters and real-task plausibility checks are well justified.
+  - Two large backbones may be insufficient for a broad universal claim.
+  - Forecast response magnitude may be affected by model-specific normalization and require invariant metric definitions.
+likely_reviewer_objections:
+  - The benchmark measures structural fidelity on synthetic data rather than real-world causality.
+  - Failure thresholds may look arbitrary unless sensitivity analyses are frozen in advance.
+  - Interventions could be out of distribution relative to each model's pretraining.
+  - The work needs to show information beyond standard forecast accuracy and feature attribution.
+non_goals:
+  - universal causal identification
+  - post_hoc_threshold_tuning
+  - sealed_result_driven_method_search
+  - proprietary_model_evaluation

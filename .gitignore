@@ -1,0 +1,15 @@
+__pycache__/
+*.py[cod]
+.pytest_cache/
+.ruff_cache/
+.venv/
+.ipynb_checkpoints/
+build/
+dist/
+*.egg-info/
+outputs/
+artifacts/private/
+private_manifests/
+*.token
+*.pem
+.env
