@@ -1,0 +1,9 @@
+{
+  "approval": "APPROVE P0 DESIGN",
+  "approval_date": "2026-09-18",
+  "canonicalization": "YAML parsed to JSON with sorted keys, UTF-8, ensure_ascii=false, separators=(',', ':')",
+  "config": "configs/p0/covintervene_p0.yaml",
+  "canonical_sha256": "56cd2ff3a3e56155074a47abb02a859be5e107a6fb59679f9f3d3981110db0dd",
+  "sealed_model_inference_authorized": true,
+  "schema_version": 1
+}

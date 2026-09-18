@@ -1,10 +1,10 @@
 schema_version: 1
-status: draft_awaiting_owner_approval
+status: frozen_owner_approved_pre_inference
 experiment: covintervene-phenomenon-screen-p0-v1
 scope:
   model_training: false
   model_tuning: false
-  sealed_model_inference_authorized: false
+  sealed_model_inference_authorized: true
 data:
   context_length: 192
   horizon: 24
@@ -35,11 +35,13 @@ data:
 models:
   - id: chronos_2
     checkpoint: amazon/chronos-2
-    revision: pin_before_inference
+    revision: 29ec3766d36d6f73f0696f85560a422f50e8498c
+    package: chronos-forecasting==2.2.2
     mode: frozen_zero_shot
   - id: timesfm_3
     checkpoint: google/timesfm-3.0-pytorch
-    revision: pin_before_inference
+    revision: 43046b85ec22d584a13f8098c2ed39c889e129c2
+    package: timesfm==2.0.2
     mode: frozen_zero_shot
 comparators:
   - analytic_oracle
@@ -53,6 +55,14 @@ response_metrics:
   sensitivity_support_fractions_of_peak: [0.05, 0.20]
   numerical_epsilon_multiplier: 1.0e-8
   report: [DSA, RGR, NRE, TLS, PRR]
+  aggregation:
+    DSA: mean
+    RGR: median
+    NRE: median
+    TLS: median
+    PRR: median
+    SQL: mean
+    WQL: mean
 uncertainty:
   unit: paired_series
   stratify_by_generator_seed: true

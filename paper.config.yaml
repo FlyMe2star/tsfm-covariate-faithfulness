@@ -1,0 +1,14 @@
+schema_version: 1
+topic: "Right Forecast, Wrong Reason? Auditing Covariate Response Faithfulness in Zero-Shot Time-Series Foundation Models"
+workflow_mode: empirical
+target_venue: CCF-B conference to be selected after P0
+style_mode: neutral
+runtime:
+  python: "py -3.14"
+  experiment_platform: Google Colab
+  initial_accelerator: T4
+  upgrade_accelerator: A100
+paper:
+  result_policy: verified_or_explicit_placeholder
+  target_main_pages: 8
+  target_references: [30, 40]

@@ -137,7 +137,8 @@ uses the point estimate exactly as stated in the contribution contract.
 
 - Each backbone-by-mechanism cell contains 64 series under each of three independent
   generator seeds, for 192 paired series.
-- Report per-seed summaries and the pooled series median or mean specified by metric.
+- Report per-seed summaries. DSA, SQL, and WQL use the mean; RGR, NRE, TLS, and
+  PRR use the median. The three seed-specific estimates are weighted equally.
 - Use 5,000 deterministic percentile bootstrap replicates, resampling complete series
   within generator seed and then aggregating seeds equally.
 - For low-is-failure DSA, a violation requires the two-sided 95% interval upper bound

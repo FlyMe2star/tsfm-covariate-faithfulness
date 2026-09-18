@@ -6,8 +6,9 @@ respond faithfully to known-future covariates under controlled interventions.
 Working title: **Right Forecast, Wrong Reason? Auditing Covariate Response
 Faithfulness in Zero-Shot Time-Series Foundation Models**.
 
-The project is currently at the P0 design-review gate. All contribution claims are
-hypotheses until backed by frozen experiment artifacts. The prior
+The owner-approved P0 protocol is frozen and implementation preflight is in progress.
+All scientific contribution claims remain hypotheses until backed by frozen experiment
+artifacts. The prior
 `covariate-safe-tsfm` project and its sealed outcomes are not reused for model or
 threshold selection here.
 
@@ -24,11 +25,26 @@ See [`brief/topic-brief.md`](brief/topic-brief.md) and
 [`brief/contribution-map.yaml`](brief/contribution-map.yaml) for the research contract.
 The reviewable P0 protocol is in
 [`notes/design/method-spec.md`](notes/design/method-spec.md), with the machine-readable
-draft in [`configs/p0/covintervene_p0.yaml`](configs/p0/covintervene_p0.yaml).
+configuration in [`configs/p0/covintervene_p0.yaml`](configs/p0/covintervene_p0.yaml).
 
-No model inference should be run while the P0 config status is
-`draft_awaiting_owner_approval`. After approval, the config, implementation commit,
-and model revisions will be pinned before the first backbone call.
+The config is protected by an external canonical hash lock. The first Colab notebook
+runs one series per mechanism and seed for one selected backbone. It writes a smoke-only
+manifest and is structurally unable to compute the P0 continuation gate.
+
+## Local verification
+
+```powershell
+$env:PYTHONPATH = (Resolve-Path 'src').Path
+py -3.14 -m pytest -q
+py -3.14 -m ruff check src tests
+```
+
+## Colab smoke
+
+Open [`notebooks/01_p0_backbone_smoke.ipynb`](notebooks/01_p0_backbone_smoke.ipynb),
+select a T4 GPU, choose one frozen backbone in the parameter cell, and run all cells.
+Run it once for `chronos_2` and once for `timesfm_3`. Smoke artifacts are saved to
+Google Drive outside Git.
 
 ## Research-integrity rule
 
