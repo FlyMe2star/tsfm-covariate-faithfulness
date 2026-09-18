@@ -18,6 +18,10 @@ Verification date: 2026-09-18
 
 - Official repository: <https://github.com/google-research/timesfm>
 - Package: `timesfm==2.0.2`
+- Source commit: `20191171b74f51bfead932b6b8d0c8f515e70f63`. Install from this
+  exact official Git commit because the PyPI `2.0.2` artifact does not expose the
+  `timesfm3` module required by the frozen interface, while this same-version source
+  tree does.
 - Checkpoint: `google/timesfm-3.0-pytorch`
 - Checkpoint revision: `43046b85ec22d584a13f8098c2ed39c889e129c2`
 - Interface: `TimesFM3Evaluator.predict_batch` accepts target contexts and

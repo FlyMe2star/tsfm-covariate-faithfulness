@@ -1,2 +1,2 @@
-timesfm==2.0.2
+timesfm[torch] @ git+https://github.com/google-research/timesfm.git@20191171b74f51bfead932b6b8d0c8f515e70f63
 huggingface_hub>=0.34,<1
