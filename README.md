@@ -46,6 +46,17 @@ select a T4 GPU, choose one frozen backbone in the parameter cell, and run all c
 Run it once for `chronos_2` and once for `timesfm_3`. Smoke artifacts are saved to
 Google Drive outside Git.
 
+## Frozen P0 screening
+
+After both smoke receipts pass, open
+[`notebooks/02_p0_backbone_screen.ipynb`](notebooks/02_p0_backbone_screen.ipynb).
+Run it once for `chronos_2` and once for `timesfm_3`; each run is resumable at the
+mechanism-by-seed unit boundary and cannot compute the continuation gate. When both
+backbones report 12/12 complete full-screening units, run
+[`notebooks/03_p0_analyze.ipynb`](notebooks/03_p0_analyze.ipynb) on CPU. The analysis
+notebook verifies every stored array against its manifest before computing the frozen
+decision, and reuses an existing decision instead of recomputing it.
+
 ## Research-integrity rule
 
 P0 thresholds are frozen before the first model inference. A failed gate may motivate
