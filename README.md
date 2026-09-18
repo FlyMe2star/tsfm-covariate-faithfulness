@@ -6,8 +6,8 @@ respond faithfully to known-future covariates under controlled interventions.
 Working title: **Right Forecast, Wrong Reason? Auditing Covariate Response
 Faithfulness in Zero-Shot Time-Series Foundation Models**.
 
-The project is currently at the pre-inference P0 design gate. All contribution claims
-are hypotheses until backed by frozen experiment artifacts. The prior
+The project is currently at the P0 design-review gate. All contribution claims are
+hypotheses until backed by frozen experiment artifacts. The prior
 `covariate-safe-tsfm` project and its sealed outcomes are not reused for model or
 threshold selection here.
 
@@ -22,6 +22,13 @@ threshold selection here.
 
 See [`brief/topic-brief.md`](brief/topic-brief.md) and
 [`brief/contribution-map.yaml`](brief/contribution-map.yaml) for the research contract.
+The reviewable P0 protocol is in
+[`notes/design/method-spec.md`](notes/design/method-spec.md), with the machine-readable
+draft in [`configs/p0/covintervene_p0.yaml`](configs/p0/covintervene_p0.yaml).
+
+No model inference should be run while the P0 config status is
+`draft_awaiting_owner_approval`. After approval, the config, implementation commit,
+and model revisions will be pinned before the first backbone call.
 
 ## Research-integrity rule
 

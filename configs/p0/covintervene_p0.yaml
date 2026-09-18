@@ -1,0 +1,78 @@
+schema_version: 1
+status: draft_awaiting_owner_approval
+experiment: covintervene-phenomenon-screen-p0-v1
+scope:
+  model_training: false
+  model_tuning: false
+  sealed_model_inference_authorized: false
+data:
+  context_length: 192
+  horizon: 24
+  series_per_mechanism_per_seed: 64
+  generator_seeds: [11, 29, 47]
+  mechanisms:
+    - contemporaneous_linear
+    - delayed_distributed_lag
+    - threshold_saturation
+    - irrelevant_placebo
+  target_ar_range: [0.25, 0.65]
+  covariate_ar_range: [0.35, 0.80]
+  coefficient_magnitude_range: [0.40, 1.00]
+  innovation_sd_range: [0.15, 0.35]
+  intervention:
+    directions: [-1, 1]
+    primary_scale_in_covariate_sd: 0.75
+    sensitivity_scales_in_covariate_sd: [0.50, 1.00]
+    block_length: 6
+    start_indices: [0, 6, 12]
+    clip_to_context_quantiles: [0.01, 0.99]
+  delayed_distributed_lag:
+    first_lag: 2
+    kernel: [0.50, 0.30, 0.20]
+  threshold_saturation:
+    link: tanh
+    transition_width_in_covariate_sd: 0.50
+models:
+  - id: chronos_2
+    checkpoint: amazon/chronos-2
+    revision: pin_before_inference
+    mode: frozen_zero_shot
+  - id: timesfm_3
+    checkpoint: google/timesfm-3.0-pytorch
+    revision: pin_before_inference
+    mode: frozen_zero_shot
+comparators:
+  - analytic_oracle
+  - target_only_same_backbone
+  - ridge_arx
+forecast_metrics:
+  primary: [SQL, WQL]
+  secondary: [median_MAE]
+response_metrics:
+  active_support_fraction_of_peak: 0.10
+  sensitivity_support_fractions_of_peak: [0.05, 0.20]
+  numerical_epsilon_multiplier: 1.0e-8
+  report: [DSA, RGR, NRE, TLS, PRR]
+uncertainty:
+  unit: paired_series
+  stratify_by_generator_seed: true
+  bootstrap_replicates: 5000
+  bootstrap_seed: 9102
+  interval: percentile_two_sided_95
+continuation_gate:
+  direction_agreement_minimum: 0.80
+  median_response_gain_ratio_interval: [0.50, 1.50]
+  placebo_response_ratio_maximum: 0.20
+  minimum_violating_cells: 2
+  diversity_rule: at_least_two_mechanisms_or_both_backbones
+  complementary_relative_sql_maximum: 0.02
+  failure_action: stop_or_new_untouched_contract_without_lowering_thresholds
+runtime:
+  platform: google_colab
+  initial_accelerator: T4
+  upgrade_accelerator_if_needed: A100
+  python: colab_default_record_exact_version
+artifacts:
+  raw_series_records: evidence/screening/p0_series_records.parquet
+  decision: evidence/screening/p0_phenomenon_decision.yaml
+  manifest: evidence/screening/p0_run_manifest.json

@@ -46,7 +46,7 @@ p0_scope:
     - threshold_saturation
     - irrelevant_placebo
   backbones: [chronos_2, timesfm_3]
-  series_per_mechanism: 64
+  series_per_mechanism_per_seed: 64
   horizon: 24
   independent_generator_seeds: [11, 29, 47]
 p0_continuation_gate:
