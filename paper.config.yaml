@@ -1,7 +1,7 @@
 schema_version: 1
-topic: "Right Forecast, Wrong Reason? Auditing Covariate Response Faithfulness in Zero-Shot Time-Series Foundation Models"
+topic: "Beyond Direction and Gain: Multi-Resolution Covariate-Response Faithfulness in Time-Series Foundation Models"
 workflow_mode: empirical
-target_venue: CCF-B conference to be selected after P0
+target_venue: CCF-B conference to be selected after P1 evidence
 style_mode: neutral
 runtime:
   python: "py -3.14"
@@ -12,3 +12,7 @@ paper:
   result_policy: verified_or_explicit_placeholder
   target_main_pages: 8
   target_references: [30, 40]
+research_stage:
+  branch: p1_shape
+  status: owner_approved_design_not_inference_authorized
+  required_next_approval: "APPROVE P1-SHAPE FREEZE"

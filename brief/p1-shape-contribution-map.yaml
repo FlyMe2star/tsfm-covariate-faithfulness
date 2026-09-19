@@ -1,0 +1,104 @@
+project: tsfm-covariate-faithfulness
+branch: p1_shape
+working_title: "Beyond Direction and Gain: Multi-Resolution Covariate-Response Faithfulness in Time-Series Foundation Models"
+status: owner_approved_design_not_inference_authorized
+approval:
+  phrase: "APPROVE P1-SHAPE DESIGN"
+  date: 2026-09-19
+integrity_boundary:
+  p0_role: motivation_only
+  p0_outputs_allowed_for_metric_or_threshold_selection: false
+  new_model_inference_authorized: false
+  required_next_approval: "APPROVE P1-SHAPE FREEZE"
+core_question: >-
+  When direction and aggregate response magnitude are broadly correct, do frozen
+  covariate-aware TSFMs preserve the signed horizon-wise shape of a known-future
+  covariate response across temporal resolutions?
+primary_claim:
+  id: S1
+  statement: >-
+    A coarse direction-and-gain audit can conceal practically meaningful fine-resolution
+    temporal response distortion in frozen covariate-aware TSFMs.
+  status: hypothesis_unverified
+  falsifier: >-
+    Fewer than two eligible backbone-by-mechanism cells satisfy the complete frozen
+    hidden-distortion rule, or the cells do not meet its diversity and accuracy clauses.
+secondary_claims:
+  - id: S2
+    statement: >-
+      Signed multi-resolution response distance distinguishes temporal displacement,
+      smoothing, rebound deletion, and interaction omission from pure gain error.
+    status: planned_construct_validation
+  - id: S3
+    statement: >-
+      Distortion profiles differ across untouched structural mechanisms and the two
+      frozen TSFM backbones without implying universal model superiority.
+    status: hypothesis_unverified
+  - id: S4
+    statement: >-
+      Transparent dynamic-regression references help separate difficulty intrinsic to
+      each mechanism from TSFM-specific response-shape behavior.
+    status: hypothesis_unverified
+novelty_boundary:
+  closest_work: "Causal Analysis for Time Series Foundation Models (arXiv:2608.24303)"
+  distinction: >-
+    That work intervenes on parameters of univariate target generators and evaluates
+    scalar pattern responses. P1-SHAPE holds target history fixed, intervenes on
+    known-future exogenous paths, and audits the signed target-response trajectory at
+    multiple temporal resolutions.
+  excluded_framings:
+    - generic_counterfactual_generation
+    - univariate_pattern_parameter_intervention
+    - forecast_accuracy_only_covariate_benchmark
+    - post_hoc_safeguard_search
+mechanisms:
+  - biphasic_rebound
+  - dispersed_delayed_pulse
+  - rate_asymmetric_hysteresis
+  - two_covariate_synergy
+backbones:
+  primary: [chronos_2, timesfm_3]
+  optional_third: not_authorized_pending_interface_and_license_review
+transparent_references: [ridge_arx, nonlinear_dynamic_regression]
+resolution_widths: [1, 2, 4, 8]
+new_generator_seeds: [101, 307, 911]
+planned_metrics:
+  coarse:
+    directional_sign_agreement: sign correctness on oracle-active horizons
+    response_gain_ratio: predicted versus oracle absolute integrated response
+  fine:
+    signed_shape_distance: total-variation distance between signed L1-normalized response profiles
+    temporal_mass_distance: normalized one-dimensional Wasserstein distance between absolute response mass profiles
+    peak_time_error: absolute peak-horizon error divided by horizon minus one
+    onset_error: absolute onset-horizon error divided by horizon minus one
+    interaction_shape_distance: shape error of the joint-minus-marginal interaction response
+  summary:
+    resolution_hidden_distortion: fine signed-shape distance minus width-8 signed-shape distance
+    multi_resolution_distortion_auc: trapezoidal area over log2 resolution width
+  complement:
+    observational_forecast_skill: SQL and WQL with target-only matched calls
+proposed_success_contract:
+  coarse_envelope:
+    dsa_two_sided_95pct_lower_bound_at_least: 0.90
+    rgr_two_sided_95pct_interval_within: [0.75, 1.25]
+  hidden_shape_violation:
+    signed_shape_distance_lower_bound_at_least: 0.10
+    resolution_hidden_distortion_lower_bound_at_least: 0.05
+  cell_rule: coarse_envelope_and_both_hidden_shape_bounds
+  diversity_rule: >-
+    At least two cells pass the cell rule and they span at least two mechanisms or both
+    backbones.
+  complementary_accuracy_rule: >-
+    At least one passing cell has covariate-aware SQL no worse than target-only by more
+    than 2 percent on the point estimate.
+  construct_validation_rule: >-
+    Numeric bounds remain proposed until CPU-only fixtures confirm range, selectivity,
+    and monotonic severity. They may be revised only from fixture evidence before any
+    TSFM inference and then require owner freeze approval.
+  fail_action: archive_bounded_null_and_stop_without_relaxation
+risk_factors:
+  - Multi-resolution metrics may appear hand-crafted unless fixture selectivity is demonstrated before inference.
+  - Synthetic response paths bound structural truth but do not establish real-world causality.
+  - Two TSFM backbones support a bounded cross-model claim rather than a universal one.
+  - Temporal coarsening can cancel opposite-signed responses; signed and absolute-mass metrics must both be reported.
+  - Synergy requires four aligned worlds and stricter pairing assertions.

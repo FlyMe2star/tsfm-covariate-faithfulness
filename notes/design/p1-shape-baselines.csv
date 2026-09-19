@@ -1,0 +1,12 @@
+name,category,training_status,role,primary_metrics,selected,notes
+Analytic structural oracle,measurement_ceiling,not_fitted,"Exact response and interaction ground truth","RGR; DSA; D_b; temporal mass distance; onset; peak",yes,"Validates generators and metric ceiling"
+Pure gain-scaled oracle,construct_fixture,not_fitted,"Separates magnitude error from shape error","RGR; D_b",yes,"Shape distance must remain zero for positive gain scaling"
+Within-bin shifted oracle,construct_fixture,not_fitted,"Validates resolution-hidden temporal displacement","D_1; D_8; hidden-distortion gap",yes,"Shift is chosen to remain inside a width-8 block"
+Rebound-deleted oracle,construct_fixture,not_fitted,"Validates biphasic-shape sensitivity","D_b; positive/negative mass error",yes,"Preserves the early lobe and deletes the opposite-signed lobe"
+Interaction-omitted oracle,construct_fixture,not_fitted,"Validates M4 interaction sensitivity","interaction shape distance",yes,"Marginal responses stay exact"
+Target-only same checkpoint,ablation_anchor,frozen_zero_shot,"Forecast-skill complement and zero-covariate-response reference","SQL; WQL",yes,"Same backbone and factual target history"
+Ridge-ARX,transparent_reference,fitted_per_generator_split,"Linear dynamic covariate-response reference","SQL; WQL; RGR; DSA; D_b",yes,"Not presented as zero-shot"
+Nonlinear dynamic regression,transparent_reference,fitted_per_generator_split,"Compact nonlinear and interaction reference","SQL; WQL; RGR; DSA; D_b",yes,"Frozen feature basis and regularization before P1 inference"
+Chronos-2,primary_backbone,frozen_zero_shot,"Native covariate-aware TSFM","SQL; WQL; RGR; DSA; D_b",yes,"Official checkpoint and revision will be locked"
+TimesFM-3,primary_backbone,frozen_zero_shot,"Cross-architecture native covariate-aware TSFM","SQL; WQL; RGR; DSA; D_b",yes,"Non-commercial license disclosed"
+Third covariate TSFM,optional_backbone,not_authorized,"Potential breadth extension","all primary metrics",no,"Must be approved and frozen before any P1 model inference"

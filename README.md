@@ -3,30 +3,36 @@
 Research repository for auditing whether zero-shot time-series foundation models
 respond faithfully to known-future covariates under controlled interventions.
 
-Working title: **Right Forecast, Wrong Reason? Auditing Covariate Response
-Faithfulness in Zero-Shot Time-Series Foundation Models**.
+Current working title: **Beyond Direction and Gain: Multi-Resolution
+Covariate-Response Faithfulness in Time-Series Foundation Models**.
 
 The owner-approved P0 protocol has completed. Both frozen backbones produced all
 screening units, but the first-run decision found zero predeclared fidelity violations;
 the original failure-centered paper gate therefore did not pass. The result is retained
-as a verified bounded screening outcome, and no threshold will be lowered post hoc. The prior
-`covariate-safe-tsfm` project and its sealed outcomes are not reused for model or
-threshold selection here.
+as a verified bounded screening outcome, and no threshold will be lowered post hoc.
 
-## Planned workflow
+The owner has now approved the **P1-SHAPE design direction**. P1 asks a new question:
+whether direction and aggregate gain can look correct while the signed response is
+misplaced within the forecast horizon. It uses untouched mechanisms, parameters,
+seeds, and metrics. P0 is motivation only and cannot be used for P1 selection.
 
-1. Freeze controlled structural data-generating processes and response metrics.
-2. Run a small Chronos-2 and TimesFM-3 phenomenon-existence pilot on Colab T4.
-3. Stop if response-faithfulness failures are not reproducible across mechanisms or
-   backbones.
-4. If the gate passes, expand to a paper-eligible benchmark and optionally test one
-   lightweight safeguard under a separately frozen contract.
+## P1-SHAPE workflow
 
-See [`brief/topic-brief.md`](brief/topic-brief.md) and
-[`brief/contribution-map.yaml`](brief/contribution-map.yaml) for the research contract.
-The reviewable P0 protocol is in
-[`notes/design/method-spec.md`](notes/design/method-spec.md), with the machine-readable
-configuration in [`configs/p0/covintervene_p0.yaml`](configs/p0/covintervene_p0.yaml).
+1. Implement and validate multi-resolution metrics and four untouched mechanisms on
+   CPU without loading a TSFM.
+2. Review the construct-validation report and proposed numeric bounds.
+3. Require the explicit phrase `APPROVE P1-SHAPE FREEZE` before model inference.
+4. Freeze configs, code, dependencies, checkpoint revisions, and hashes.
+5. Smoke Chronos-2 and TimesFM-3 on T4, then execute the resumable full matrix.
+6. Compute the frozen decision once, retain every cell, and either write the bounded
+   result or stop without threshold relaxation.
+
+See [`brief/p1-shape-topic-brief.md`](brief/p1-shape-topic-brief.md),
+[`brief/p1-shape-contribution-map.yaml`](brief/p1-shape-contribution-map.yaml), and
+[`notes/design/p1-shape-method-spec.md`](notes/design/p1-shape-method-spec.md) for the
+current contract. Original P0 documents and evidence remain unchanged and auditable.
+
+## Archived P0 reproduction
 
 The config is protected by an external canonical hash lock. The first Colab notebook
 runs one series per mechanism and seed for one selected backbone. It writes a smoke-only
@@ -60,6 +66,6 @@ decision, and reuses an existing decision instead of recomputing it.
 
 ## Research-integrity rule
 
-P0 thresholds are frozen before the first model inference. A failed gate may motivate
-a genuinely new experiment on untouched evidence, but it may not be lowered on the
-observed P0 outputs.
+P0 thresholds remain frozen. P1 may use P0 only as motivation, not as evidence or a
+source of thresholds. P1 model inference is not authorized until construct validation
+passes and the owner explicitly freezes the new contract.
