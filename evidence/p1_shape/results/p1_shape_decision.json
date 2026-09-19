@@ -1,0 +1,97 @@
+{
+  "schema_version": 1,
+  "result_status": "verified_p1_shape_decision",
+  "paper_eligibility": "eligible_for_bounded_paper_claim",
+  "config_hash": "27826ad34bfe0acd8ee90ff4d0fbafb011a6b00aeea276dacaa9f9fe2a261918",
+  "scientific_code_sha256": "fc1cf6d73a59a4200deaa964f341a17b72d8fae75fa40b1086ed1c8c714f5925",
+  "git_commit": "50deb536d761bc07165ea9b0e0331bcd395f0eaf",
+  "created_at_utc": "2026-09-19T13:07:43.545451+00:00",
+  "cells": {
+    "chronos_2/biphasic_rebound": {
+      "series_count": 192,
+      "relative_sql_difference": -0.5190028115928916,
+      "dsa": {"estimate": 0.9732344622969623, "lower": 0.9640721424119864, "upper": 0.9812435987045363, "replicates": 5000, "seed": 190926},
+      "rgr": {"estimate": 0.7262375124697248, "lower": 0.7016133342233611, "upper": 0.7566248356697767, "replicates": 5000, "seed": 190926},
+      "shape_d1": {"estimate": 0.18452426352368193, "lower": 0.17285219446775357, "upper": 0.19516594395633108, "replicates": 5000, "seed": 190926},
+      "hidden_gap": {"estimate": 0.04764276965331782, "lower": 0.04160320452298383, "upper": 0.057356099808529216, "replicates": 5000, "seed": 190926}
+    },
+    "chronos_2/dispersed_delayed_pulse": {
+      "series_count": 192,
+      "relative_sql_difference": -0.5144668457438905,
+      "dsa": {"estimate": 0.9816650508056758, "lower": 0.9743293331379268, "upper": 0.9883868540313853, "replicates": 5000, "seed": 190926},
+      "rgr": {"estimate": 0.7903160416072458, "lower": 0.7597193242378448, "upper": 0.8226073356916522, "replicates": 5000, "seed": 190926},
+      "shape_d1": {"estimate": 0.19161700654465672, "lower": 0.18229062132488366, "upper": 0.20212893862505238, "replicates": 5000, "seed": 190926},
+      "hidden_gap": {"estimate": 0.06629731379781523, "lower": 0.06050684229783691, "upper": 0.0760496416678299, "replicates": 5000, "seed": 190926}
+    },
+    "chronos_2/rate_asymmetric_hysteresis": {
+      "series_count": 192,
+      "relative_sql_difference": -0.2020296499925065,
+      "dsa": {"estimate": 0.8880397121091055, "lower": 0.8666870169633267, "upper": 0.9077176050222925, "replicates": 5000, "seed": 190926},
+      "rgr": {"estimate": 0.6267678106679977, "lower": 0.5774497898262686, "upper": 0.6763250994384248, "replicates": 5000, "seed": 190926},
+      "shape_d1": {"estimate": 0.36186001703697784, "lower": 0.33811646101107257, "upper": 0.3949152205947677, "replicates": 5000, "seed": 190926},
+      "hidden_gap": {"estimate": 0.004149167165321516, "lower": -0.0368063920890657, "upper": 0.04175262160313498, "replicates": 5000, "seed": 190926}
+    },
+    "chronos_2/two_covariate_synergy": {
+      "series_count": 192,
+      "relative_sql_difference": -0.4056362403924725,
+      "dsa": {"estimate": 0.7753162202380951, "lower": 0.7319844370039683, "upper": 0.8166267774470899, "replicates": 5000, "seed": 190926},
+      "rgr": {"estimate": 0.6454628452831896, "lower": 0.6052451963769463, "upper": 0.7124695268585269, "replicates": 5000, "seed": 190926},
+      "shape_d1": {"estimate": 0.39995301061964833, "lower": 0.34373144866905725, "upper": 0.499031454162981, "replicates": 5000, "seed": 190926},
+      "hidden_gap": {"estimate": 0.10429455673046051, "lower": 0.08412301211064638, "upper": 0.125242528484978, "replicates": 5000, "seed": 190926}
+    },
+    "timesfm_3/biphasic_rebound": {
+      "series_count": 192,
+      "relative_sql_difference": -0.5227457359450574,
+      "dsa": {"estimate": 0.9742260777417027, "lower": 0.9671189971775909, "upper": 0.9808623368096026, "replicates": 5000, "seed": 190926},
+      "rgr": {"estimate": 0.8210758360929636, "lower": 0.7979801958370184, "upper": 0.8444663217348327, "replicates": 5000, "seed": 190926},
+      "shape_d1": {"estimate": 0.1975057041632846, "lower": 0.1887849329635643, "upper": 0.2062815437807368, "replicates": 5000, "seed": 190926},
+      "hidden_gap": {"estimate": 0.03961915301537469, "lower": 0.03236503607290942, "upper": 0.048208519637276896, "replicates": 5000, "seed": 190926}
+    },
+    "timesfm_3/dispersed_delayed_pulse": {
+      "series_count": 192,
+      "relative_sql_difference": -0.3894811638429452,
+      "dsa": {"estimate": 0.9880550294612794, "lower": 0.9754559593329125, "upper": 0.9958702585753367, "replicates": 5000, "seed": 190926},
+      "rgr": {"estimate": 0.708430223540382, "lower": 0.6153476339947089, "upper": 0.7881307267147464, "replicates": 5000, "seed": 190926},
+      "shape_d1": {"estimate": 0.2597529284111544, "lower": 0.23409448711362502, "upper": 0.2822546783967624, "replicates": 5000, "seed": 190926},
+      "hidden_gap": {"estimate": 0.08638696304927489, "lower": 0.07425530530487136, "upper": 0.09830916511408218, "replicates": 5000, "seed": 190926}
+    },
+    "timesfm_3/rate_asymmetric_hysteresis": {
+      "series_count": 192,
+      "relative_sql_difference": -0.24947656142241484,
+      "dsa": {"estimate": 0.9094554729550134, "lower": 0.8888397479490656, "upper": 0.928263909293321, "replicates": 5000, "seed": 190926},
+      "rgr": {"estimate": 0.6844916174686997, "lower": 0.6424671900280388, "upper": 0.7338879098755411, "replicates": 5000, "seed": 190926},
+      "shape_d1": {"estimate": 0.35021322554069273, "lower": 0.3179802455135848, "upper": 0.37213576851420604, "replicates": 5000, "seed": 190926},
+      "hidden_gap": {"estimate": -0.040708339714783506, "lower": -0.07617562554770937, "upper": -0.0214912906986642, "replicates": 5000, "seed": 190926}
+    },
+    "timesfm_3/two_covariate_synergy": {
+      "series_count": 192,
+      "relative_sql_difference": -0.4613618151202693,
+      "dsa": {"estimate": 0.8127542162698412, "lower": 0.7706086206183862, "upper": 0.8526229745370371, "replicates": 5000, "seed": 190926},
+      "rgr": {"estimate": 0.6984207764393432, "lower": 0.6070973267100616, "upper": 0.7722929318607543, "replicates": 5000, "seed": 190926},
+      "shape_d1": {"estimate": 0.30374534086140575, "lower": 0.2370396109544858, "upper": 0.3744695935595158, "replicates": 5000, "seed": 190926},
+      "hidden_gap": {"estimate": 0.08741011307321685, "lower": 0.07042095236065427, "upper": 0.10436288179404926, "replicates": 5000, "seed": 190926}
+    }
+  },
+  "decision": {
+    "passed": true,
+    "passing_cells": [
+      "chronos_2/biphasic_rebound",
+      "chronos_2/dispersed_delayed_pulse",
+      "timesfm_3/biphasic_rebound"
+    ],
+    "checks_by_cell": {
+      "chronos_2/biphasic_rebound": {"dsa_coarse_eligible": true, "rgr_coarse_eligible": true, "fine_shape_distorted": true, "distortion_hidden_by_aggregation": true},
+      "chronos_2/dispersed_delayed_pulse": {"dsa_coarse_eligible": true, "rgr_coarse_eligible": true, "fine_shape_distorted": true, "distortion_hidden_by_aggregation": true},
+      "chronos_2/rate_asymmetric_hysteresis": {"dsa_coarse_eligible": true, "rgr_coarse_eligible": false, "fine_shape_distorted": true, "distortion_hidden_by_aggregation": false},
+      "chronos_2/two_covariate_synergy": {"dsa_coarse_eligible": false, "rgr_coarse_eligible": false, "fine_shape_distorted": true, "distortion_hidden_by_aggregation": true},
+      "timesfm_3/biphasic_rebound": {"dsa_coarse_eligible": true, "rgr_coarse_eligible": true, "fine_shape_distorted": true, "distortion_hidden_by_aggregation": true},
+      "timesfm_3/dispersed_delayed_pulse": {"dsa_coarse_eligible": true, "rgr_coarse_eligible": false, "fine_shape_distorted": true, "distortion_hidden_by_aggregation": true},
+      "timesfm_3/rate_asymmetric_hysteresis": {"dsa_coarse_eligible": true, "rgr_coarse_eligible": false, "fine_shape_distorted": true, "distortion_hidden_by_aggregation": false},
+      "timesfm_3/two_covariate_synergy": {"dsa_coarse_eligible": false, "rgr_coarse_eligible": false, "fine_shape_distorted": true, "distortion_hidden_by_aggregation": true}
+    },
+    "minimum_cell_count_passed": true,
+    "diversity_passed": true,
+    "complementary_accuracy_passed": true,
+    "next_action": "draft_bounded_paper_claim"
+  }
+}

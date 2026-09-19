@@ -1,7 +1,7 @@
 project: tsfm-covariate-faithfulness
 branch: p1_shape
 working_title: "Beyond Direction and Gain: Multi-Resolution Covariate-Response Faithfulness in Time-Series Foundation Models"
-status: frozen_owner_approved_pre_inference
+status: verified_bounded_paper_eligible
 approval:
   phrase: "APPROVE P1-SHAPE DESIGN"
   date: 2026-09-19
@@ -20,7 +20,7 @@ primary_claim:
   statement: >-
     A coarse direction-and-gain audit can conceal practically meaningful fine-resolution
     temporal response distortion in frozen covariate-aware TSFMs.
-  status: hypothesis_unverified
+  status: verified_bounded
   falsifier: >-
     Fewer than two eligible backbone-by-mechanism cells satisfy the complete frozen
     hidden-distortion rule, or the cells do not meet its diversity and accuracy clauses.
@@ -29,17 +29,17 @@ secondary_claims:
     statement: >-
       Signed multi-resolution response distance distinguishes temporal displacement,
       smoothing, rebound deletion, and interaction omission from pure gain error.
-    status: planned_construct_validation
+    status: verified_construct_validated
   - id: S3
     statement: >-
       Distortion profiles differ across untouched structural mechanisms and the two
       frozen TSFM backbones without implying universal model superiority.
-    status: hypothesis_unverified
+    status: verified_descriptive_complete_matrix
   - id: S4
     statement: >-
       Transparent dynamic-regression references help separate difficulty intrinsic to
       each mechanism from TSFM-specific response-shape behavior.
-    status: hypothesis_unverified
+    status: not_evaluated
 novelty_boundary:
   closest_work: "Causal Analysis for Time Series Foundation Models (arXiv:2608.24303)"
   distinction: >-
@@ -102,6 +102,21 @@ frozen_artifacts:
   scientific_code_sha256: fc1cf6d73a59a4200deaa964f341a17b72d8fae75fa40b1086ed1c8c714f5925
   construct_report: evidence/p1_shape/construct/metric_construct_validation.yaml
   construct_report_sha256: bf5eb18eacb4d5ab59b79288031517c250cafe21d1b270c05ae951c258ee53d0
+verified_result:
+  decision: evidence/p1_shape/results/p1_shape_decision.json
+  decision_sha256: 077322e808fffe62af99feda3363220670eac96ba3f43eb6ef0758da2a7373a7
+  paper_eligibility: eligible_for_bounded_paper_claim
+  passing_cells:
+    - chronos_2/biphasic_rebound
+    - chronos_2/dispersed_delayed_pulse
+    - timesfm_3/biphasic_rebound
+  minimum_cell_count_passed: true
+  diversity_passed: true
+  complementary_accuracy_passed: true
+  claim_boundary: >-
+    The result supports hidden fine-resolution response-shape distortion only for the
+    tested checkpoints, mechanisms, horizon, and intervention protocol. It does not
+    establish universal TSFM behavior or real-world causal effects.
 risk_factors:
   - Multi-resolution metrics may appear hand-crafted unless fixture selectivity is demonstrated before inference.
   - Synthetic response paths bound structural truth but do not establish real-world causality.

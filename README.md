@@ -16,6 +16,15 @@ whether direction and aggregate gain can look correct while the signed response 
 misplaced within the forecast horizon. It uses untouched mechanisms, parameters,
 seeds, and metrics. P0 is motivation only and cannot be used for P1 selection.
 
+The frozen P1-SHAPE decision subsequently **passed**. Three of eight complete cells
+satisfied the predeclared direction, gain, fine-shape, and resolution-gap conditions,
+while spanning two mechanisms and both audited backbones. This supports a bounded paper
+claim for the tested checkpoints and structural mechanisms; it is not a universal TSFM
+or real-world causal claim. See
+[`evidence/p1_shape/results/result-summary.md`](evidence/p1_shape/results/result-summary.md).
+An evidence-constrained manuscript scaffold and the complete eight-cell primary table
+are under [`paper/`](paper/); manuscript prose remains gated on citation verification.
+
 ## P1-SHAPE workflow
 
 1. Multi-resolution metrics and four untouched mechanisms passed CPU construct

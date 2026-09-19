@@ -14,6 +14,7 @@ paper:
   target_references: [30, 40]
 research_stage:
   branch: p1_shape
-  status: frozen_owner_approved_pre_inference
+  status: verified_bounded_paper_eligible
   freeze_approval: "APPROVE P1-SHAPE FREEZE"
   config_sha256: 27826ad34bfe0acd8ee90ff4d0fbafb011a6b00aeea276dacaa9f9fe2a261918
+  decision_artifact: evidence/p1_shape/results/p1_shape_decision.json

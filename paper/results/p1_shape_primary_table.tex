@@ -1,0 +1,23 @@
+\begin{table*}[t]
+  \centering
+  \caption{Complete frozen P1-SHAPE matrix. Values in brackets are two-sided 95\%
+  bootstrap intervals. A check mark denotes satisfaction of the complete preregistered
+  cell rule; nonpassing cells are retained. Relative SQL differences below zero favor
+  the covariate-aware call over the matched target-only call.}
+  \label{tab:p1-shape-primary}
+  \resizebox{\textwidth}{!}{%
+  \begin{tabular}{llrrrrrrc}
+    \toprule
+    Backbone & Mechanism & $n$ & Rel. SQL & DSA & RGR & $D_1$ & Hidden gap & Pass \\
+    \midrule
+    Chronos-2 & Biphasic rebound & 192 & -0.519 & 0.973 [0.964, 0.981] & 0.726 [0.702, 0.757] & 0.185 [0.173, 0.195] & 0.048 [0.042, 0.057] & \checkmark \\
+    Chronos-2 & Dispersed delayed pulse & 192 & -0.514 & 0.982 [0.974, 0.988] & 0.790 [0.760, 0.823] & 0.192 [0.182, 0.202] & 0.066 [0.061, 0.076] & \checkmark \\
+    Chronos-2 & Rate-asymmetric hysteresis & 192 & -0.202 & 0.888 [0.867, 0.908] & 0.627 [0.577, 0.676] & 0.362 [0.338, 0.395] & 0.004 [-0.037, 0.042] & -- \\
+    Chronos-2 & Two-covariate synergy & 192 & -0.406 & 0.775 [0.732, 0.817] & 0.645 [0.605, 0.712] & 0.400 [0.344, 0.499] & 0.104 [0.084, 0.125] & -- \\
+    TimesFM-3 & Biphasic rebound & 192 & -0.523 & 0.974 [0.967, 0.981] & 0.821 [0.798, 0.844] & 0.198 [0.189, 0.206] & 0.040 [0.032, 0.048] & \checkmark \\
+    TimesFM-3 & Dispersed delayed pulse & 192 & -0.389 & 0.988 [0.976, 0.996] & 0.708 [0.615, 0.788] & 0.260 [0.234, 0.282] & 0.086 [0.074, 0.098] & -- \\
+    TimesFM-3 & Rate-asymmetric hysteresis & 192 & -0.249 & 0.910 [0.889, 0.928] & 0.685 [0.643, 0.734] & 0.350 [0.318, 0.372] & -0.041 [-0.076, -0.021] & -- \\
+    TimesFM-3 & Two-covariate synergy & 192 & -0.461 & 0.813 [0.771, 0.853] & 0.698 [0.607, 0.772] & 0.304 [0.237, 0.375] & 0.087 [0.070, 0.104] & -- \\
+    \bottomrule
+  \end{tabular}}
+\end{table*}

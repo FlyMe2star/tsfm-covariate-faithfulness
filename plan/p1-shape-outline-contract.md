@@ -1,6 +1,6 @@
 # P1-SHAPE outline contract
 
-Status: owner-approved direction; results remain placeholders
+Status: frozen decision verified; bounded primary claim eligible for drafting
 
 ## Provisional evidence story
 
@@ -12,8 +12,9 @@ Status: owner-approved direction; results remain placeholders
    signed metric evaluated at temporal widths 1/2/4/8.
 4. **Construct validity:** analytic broken-response fixtures show what each metric can
    and cannot detect before any TSFM output exists.
-5. **Behavioral evidence:** complete two-backbone by four-mechanism matrix plus
-   transparent fitted references and matched forecast skill.
+5. **Behavioral evidence:** complete two-backbone by four-mechanism matrix and matched
+   forecast skill. Transparent fitted references remain planned and cannot yet support
+   a paper claim.
 6. **Bounded conclusion:** state either the verified hidden-distortion scope or a null
    result; never generalize beyond the tested interfaces and mechanisms.
 
