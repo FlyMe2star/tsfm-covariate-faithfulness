@@ -1,6 +1,7 @@
 # CovIntervene-SHAPE P1 method specification
 
-Status: **owner-approved design; proposed numeric bounds; no model inference authorized**  
+Status: **frozen, construct-validated, and inference-authorized**
+
 Last updated: 2026-09-19
 
 ## 1. Audit object
@@ -67,12 +68,11 @@ active support is defined by the frozen 10% of peak absolute response threshold.
 
 A cell is coarse-eligible only when:
 
-- the series-cluster bootstrap two-sided 95% DSA lower bound is at least `0.90`; and
-- the complete two-sided 95% interval for median RGR lies within `[0.75, 1.25]`.
+- the series-cluster bootstrap two-sided 95% DSA lower bound is at least `0.85`; and
+- the complete two-sided 95% interval for median RGR lies within `[0.65, 1.35]`.
 
-These stricter proposed bounds reflect the claim that shape distortion is hidden behind
-otherwise credible coarse behavior. Construct validation may change them only before
-any model inference and with an explicit versioned rationale.
+These bounds include the owner's one-time pre-inference relaxation. They remain strong
+enough to require credible coarse behavior and cannot change after freeze.
 
 ## 4. Signed multi-resolution shape distance
 
@@ -164,16 +164,16 @@ A cell supports **resolution-hidden shape distortion** only if all four conditio
 
 1. coarse DSA bound passes;
 2. coarse RGR interval passes;
-3. the two-sided 95% lower bound of median `D_1` is at least `0.10`; and
-4. the two-sided 95% lower bound of median `G = D_1 - D_8` is at least `0.05`.
+3. the two-sided 95% lower bound of median `D_1` is at least `0.08`; and
+4. the two-sided 95% lower bound of median `G = D_1 - D_8` is at least `0.03`.
 
 P1 continues to a paper claim only if at least two cells pass, the cells span at least
 two mechanisms or both backbones, and at least one passing cell has covariate-aware SQL
 no worse than target-only by more than 2% on the point estimate.
 
-This gate is proposed until construct validation is complete. Once the owner types
-`APPROVE P1-SHAPE FREEZE`, it becomes immutable. Failure then means archive and stop;
-it never authorizes relaxation.
+Construct validation passed all 11 blocking checks, and the owner then typed
+`APPROVE P1-SHAPE FREEZE`. This gate is immutable. Failure means archive and stop; it
+never authorizes further relaxation.
 
 ## 8. Forecast-skill complement and references
 

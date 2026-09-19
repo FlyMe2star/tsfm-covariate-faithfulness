@@ -14,5 +14,6 @@ paper:
   target_references: [30, 40]
 research_stage:
   branch: p1_shape
-  status: owner_approved_design_not_inference_authorized
-  required_next_approval: "APPROVE P1-SHAPE FREEZE"
+  status: frozen_owner_approved_pre_inference
+  freeze_approval: "APPROVE P1-SHAPE FREEZE"
+  config_sha256: 27826ad34bfe0acd8ee90ff4d0fbafb011a6b00aeea276dacaa9f9fe2a261918

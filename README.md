@@ -11,26 +11,37 @@ screening units, but the first-run decision found zero predeclared fidelity viol
 the original failure-centered paper gate therefore did not pass. The result is retained
 as a verified bounded screening outcome, and no threshold will be lowered post hoc.
 
-The owner has now approved the **P1-SHAPE design direction**. P1 asks a new question:
+The owner has now frozen the **P1-SHAPE protocol**. P1 asks a new question:
 whether direction and aggregate gain can look correct while the signed response is
 misplaced within the forecast horizon. It uses untouched mechanisms, parameters,
 seeds, and metrics. P0 is motivation only and cannot be used for P1 selection.
 
 ## P1-SHAPE workflow
 
-1. Implement and validate multi-resolution metrics and four untouched mechanisms on
-   CPU without loading a TSFM.
-2. Review the construct-validation report and proposed numeric bounds.
-3. Require the explicit phrase `APPROVE P1-SHAPE FREEZE` before model inference.
-4. Freeze configs, code, dependencies, checkpoint revisions, and hashes.
-5. Smoke Chronos-2 and TimesFM-3 on T4, then execute the resumable full matrix.
-6. Compute the frozen decision once, retain every cell, and either write the bounded
+1. Multi-resolution metrics and four untouched mechanisms passed CPU construct
+   validation without loading a TSFM.
+2. The owner supplied `APPROVE P1-SHAPE FREEZE`; config and code hashes are locked.
+3. Smoke Chronos-2 and TimesFM-3 on T4, then execute the resumable full matrix.
+4. Compute the frozen decision once, retain every cell, and either write the bounded
    result or stop without threshold relaxation.
 
 See [`brief/p1-shape-topic-brief.md`](brief/p1-shape-topic-brief.md),
 [`brief/p1-shape-contribution-map.yaml`](brief/p1-shape-contribution-map.yaml), and
 [`notes/design/p1-shape-method-spec.md`](notes/design/p1-shape-method-spec.md) for the
 current contract. Original P0 documents and evidence remain unchanged and auditable.
+
+## Frozen P1-SHAPE execution
+
+1. Open [`notebooks/04_p1_shape_backbone_smoke.ipynb`](notebooks/04_p1_shape_backbone_smoke.ipynb)
+   on a T4 and run once for `chronos_2`, then once for `timesfm_3`.
+2. After both smoke reports show 12/12 units, run
+   [`notebooks/05_p1_shape_backbone_screen.ipynb`](notebooks/05_p1_shape_backbone_screen.ipynb)
+   once per backbone. Full units are resumable in Google Drive.
+3. Only after both full reports show 12/12 units, run
+   [`notebooks/06_p1_shape_analyze.ipynb`](notebooks/06_p1_shape_analyze.ipynb) on CPU.
+
+The smoke and full-screen notebooks cannot compute the aggregate decision. The analysis
+notebook refuses incomplete or hash-mismatched units.
 
 ## Archived P0 reproduction
 
@@ -67,5 +78,5 @@ decision, and reuses an existing decision instead of recomputing it.
 ## Research-integrity rule
 
 P0 thresholds remain frozen. P1 may use P0 only as motivation, not as evidence or a
-source of thresholds. P1 model inference is not authorized until construct validation
-passes and the owner explicitly freezes the new contract.
+source of thresholds. P1 is now inference-authorized under config hash
+`27826ad34bfe`; no threshold may change after this authorization.

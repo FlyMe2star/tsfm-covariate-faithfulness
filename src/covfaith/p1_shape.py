@@ -113,6 +113,8 @@ def _completed_unit(
         and manifest.get("scientific_code_sha256") == code_hash
         and manifest.get("series_count") == count
         and manifest.get("completed") is True
+        and manifest.get("array_sha256")
+        == hashlib.sha256(array_path.read_bytes()).hexdigest()
     )
 
 

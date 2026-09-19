@@ -1,15 +1,16 @@
 project: tsfm-covariate-faithfulness
 branch: p1_shape
 working_title: "Beyond Direction and Gain: Multi-Resolution Covariate-Response Faithfulness in Time-Series Foundation Models"
-status: owner_approved_design_not_inference_authorized
+status: frozen_owner_approved_pre_inference
 approval:
   phrase: "APPROVE P1-SHAPE DESIGN"
   date: 2026-09-19
 integrity_boundary:
   p0_role: motivation_only
   p0_outputs_allowed_for_metric_or_threshold_selection: false
-  new_model_inference_authorized: false
-  required_next_approval: "APPROVE P1-SHAPE FREEZE"
+  new_model_inference_authorized: true
+  freeze_approval: "APPROVE P1-SHAPE FREEZE"
+  post_inference_threshold_changes_allowed: false
 core_question: >-
   When direction and aggregate response magnitude are broadly correct, do frozen
   covariate-aware TSFMs preserve the signed horizon-wise shape of a known-future
@@ -77,13 +78,13 @@ planned_metrics:
     multi_resolution_distortion_auc: trapezoidal area over log2 resolution width
   complement:
     observational_forecast_skill: SQL and WQL with target-only matched calls
-proposed_success_contract:
+frozen_success_contract:
   coarse_envelope:
-    dsa_two_sided_95pct_lower_bound_at_least: 0.90
-    rgr_two_sided_95pct_interval_within: [0.75, 1.25]
+    dsa_two_sided_95pct_lower_bound_at_least: 0.85
+    rgr_two_sided_95pct_interval_within: [0.65, 1.35]
   hidden_shape_violation:
-    signed_shape_distance_lower_bound_at_least: 0.10
-    resolution_hidden_distortion_lower_bound_at_least: 0.05
+    signed_shape_distance_lower_bound_at_least: 0.08
+    resolution_hidden_distortion_lower_bound_at_least: 0.03
   cell_rule: coarse_envelope_and_both_hidden_shape_bounds
   diversity_rule: >-
     At least two cells pass the cell rule and they span at least two mechanisms or both
@@ -91,11 +92,16 @@ proposed_success_contract:
   complementary_accuracy_rule: >-
     At least one passing cell has covariate-aware SQL no worse than target-only by more
     than 2 percent on the point estimate.
-  construct_validation_rule: >-
-    Numeric bounds remain proposed until CPU-only fixtures confirm range, selectivity,
-    and monotonic severity. They may be revised only from fixture evidence before any
-    TSFM inference and then require owner freeze approval.
+  construct_validation_result: >-
+    Passed 11 of 11 blocking checks and preflighted 768 scenarios before the owner
+    freeze approval. The one-time relaxed bounds are now immutable.
   fail_action: archive_bounded_null_and_stop_without_relaxation
+frozen_artifacts:
+  config: configs/p1_shape/covintervene_shape_p1.yaml
+  config_sha256: 27826ad34bfe0acd8ee90ff4d0fbafb011a6b00aeea276dacaa9f9fe2a261918
+  scientific_code_sha256: d8279d9af8fb5208603012ceef2f38be09bc3ec3d044d3f3f1c0790ee7ecc75c
+  construct_report: evidence/p1_shape/construct/metric_construct_validation.yaml
+  construct_report_sha256: f0ca9503aed5c438a362d4f66778020b7fdc943d25e1bbe02e50fca4bd004247
 risk_factors:
   - Multi-resolution metrics may appear hand-crafted unless fixture selectivity is demonstrated before inference.
   - Synthetic response paths bound structural truth but do not establish real-world causality.

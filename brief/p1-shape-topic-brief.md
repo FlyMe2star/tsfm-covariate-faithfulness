@@ -1,8 +1,14 @@
 # P1-SHAPE topic brief
 
-Status: **owner-approved direction; design artifacts only; model inference not yet authorized**  
-Approval phrase: `APPROVE P1-SHAPE DESIGN`  
+Status: **frozen, construct-validated, and owner-authorized for model inference**
+
+Approval phrase: `APPROVE P1-SHAPE DESIGN`
+
 Approval date: 2026-09-19
+
+Freeze phrase: `APPROVE P1-SHAPE FREEZE`
+
+Frozen config hash: `27826ad34bfe0acd8ee90ff4d0fbafb011a6b00aeea276dacaa9f9fe2a261918`
 
 ## Working title
 
@@ -72,11 +78,11 @@ threshold-saturation, or irrelevant-placebo cells.
 
 ## Three-stage authorization
 
-1. **Design (current):** create the claim, metric, mechanism, and evidence contracts.
-2. **Construct validation:** CPU-only fixtures validate metric selectivity and numerical
-   behavior without loading a TSFM.
-3. **Inference freeze:** after construct-validation evidence is reviewed, the owner must
-   type `APPROVE P1-SHAPE FREEZE` before any checkpoint call.
+1. **Design — complete:** claim, metric, mechanism, and evidence contracts approved.
+2. **Construct validation — complete:** 11/11 blocking checks passed without loading a
+   TSFM; 768 frozen generator scenarios passed deterministic paired preflight.
+3. **Inference freeze — complete:** the owner supplied `APPROVE P1-SHAPE FREEZE` before
+   any P1 checkpoint call. Threshold changes are now forbidden.
 
 ## Planned deliverable
 
