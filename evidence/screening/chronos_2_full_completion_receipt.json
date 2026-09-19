@@ -1,0 +1,35 @@
+{
+  "schema_version": 1,
+  "receipt_status": "user_returned_full_screening_completion",
+  "evidence_role": "complete_unanalyzed_screening_inventory_receipt",
+  "result_status": "screening_units_complete_not_analyzed",
+  "mode": "full_screening",
+  "config_hash": "56cd2ff3a3e56155074a47abb02a859be5e107a6fb59679f9f3d3981110db0dd",
+  "scientific_code_sha256": "ee75398fe2b7c93ac2e2fa83b0abeeb76f346a8953bfc7c91e1a1cfbd6b5bcde",
+  "git_commit": "0e6a2d3838b7a516d23f5b2c3cbd26dc14567869",
+  "backbone": "chronos_2",
+  "series_per_mechanism_per_seed": 64,
+  "completed_unit_count": 12,
+  "completed_units": [
+    "contemporaneous_linear/seed_00011",
+    "contemporaneous_linear/seed_00029",
+    "contemporaneous_linear/seed_00047",
+    "delayed_distributed_lag/seed_00011",
+    "delayed_distributed_lag/seed_00029",
+    "delayed_distributed_lag/seed_00047",
+    "threshold_saturation/seed_00011",
+    "threshold_saturation/seed_00029",
+    "threshold_saturation/seed_00047",
+    "irrelevant_placebo/seed_00011",
+    "irrelevant_placebo/seed_00029",
+    "irrelevant_placebo/seed_00047"
+  ],
+  "scientific_gate_computed": false,
+  "created_at_utc": "2026-09-19T11:49:01.033215+00:00",
+  "runtime": {
+    "python": "3.13.15",
+    "platform": "Linux-6.6.122+-x86_64-with-glibc2.39"
+  },
+  "private_artifact_root": "/content/drive/MyDrive/tsfm-covariate-faithfulness/p0_full_v1",
+  "receipt_source": "user-pasted final Colab JSON"
+}
