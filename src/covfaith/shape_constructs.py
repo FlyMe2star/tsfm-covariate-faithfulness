@@ -219,7 +219,7 @@ def run_construct_validation(repo_root: str | Path) -> dict[str, Any]:
         "fixtures": fixtures,
         "generator_preflight": generators,
         "all_checks": checks,
-        "proposed_frozen_bounds": {
+        "frozen_bounds": {
             "dsa_lower_bound_minimum": 0.85,
             "rgr_interval": [0.65, 1.35],
             "signed_shape_distance_lower_bound_minimum": 0.08,
