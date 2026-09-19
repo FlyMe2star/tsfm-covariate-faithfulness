@@ -238,7 +238,7 @@ def run_construct_validation(repo_root: str | Path) -> dict[str, Any]:
     )
     evidence_path.parent.mkdir(parents=True, exist_ok=True)
     payload = yaml.safe_dump(report, sort_keys=False, allow_unicode=True)
-    evidence_path.write_text(payload, encoding="utf-8")
+    evidence_path.write_text(payload, encoding="utf-8", newline="\n")
     digest = hashlib.sha256(evidence_path.read_bytes()).hexdigest()
     receipt = {
         "relative_path": evidence_path.relative_to(root).as_posix(),
@@ -246,7 +246,7 @@ def run_construct_validation(repo_root: str | Path) -> dict[str, Any]:
         "all_checks_passed": all(checks.values()),
     }
     (evidence_path.parent / "metric_construct_validation.receipt.json").write_text(
-        json.dumps(receipt, indent=2), encoding="utf-8"
+        json.dumps(receipt, indent=2), encoding="utf-8", newline="\n"
     )
     if not all(checks.values()):
         failed = [name for name, passed in checks.items() if not passed]
