@@ -1,0 +1,31 @@
+{
+  "schema_version": 1,
+  "result_status": "smoke_only_not_scientific_evidence",
+  "mode": "smoke_only",
+  "config_hash": "27826ad34bfe0acd8ee90ff4d0fbafb011a6b00aeea276dacaa9f9fe2a261918",
+  "scientific_code_sha256": "fc1cf6d73a59a4200deaa964f341a17b72d8fae75fa40b1086ed1c8c714f5925",
+  "git_commit": "c026c6f673162399a00b49742c16b162e33ef712",
+  "backbone": "timesfm_3",
+  "series_per_mechanism_per_seed": 1,
+  "completed_unit_count": 12,
+  "completed_units": [
+    "biphasic_rebound/seed_00101",
+    "biphasic_rebound/seed_00307",
+    "biphasic_rebound/seed_00911",
+    "dispersed_delayed_pulse/seed_00101",
+    "dispersed_delayed_pulse/seed_00307",
+    "dispersed_delayed_pulse/seed_00911",
+    "rate_asymmetric_hysteresis/seed_00101",
+    "rate_asymmetric_hysteresis/seed_00307",
+    "rate_asymmetric_hysteresis/seed_00911",
+    "two_covariate_synergy/seed_00101",
+    "two_covariate_synergy/seed_00307",
+    "two_covariate_synergy/seed_00911"
+  ],
+  "scientific_gate_computed": false,
+  "runtime": {
+    "created_at_utc": "2026-09-19T12:49:55.960855+00:00",
+    "python": "3.13.15 (main, Aug  6 2026, 11:06:22) [GCC 13.3.0]",
+    "platform": "Linux-6.6.122+-x86_64-with-glibc2.39"
+  }
+}
