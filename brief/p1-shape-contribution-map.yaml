@@ -99,9 +99,9 @@ frozen_success_contract:
 frozen_artifacts:
   config: configs/p1_shape/covintervene_shape_p1.yaml
   config_sha256: 27826ad34bfe0acd8ee90ff4d0fbafb011a6b00aeea276dacaa9f9fe2a261918
-  scientific_code_sha256: 91e2dd65a83ec11a604efc6bf0cc1a68eadfef510430ecfbbe7e78092c51c7ab
+  scientific_code_sha256: fc1cf6d73a59a4200deaa964f341a17b72d8fae75fa40b1086ed1c8c714f5925
   construct_report: evidence/p1_shape/construct/metric_construct_validation.yaml
-  construct_report_sha256: 62d7601ac3d7be4b30cf5f27472aaf57cbabe847a50ca9671957c7e544db2ac4
+  construct_report_sha256: bf5eb18eacb4d5ab59b79288031517c250cafe21d1b270c05ae951c258ee53d0
 risk_factors:
   - Multi-resolution metrics may appear hand-crafted unless fixture selectivity is demonstrated before inference.
   - Synthetic response paths bound structural truth but do not establish real-world causality.
