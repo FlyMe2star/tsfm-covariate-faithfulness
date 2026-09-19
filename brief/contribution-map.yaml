@@ -1,6 +1,6 @@
 project: tsfm-covariate-faithfulness
 working_title: "Right Forecast, Wrong Reason? Auditing Covariate Response Faithfulness in Zero-Shot Time-Series Foundation Models"
-status: topic_frozen_pre_inference_contract_design
+status: p0_complete_original_failure_claim_not_supported
 core_question: >-
   Do zero-shot time-series foundation models respond faithfully to controlled changes
   in known-future covariates, beyond achieving low observational forecast error?
@@ -10,23 +10,23 @@ primary_claim:
     Observational forecast accuracy is not sufficient evidence of faithful covariate
     use; controlled future-covariate interventions can reveal reproducible errors in
     response direction, magnitude, temporal localization, or placebo sensitivity.
-  status: hypothesis_pending_p0
+  status: not_supported_in_frozen_p0_scope
 secondary_claims:
   - id: C2
     statement: >-
       CovIntervene provides a reproducible benchmark that separates forecast skill from
       four complementary dimensions of future-covariate response faithfulness.
-    status: planned
+    status: implementation_validated_but_paper_scope_requires_new_contract
   - id: C3
     statement: >-
       Response failure profiles differ across structural mechanisms and frozen TSFM
       backbones in ways that aggregate forecast loss does not capture.
-    status: hypothesis_pending_p0
+    status: not_supported_as_failure_profile_in_frozen_p0
   - id: C4
     statement: >-
       If P0 identifies a stable failure mode, a lightweight safeguard can reduce that
       failure without materially degrading clean forecast skill.
-    status: optional_not_authorized_before_p0
+    status: not_authorized_p0_gate_failed
 novelty_hypothesis: >-
   Prior work evaluates covariate-aware forecast accuracy, explains single-domain model
   predictions, studies generic TSFM pattern responses, or improves robustness to
@@ -66,6 +66,18 @@ p0_continuation_gate:
   pass_actions:
     - freeze_paper_eligible_benchmark_protocol
     - decide_evaluation_only_or_optional_safeguard_branch_before_new_evidence
+p0_outcome:
+  decision_date: 2026-09-19
+  passed: false
+  violating_cells: 0
+  interpretation: >-
+    All active cells remained inside the frozen directional and gain envelopes, and
+    both placebo cells remained below the frozen response-ratio ceiling. Negative
+    relative SQL differences indicate that known-future covariates improved forecast
+    skill, but this does not rescue the failure-centered primary claim.
+  required_action: >-
+    Stop the original claim or approve a genuinely new contract evaluated only on
+    untouched mechanisms, parameters, seeds, or backbones without lowering P0 bounds.
 risk_factors:
   - A recent causal-analysis paper already intervenes on synthetic target-generating patterns; differentiation must remain specifically about future-covariate response.
   - Synthetic mechanisms may be criticized as unrealistic unless parameters and real-task plausibility checks are well justified.

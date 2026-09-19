@@ -1,0 +1,69 @@
+schema_version: 1
+result_status: verified_screening_decision
+paper_eligibility: blocked_by_frozen_p0_gate
+config_hash: 56cd2ff3a3e56155074a47abb02a859be5e107a6fb59679f9f3d3981110db0dd
+scientific_code_sha256: ee75398fe2b7c93ac2e2fa83b0abeeb76f346a8953bfc7c91e1a1cfbd6b5bcde
+git_commit: d61046b68fb0c55922512523d887528a8dc7602b
+created_at_utc: '2026-09-19T11:58:20.616560+00:00'
+cells:
+  chronos_2/contemporaneous_linear:
+    relative_sql_difference: -0.6570395987085896
+    series_count: 192
+    DSA: {estimate: 0.9925409226190475, lower: 0.9872209821428571, upper: 0.9969122023809524, replicates: 5000, seed: 9102}
+    RGR: {estimate: 0.8912173693534426, lower: 0.8765247739263344, upper: 0.9070679575903946, replicates: 5000, seed: 9102}
+    NRE: {estimate: 0.17457411332251063, lower: 0.16207484695485466, upper: 0.18823264259599418, replicates: 5000, seed: 9102}
+    TLS: {estimate: 0.8776553637797307, lower: 0.8688323693024811, upper: 0.8840157309381139, replicates: 5000, seed: 9102}
+  chronos_2/delayed_distributed_lag:
+    relative_sql_difference: -0.6185213334845464
+    series_count: 192
+    DSA: {estimate: 0.9859138257575758, lower: 0.9803120725484007, upper: 0.9910629734848485, replicates: 5000, seed: 9102}
+    RGR: {estimate: 0.8952795531783432, lower: 0.8802074175874375, upper: 0.9179458071557051, replicates: 5000, seed: 9102}
+    NRE: {estimate: 0.1548262267564839, lower: 0.139506689939307, upper: 0.1699056530191742, replicates: 5000, seed: 9102}
+    TLS: {estimate: 0.8567168439487577, lower: 0.8507792853876702, upper: 0.865510952694193, replicates: 5000, seed: 9102}
+  chronos_2/threshold_saturation:
+    relative_sql_difference: -0.529335537811227
+    series_count: 192
+    DSA: {estimate: 0.9904038525132276, lower: 0.9844718812003967, upper: 0.9957177992724868, replicates: 5000, seed: 9102}
+    RGR: {estimate: 0.8719333225878998, lower: 0.8041826178222042, upper: 0.9255636519664686, replicates: 5000, seed: 9102}
+    NRE: {estimate: 0.41231284275778995, lower: 0.3900387278298221, upper: 0.4418898111591196, replicates: 5000, seed: 9102}
+    TLS: {estimate: 0.7513186628881371, lower: 0.7320216764867733, upper: 0.7634812835915011, replicates: 5000, seed: 9102}
+  chronos_2/irrelevant_placebo:
+    relative_sql_difference: -0.6570395987085896
+    series_count: 192
+    PRR: {estimate: 0.08610101379650559, lower: 0.08046018287594124, upper: 0.09847859558635408, replicates: 5000, seed: 9102}
+  timesfm_3/contemporaneous_linear:
+    relative_sql_difference: -0.7304368338995053
+    series_count: 192
+    DSA: {estimate: 1.0, lower: 1.0, upper: 1.0, replicates: 5000, seed: 9102}
+    RGR: {estimate: 0.9947160804333864, lower: 0.9858139171110041, upper: 1.0066201505338241, replicates: 5000, seed: 9102}
+    NRE: {estimate: 0.05475484422895652, lower: 0.04987663258564867, upper: 0.0607853416261798, replicates: 5000, seed: 9102}
+    TLS: {estimate: 0.9568686050417897, lower: 0.9538093002774611, upper: 0.9601669795657163, replicates: 5000, seed: 9102}
+  timesfm_3/delayed_distributed_lag:
+    relative_sql_difference: -0.6190170260627993
+    series_count: 192
+    DSA: {estimate: 0.9957899305555555, lower: 0.9925339988425925, upper: 0.9986979166666666, replicates: 5000, seed: 9102}
+    RGR: {estimate: 0.9813359766039337, lower: 0.963973461083269, upper: 1.0039797737517984, replicates: 5000, seed: 9102}
+    NRE: {estimate: 0.15596434124067177, lower: 0.1426672810503386, upper: 0.16866934169283532, replicates: 5000, seed: 9102}
+    TLS: {estimate: 0.8709949371704795, lower: 0.8649103564799726, upper: 0.8790642174895927, replicates: 5000, seed: 9102}
+  timesfm_3/threshold_saturation:
+    relative_sql_difference: -0.6288105666347851
+    series_count: 192
+    DSA: {estimate: 0.9985119047619048, lower: 0.9962797619047619, upper: 1.0, replicates: 5000, seed: 9102}
+    RGR: {estimate: 0.9668630151642911, lower: 0.9347106481548285, upper: 1.0087874610171763, replicates: 5000, seed: 9102}
+    NRE: {estimate: 0.27342579201381995, lower: 0.2575253125488111, upper: 0.2995891428569534, replicates: 5000, seed: 9102}
+    TLS: {estimate: 0.8436399367641142, lower: 0.8299216762461676, upper: 0.8520566871107806, replicates: 5000, seed: 9102}
+  timesfm_3/irrelevant_placebo:
+    relative_sql_difference: -0.7304368338995053
+    series_count: 192
+    PRR: {estimate: 0.024252919290582046, lower: 0.02124996000344817, upper: 0.027666899706395416, replicates: 5000, seed: 9102}
+decision:
+  passed: false
+  violating_cells: []
+  violations_by_cell: {}
+  minimum_cell_count_passed: false
+  diversity_passed: false
+  complementary_accuracy_passed: false
+  next_action: stop_or_new_untouched_contract_without_lowering_thresholds
+provenance:
+  private_artifact: /content/drive/MyDrive/tsfm-covariate-faithfulness/p0_full_v1/p0_phenomenon_decision.yaml
+  receipt_source: user-pasted first-run Colab output

@@ -6,9 +6,10 @@ respond faithfully to known-future covariates under controlled interventions.
 Working title: **Right Forecast, Wrong Reason? Auditing Covariate Response
 Faithfulness in Zero-Shot Time-Series Foundation Models**.
 
-The owner-approved P0 protocol is frozen and implementation preflight is in progress.
-All scientific contribution claims remain hypotheses until backed by frozen experiment
-artifacts. The prior
+The owner-approved P0 protocol has completed. Both frozen backbones produced all
+screening units, but the first-run decision found zero predeclared fidelity violations;
+the original failure-centered paper gate therefore did not pass. The result is retained
+as a verified bounded screening outcome, and no threshold will be lowered post hoc. The prior
 `covariate-safe-tsfm` project and its sealed outcomes are not reused for model or
 threshold selection here.
 
