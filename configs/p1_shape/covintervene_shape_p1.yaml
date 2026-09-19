@@ -1,0 +1,93 @@
+schema_version: 1
+status: frozen_owner_approved_pre_inference
+experiment: covintervene-shape-p1-v1
+authorization:
+  approval_phrase: "APPROVE P1-SHAPE FREEZE"
+  approval_date: "2026-09-19"
+  one_time_pre_inference_relaxation: true
+  post_inference_threshold_changes_allowed: false
+scope:
+  model_training: false
+  model_tuning: false
+  sealed_model_inference_authorized: true
+  p0_outputs_accessed_for_design: false
+data:
+  context_length: 192
+  horizon: 24
+  series_per_mechanism_per_seed: 64
+  generator_seeds: [101, 307, 911]
+  mechanisms:
+    - biphasic_rebound
+    - dispersed_delayed_pulse
+    - rate_asymmetric_hysteresis
+    - two_covariate_synergy
+  target_ar_range: [0.20, 0.58]
+  covariate_ar_range: [0.25, 0.72]
+  coefficient_magnitude_range: [0.35, 0.85]
+  innovation_sd_range: [0.12, 0.30]
+  intervention:
+    directions: [-1, 1]
+    scale_in_covariate_sd: 0.65
+    pulse_lengths: [3, 5, 7]
+    start_indices: [1, 7, 13]
+    clip_to_context_quantiles: [0.005, 0.995]
+models:
+  - id: chronos_2
+    checkpoint: amazon/chronos-2
+    revision: 29ec3766d36d6f73f0696f85560a422f50e8498c
+    package: chronos-forecasting==2.2.2
+    mode: frozen_zero_shot
+  - id: timesfm_3
+    checkpoint: google/timesfm-3.0-pytorch
+    revision: 43046b85ec22d584a13f8098c2ed39c889e129c2
+    package: timesfm_source_commit_20191171b74f51bfead932b6b8d0c8f515e70f63
+    mode: frozen_zero_shot
+comparators:
+  - analytic_oracle
+  - target_only_same_backbone
+  - ridge_arx
+  - nonlinear_dynamic_regression
+response_metrics:
+  active_support_fraction_of_peak: 0.10
+  resolution_widths: [1, 2, 4, 8]
+  primary: [DSA, RGR, signed_shape_distance_width_1, hidden_distortion_gap_1_minus_8]
+  diagnostic:
+    - multi_resolution_distortion_auc
+    - temporal_mass_distance
+    - onset_error
+    - peak_time_error
+    - positive_mass_relative_error
+    - negative_mass_relative_error
+    - interaction_shape_distance
+  aggregation:
+    DSA: mean
+    RGR: median
+    signed_shape_distance: median
+    hidden_distortion_gap: median
+uncertainty:
+  unit: paired_series
+  stratify_by_generator_seed: true
+  bootstrap_replicates: 5000
+  bootstrap_seed: 190926
+  interval: percentile_two_sided_95
+continuation_gate:
+  coarse_eligibility:
+    dsa_lower_bound_minimum: 0.85
+    rgr_complete_interval: [0.65, 1.35]
+  hidden_shape_violation:
+    signed_shape_distance_width_1_lower_bound_minimum: 0.08
+    hidden_distortion_gap_lower_bound_minimum: 0.03
+  cell_rule: all_four_bounds_must_pass
+  minimum_passing_cells: 2
+  diversity_rule: at_least_two_mechanisms_or_both_backbones
+  complementary_relative_sql_maximum: 0.02
+  failure_action: archive_bounded_null_and_stop_without_relaxation
+runtime:
+  platform: google_colab
+  initial_accelerator: T4
+  upgrade_accelerator_if_needed: A100
+  python: colab_default_record_exact_version
+artifacts:
+  construct_validation: evidence/p1_shape/construct/metric_construct_validation.yaml
+  raw_units: private_google_drive/p1_shape_v1/units
+  decision: private_google_drive/p1_shape_v1/p1_shape_decision.yaml

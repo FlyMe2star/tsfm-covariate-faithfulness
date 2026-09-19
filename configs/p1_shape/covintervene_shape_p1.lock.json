@@ -1,0 +1,10 @@
+{
+  "approval": "APPROVE P1-SHAPE FREEZE",
+  "approval_date": "2026-09-19",
+  "canonicalization": "YAML parsed to JSON with sorted keys, UTF-8, ensure_ascii=false, separators=(',', ':')",
+  "config": "configs/p1_shape/covintervene_shape_p1.yaml",
+  "canonical_sha256": "27826ad34bfe0acd8ee90ff4d0fbafb011a6b00aeea276dacaa9f9fe2a261918",
+  "sealed_model_inference_authorized": true,
+  "post_inference_threshold_changes_allowed": false,
+  "schema_version": 1
+}
