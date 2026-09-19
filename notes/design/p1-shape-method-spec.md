@@ -23,8 +23,8 @@ responses are exploratory.
 ## 2. Untouched structural mechanisms
 
 All use context length 192 and horizon 24. Generator seeds are `101`, `307`, and `911`.
-Exact parameter ranges will be machine-locked after CPU preflight and before checkpoint
-access. They may not reuse P0 ranges.
+Exact parameter ranges were machine-locked after CPU preflight and before checkpoint
+access. They do not reuse P0 ranges.
 
 ### M1: biphasic rebound
 
@@ -148,8 +148,8 @@ Blocking assertions:
 - all metrics are finite and remain in their declared ranges; and
 - distortion ordering is monotone over the frozen fixture-severity ladder.
 
-The proposed numeric scientific bounds are reviewed only against these analytic
-fixtures. No TSFM outputs may exist during this review.
+The numeric scientific bounds were reviewed only against these analytic fixtures. No
+TSFM outputs existed during this review.
 
 ## 7. Aggregation and primary decision
 

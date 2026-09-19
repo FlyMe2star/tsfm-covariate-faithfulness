@@ -1,0 +1,198 @@
+schema_version: 1
+experiment: covintervene-shape-construct-validation-v1
+result_status: verified
+model_inference_performed: false
+p0_outputs_accessed: false
+created_at_utc: '2026-09-19T12:36:21.761124+00:00'
+git_commit: faf3e564dcddbe2da3bfe2d929a6ede9cd6da159
+runtime:
+  python: 3.14.0 (tags/v3.14.0:ebf955d, Oct  7 2025, 10:15:03) [MSC v.1944 64 bit
+    (AMD64)]
+  platform: Windows-11-10.0.22631-SP0
+fixtures:
+  fixtures:
+    oracle:
+      rgr: 0.9999999900000001
+      signed_shape_distance_by_width:
+        '1': 0.0
+        '2': 0.0
+        '4': 0.0
+        '8': 0.0
+      hidden_distortion_gap: 0.0
+      multi_resolution_auc: 0.0
+      temporal_mass_distance: 0.0
+      onset_error: 0.0
+      peak_time_error: 0.0
+      positive_mass_relative_error: 0.0
+      negative_mass_relative_error: 0.0
+    gain_scaled_0p70:
+      rgr: 0.699999993
+      signed_shape_distance_by_width:
+        '1': 2.7755575615628914e-17
+        '2': 9.020562075079397e-17
+        '4': 2.7755575615628914e-17
+        '8': 2.7755575615628914e-17
+      hidden_distortion_gap: 0.0
+      multi_resolution_auc: 4.85722573273506e-17
+      temporal_mass_distance: 0.0
+      onset_error: 0.0
+      peak_time_error: 0.0
+      positive_mass_relative_error: 0.29999999520000015
+      negative_mass_relative_error: 0.2999999920000002
+    within_width8_bin_shift_1:
+      rgr: 0.7499999925000002
+      signed_shape_distance_by_width:
+        '1': 0.5
+        '2': 0.25
+        '4': 0.24999999999999994
+        '8': 0.0
+      hidden_distortion_gap: 0.5
+      multi_resolution_auc: 0.25
+      temporal_mass_distance: 0.043478260869565216
+      onset_error: 0.043478260869565216
+      peak_time_error: 0.043478260869565216
+      positive_mass_relative_error: 0.0
+      negative_mass_relative_error: 0.0
+    cross_width8_bin_shift_7:
+      rgr: 0.4687499953125001
+      signed_shape_distance_by_width:
+        '1': 1.0
+        '2': 1.0
+        '4': 1.0
+        '8': 1.0
+      hidden_distortion_gap: 0.0
+      multi_resolution_auc: 1.0
+      temporal_mass_distance: 0.30434782608695654
+      onset_error: 0.30434782608695654
+      peak_time_error: 0.30434782608695654
+      positive_mass_relative_error: 0.0
+      negative_mass_relative_error: 0.0
+    temporal_smoothing:
+      rgr: 0.8749999912500002
+      signed_shape_distance_by_width:
+        '1': 0.12499999999999999
+        '2': 0.12499999999999997
+        '4': 0.06249999999999997
+        '8': 0.0
+      hidden_distortion_gap: 0.12499999999999999
+      multi_resolution_auc: 0.08333333333333331
+      temporal_mass_distance: 0.010869565217391304
+      onset_error: 0.043478260869565216
+      peak_time_error: 0.0
+      positive_mass_relative_error: 0.0
+      negative_mass_relative_error: 0.0
+    rebound_deleted:
+      rgr: 0.6249999937500001
+      signed_shape_distance_by_width:
+        '1': 0.375
+        '2': 0.375
+        '4': 0.375
+        '8': 0.375
+      hidden_distortion_gap: 0.0
+      multi_resolution_auc: 0.375
+      temporal_mass_distance: 0.13043478260869565
+      onset_error: 0.0
+      peak_time_error: 0.0
+      positive_mass_relative_error: 0.0
+      negative_mass_relative_error: 0.999999973333334
+    sign_flip:
+      rgr: 0.9999999900000001
+      signed_shape_distance_by_width:
+        '1': 1.0
+        '2': 1.0
+        '4': 1.0
+        '8': 1.0
+      hidden_distortion_gap: 0.0
+      multi_resolution_auc: 1.0
+      temporal_mass_distance: 0.0
+      onset_error: 0.0
+      peak_time_error: 0.0
+      positive_mass_relative_error: 0.3999999936000001
+      negative_mass_relative_error: 0.6666666488888894
+    zero_response:
+      rgr: 0.0
+      signed_shape_distance_by_width:
+        '1': 1.0
+        '2': 1.0
+        '4': 1.0
+        '8': 1.0
+      hidden_distortion_gap: 0.0
+      multi_resolution_auc: 1.0
+      temporal_mass_distance: 1.0
+      onset_error: 1.0
+      peak_time_error: 1.0
+      positive_mass_relative_error: 0.9999999840000002
+      negative_mass_relative_error: 0.999999973333334
+  shift_severity_ladder:
+  - 0.0
+  - 0.5
+  - 0.75
+  - 1.0
+  interaction_fixture:
+    exact_recovery_max_abs_error: 1.3877787807814457e-17
+    omission_shape_distance: 1.0
+  checks:
+    oracle_distance_zero: true
+    gain_scaling_changes_rgr_only: true
+    within_bin_shift_hidden_at_width8: true
+    cross_bin_shift_visible_at_width8: true
+    rebound_deletion_detected: true
+    interaction_exact_and_omission_detected: true
+    shift_severity_monotone: true
+generator_preflight:
+  biphasic_rebound:
+    scenario_count: 192
+    deterministic: true
+    paired_replay_valid: true
+    oracle_l1_minimum: 0.5926931937862341
+    oracle_l1_median: 2.3410366702707863
+    oracle_l1_maximum: 5.090275894529112
+    interaction_l1_minimum: null
+  dispersed_delayed_pulse:
+    scenario_count: 192
+    deterministic: true
+    paired_replay_valid: true
+    oracle_l1_minimum: 0.2771590798365108
+    oracle_l1_median: 1.6389443183681867
+    oracle_l1_maximum: 4.421620640824511
+    interaction_l1_minimum: null
+  rate_asymmetric_hysteresis:
+    scenario_count: 192
+    deterministic: true
+    paired_replay_valid: true
+    oracle_l1_minimum: 0.0874277509121473
+    oracle_l1_median: 0.7642200180232318
+    oracle_l1_maximum: 2.1880447497806275
+    interaction_l1_minimum: null
+  two_covariate_synergy:
+    scenario_count: 192
+    deterministic: true
+    paired_replay_valid: true
+    oracle_l1_minimum: 0.08958589584033227
+    oracle_l1_median: 0.8879336770687879
+    oracle_l1_maximum: 4.306228028538667
+    interaction_l1_minimum: 0.006495756530905894
+all_checks:
+  oracle_distance_zero: true
+  gain_scaling_changes_rgr_only: true
+  within_bin_shift_hidden_at_width8: true
+  cross_bin_shift_visible_at_width8: true
+  rebound_deletion_detected: true
+  interaction_exact_and_omission_detected: true
+  shift_severity_monotone: true
+  biphasic_rebound_generator_valid: true
+  dispersed_delayed_pulse_generator_valid: true
+  rate_asymmetric_hysteresis_generator_valid: true
+  two_covariate_synergy_generator_valid: true
+frozen_bounds:
+  dsa_lower_bound_minimum: 0.85
+  rgr_interval:
+  - 0.65
+  - 1.35
+  signed_shape_distance_lower_bound_minimum: 0.08
+  hidden_distortion_gap_lower_bound_minimum: 0.03
+  minimum_passing_cells: 2
+  complementary_relative_sql_maximum: 0.02
+threshold_rationale: One-time pre-inference relaxation requested by the owner. Bounds
+  remain materially separated from the exact oracle and pure-gain fixtures; model
+  outputs were unavailable.
