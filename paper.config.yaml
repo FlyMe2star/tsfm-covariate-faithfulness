@@ -18,3 +18,11 @@ research_stage:
   freeze_approval: "APPROVE P1-SHAPE FREEZE"
   config_sha256: 27826ad34bfe0acd8ee90ff4d0fbafb011a6b00aeea276dacaa9f9fe2a261918
   decision_artifact: evidence/p1_shape/results/p1_shape_decision.json
+  literature_gate:
+    status: passed
+    verified_primary_sources: 30
+    verified_on: "2026-09-20"
+  transparent_reference_supplement:
+    status: draft_awaiting_owner_freeze
+    approval_phrase: "APPROVE P1-REF FREEZE"
+    evidence_role: post_primary_supplementary_descriptive

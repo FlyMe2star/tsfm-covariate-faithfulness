@@ -1,0 +1,71 @@
+schema_version: 1
+status: draft_awaiting_owner_freeze
+experiment: p1-shape-transparent-references-v1
+evidence_role: post_primary_supplementary_descriptive
+authorization:
+  approval_phrase: "APPROVE P1-REF FREEZE"
+  outcomes_authorized: false
+  primary_decision_mutation_allowed: false
+isolation:
+  implementation_package: covfaith_refs
+  frozen_primary_code_directory_modified: false
+  primary_config: configs/p1_shape/covintervene_shape_p1.yaml
+  primary_config_sha256: 27826ad34bfe0acd8ee90ff4d0fbafb011a6b00aeea276dacaa9f9fe2a261918
+data:
+  fitting_unit: individual_generated_scenario
+  context_length: 192
+  horizon: 24
+  minimum_training_index: 24
+  generator_seeds: [101, 307, 911]
+  series_per_mechanism_per_seed: 64
+  mechanisms:
+    - biphasic_rebound
+    - dispersed_delayed_pulse
+    - rate_asymmetric_hysteresis
+    - two_covariate_synergy
+  prohibited_fit_inputs:
+    - future_targets
+    - analytic_generator_parameters
+    - oracle_responses
+    - intervention_masks
+    - tsfm_outputs
+    - primary_cell_decisions
+models:
+  ridge_arx:
+    target_lags: [1, 2, 3, 6, 12, 24]
+    covariate_lags: [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12]
+    standardize_features: context_rows_only
+    standardize_target: context_rows_only
+    alpha: 1.0
+    intercept: unpenalized
+  nonlinear_dynamic_regression:
+    inherit_ridge_arx_features: true
+    covariate_tanh_lags: [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12]
+    covariate_square_lags: [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12]
+    same_lag_interactions: [0, 1, 2, 4, 8, 12]
+    signed_difference_lags: [0, 1, 2, 3]
+    standardize_generated_features: context_rows_only
+    alpha: 1.0
+    intercept: unpenalized
+forecast:
+  recursion: one_step_recursive
+  probabilistic_method: centered_context_residual_bootstrap
+  bootstrap_paths: 256
+  bootstrap_seed: 200926
+  quantile_levels: [0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 0.9]
+  paired_world_residual_indices: identical
+metrics:
+  reuse_primary_response_metrics: true
+  forecast_skill: [SQL, WQL, MAE, WAPE]
+  fit_diagnostics:
+    - finite_fit
+    - matrix_condition_number
+    - residual_scale
+    - wall_time_seconds
+reporting:
+  continuation_gate: none
+  retain_all_units: true
+  label_in_paper: fitted_post_primary_descriptive_reference
+runtime:
+  accelerator_required: false
+  dependency_policy: numpy_only

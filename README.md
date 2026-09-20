@@ -23,7 +23,15 @@ claim for the tested checkpoints and structural mechanisms; it is not a universa
 or real-world causal claim. See
 [`evidence/p1_shape/results/result-summary.md`](evidence/p1_shape/results/result-summary.md).
 An evidence-constrained manuscript scaffold and the complete eight-cell primary table
-are under [`paper/`](paper/); manuscript prose remains gated on citation verification.
+are under [`paper/`](paper/). The literature gate passed on 2026-09-20 with 30
+primary-source-verified entries. The owner-facing 13-paper review list is
+[`notes/innovation/core-review-shortlist.md`](notes/innovation/core-review-shortlist.md).
+
+A transparent Ridge-ARX/nonlinear reference supplement is now implemented and tested
+outside the frozen P1 code package. It remains outcome-blocked until the owner types
+`APPROVE P1-REF FREEZE`. The supplement is explicitly post-primary and descriptive; it
+cannot change the archived P1 decision. See
+[`plan/p1-reference-supplement-contract.md`](plan/p1-reference-supplement-contract.md).
 
 ## P1-SHAPE workflow
 

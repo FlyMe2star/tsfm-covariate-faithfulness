@@ -178,9 +178,14 @@ never authorizes further relaxation.
 ## 8. Forecast-skill complement and references
 
 Factual-world SQL and WQL are computed for covariate-aware and matched target-only calls.
-Ridge-ARX and nonlinear dynamic regression are fitted only on each generated training
-split and are labeled fitted references, never zero-shot peers. The analytic oracle and
-deliberately broken fixtures validate measurement but are not forecasting competitors.
+The owner-approved P1 design named Ridge-ARX and nonlinear dynamic regression as fitted
+references, never zero-shot peers. However, it did not freeze their feature bases,
+regularization, or fitting unit before primary inference, and no distinct generated
+training split was materialized. They therefore cannot be represented as preregistered
+P1 evidence. A separately hashed, post-primary descriptive supplement is specified in
+`plan/p1-reference-supplement-contract.md`; no result from it may alter the primary
+decision. The analytic oracle and deliberately broken fixtures validate measurement but
+are not forecasting competitors.
 
 ## 9. Leakage controls
 
