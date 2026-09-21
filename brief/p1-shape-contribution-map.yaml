@@ -39,7 +39,12 @@ secondary_claims:
     statement: >-
       Transparent dynamic-regression references help separate difficulty intrinsic to
       each mechanism from TSFM-specific response-shape behavior.
-    status: not_evaluated
+    status: verified_post_primary_descriptive
+    evidence: evidence/p1_shape/references/p1_reference_report.json
+    boundary: >-
+      The references were frozen and fitted after the primary P1 decision. They
+      contextualize mechanism difficulty but cannot alter the primary gate or support
+      a preregistered superiority claim.
 novelty_boundary:
   closest_work: "Causal Analysis for Time Series Foundation Models (arXiv:2608.24303)"
   distinction: >-

@@ -17,9 +17,22 @@ Faithfulness in Time-Series Foundation Models}
 \maketitle
 
 \begin{abstract}
-\textit{Abstract drafting pending claim-to-citation review. The literature gate and
-frozen empirical decision have passed; no supplementary-reference result is available
-yet.}
+Covariate-aware time-series foundation models can improve forecasts, but accurate
+predictions do not establish that known-future inputs affect forecasts at the correct
+horizons. We introduce CovIntervene-SHAPE, a paired intervention audit that holds the
+target history and innovations fixed while comparing predicted and structural response
+paths at temporal widths 1, 2, 4, and 8. We evaluate frozen Chronos-2 and TimesFM-3
+checkpoints on four synthetic mechanisms and 192 series per backbone--mechanism cell.
+Three of eight cells satisfied the predeclared complete rule: direction agreement was
+0.973--0.982 and gain-ratio intervals remained inside the coarse envelope, yet
+fine-resolution shape distance was 0.185--0.198 and the hidden-distortion gap was
+0.040--0.066. In these cells, covariate-aware scaled quantile loss was 51.4--52.3\%
+lower than for the matched target-only call, so the distortion was not merely gross
+forecast failure. Post-primary fitted references nearly recovered the additive linear
+mechanisms but not path-dependent hysteresis or covariate synergy; a frozen nonlinear
+feature expansion only partially recovered the interaction. For the tested checkpoints
+and mechanisms, temporal aggregation can therefore conceal horizon-wise response
+misplacement despite good forecast skill and credible coarse response behavior.
 \end{abstract}
 
 \section{Introduction}
@@ -45,8 +58,26 @@ yet.}
 
 \section{Results}
 \input{results/p1_shape_primary_table}
-% TODO: Report all eight cells, then identify the three complete-rule passes.
-% Do not report transparent fitted references until P1E8 is complete.
+Three of eight cells passed the complete frozen rule: Chronos-2 on biphasic rebound
+and dispersed delayed pulse, and TimesFM-3 on biphasic rebound
+(Table~\ref{tab:p1-shape-primary}). Across these cells, DSA was 0.973--0.982 and the
+complete RGR intervals remained inside the frozen $[0.65,1.35]$ envelope. Nevertheless,
+$D_1$ was 0.185--0.198 and the hidden-distortion gap was 0.040--0.066, with all lower
+95\% bounds above the corresponding frozen thresholds. Relative SQL was
+$-0.514$ to $-0.523$, so covariate-aware forecasts also improved on their matched
+target-only calls in these cells.
+
+\input{results/p1_reference_table}
+The post-primary references provide a mechanism-level check rather than another
+continuation test. Ridge-ARX nearly recovered the two additive temporal responses
+($D_1=0.038$ and $0.057$), but its hysteresis response remained distorted
+($D_1=0.243$) and its synergy interaction distance was 1.000. The frozen nonlinear
+feature expansion reduced the synergy interaction distance to 0.300 and changed its
+DSA/RGR from 0.784/0.724 to 0.871/1.042. It was not uniformly stronger: its $D_1$ and
+SQL were both higher than Ridge-ARX on the two additive mechanisms. These fitted
+references therefore show that low response-shape error is attainable under the same
+context length while also exposing mechanism-specific limitations; they do not enter
+or modify the primary decision.
 
 \section{Analysis and Limitations}
 % Mandatory boundaries: synthetic mechanisms, two checkpoints, no real-world

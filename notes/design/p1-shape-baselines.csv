@@ -6,7 +6,7 @@ Rebound-deleted oracle,construct_fixture,not_fitted,"Validates biphasic-shape se
 Interaction-omitted oracle,construct_fixture,not_fitted,"Validates M4 interaction sensitivity","interaction shape distance",yes,"Marginal responses stay exact"
 Target-only same checkpoint,ablation_anchor,frozen_zero_shot,"Forecast-skill complement and zero-covariate-response reference","SQL; WQL",yes,"Same backbone and factual target history"
 Ridge-ARX,transparent_reference,post_primary_fitted_per_scenario_context,"Linear dynamic covariate-response reference","SQL; WQL; RGR; DSA; D_b",yes,"Descriptive supplement only; not presented as zero-shot or preregistered primary evidence"
-Nonlinear dynamic regression,transparent_reference,post_primary_fitted_per_scenario_context,"Compact nonlinear and interaction reference","SQL; WQL; RGR; DSA; D_b",yes,"Exact feature basis and regularization await separate P1-REF freeze; cannot alter the primary decision"
+Nonlinear dynamic regression,transparent_reference,post_primary_fitted_per_scenario_context,"Compact nonlinear and interaction reference","SQL; WQL; RGR; DSA; D_b",yes,"Feature basis and alpha were frozen under P1-REF before execution; verified results remain post-primary and cannot alter the primary decision"
 Chronos-2,primary_backbone,frozen_zero_shot,"Native covariate-aware TSFM","SQL; WQL; RGR; DSA; D_b",yes,"Official checkpoint and revision will be locked"
 TimesFM-3,primary_backbone,frozen_zero_shot,"Cross-architecture native covariate-aware TSFM","SQL; WQL; RGR; DSA; D_b",yes,"Non-commercial license disclosed"
 Third covariate TSFM,optional_backbone,not_authorized,"Potential breadth extension","all primary metrics",no,"Must be approved and frozen before any P1 model inference"

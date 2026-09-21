@@ -27,13 +27,21 @@ are under [`paper/`](paper/). The literature gate passed on 2026-09-20 with 30
 primary-source-verified entries. The owner-facing 13-paper review list is
 [`notes/innovation/core-review-shortlist.md`](notes/innovation/core-review-shortlist.md).
 
-A transparent Ridge-ARX/nonlinear reference supplement is now implemented and tested
-outside the frozen P1 code package. The owner supplied `APPROVE P1-REF FREEZE` on
-2026-09-21, and the independent supplement config is now locked. The supplement is
-explicitly post-primary and descriptive; it cannot change the archived P1 decision. See
-[`plan/p1-reference-supplement-contract.md`](plan/p1-reference-supplement-contract.md).
+A transparent Ridge-ARX/nonlinear reference supplement has completed outside the
+frozen P1 code package. The owner supplied `APPROVE P1-REF FREEZE` on 2026-09-21;
+all 12 units and eight model-by-mechanism summaries subsequently passed the frozen
+hash and completeness checks. The supplement is explicitly post-primary and
+descriptive; it cannot change the archived P1 decision. See the
+[`contract`](plan/p1-reference-supplement-contract.md) and
+[`verified result summary`](evidence/p1_shape/references/result-summary.md).
 
-Run the frozen supplement on CPU with
+Ridge-ARX nearly recovered both additive temporal mechanisms but not the registered
+hysteresis and synergy behavior. The nonlinear feature expansion partially recovered
+the synergy interaction without uniformly improving shape or forecast error. These
+results contextualize mechanism difficulty and do not establish a preregistered
+reference-versus-TSFM comparison.
+
+Reproduce the frozen supplement on CPU with
 [`notebooks/07_p1_reference_supplement.ipynb`](notebooks/07_p1_reference_supplement.ipynb).
 It stores each mechanism-by-seed unit independently and safely resumes after a Colab
 disconnect. [Open the notebook directly in Colab](https://colab.research.google.com/github/FlyMe2star/tsfm-covariate-faithfulness/blob/main/notebooks/07_p1_reference_supplement.ipynb).

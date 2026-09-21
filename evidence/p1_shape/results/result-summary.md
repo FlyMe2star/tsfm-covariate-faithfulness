@@ -48,5 +48,6 @@ error despite strong forecast skill and credible coarse response behavior.
 The primary evidence covers two frozen public TSFM checkpoints, four synthetic
 structural mechanisms, a 24-step horizon, and three generator seeds. It does not
 establish real-world causal effects. Transparent fitted dynamic-regression references
-and any observational plausibility study remain unverified and must not be described as
-completed evidence.
+have since completed under an independently frozen, post-primary protocol; they are
+descriptive context and cannot modify this decision. Any observational plausibility
+study remains unverified.
