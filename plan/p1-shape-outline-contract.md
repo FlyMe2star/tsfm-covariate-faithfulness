@@ -13,8 +13,8 @@ Status: frozen decision verified; bounded primary claim eligible for drafting
 4. **Construct validity:** analytic broken-response fixtures show what each metric can
    and cannot detect before any TSFM output exists.
 5. **Behavioral evidence:** complete two-backbone by four-mechanism matrix and matched
-   forecast skill. Transparent fitted references remain planned and cannot yet support
-   a paper claim.
+   forecast skill. Separately frozen fitted references are complete and provide
+   post-primary descriptive context without altering the primary decision.
 6. **Bounded conclusion:** state either the verified hidden-distortion scope or a null
    result; never generalize beyond the tested interfaces and mechanisms.
 

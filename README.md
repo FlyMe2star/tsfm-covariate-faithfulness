@@ -22,10 +22,13 @@ while spanning two mechanisms and both audited backbones. This supports a bounde
 claim for the tested checkpoints and structural mechanisms; it is not a universal TSFM
 or real-world causal claim. See
 [`evidence/p1_shape/results/result-summary.md`](evidence/p1_shape/results/result-summary.md).
-An evidence-constrained manuscript scaffold and the complete eight-cell primary table
-are under [`paper/`](paper/). The literature gate passed on 2026-09-20 with 30
+An evidence-constrained manuscript draft, construct-validation table, complete
+eight-cell primary table, and post-primary reference table are under
+[`paper/`](paper/). The literature gate passed on 2026-09-20 with 30
 primary-source-verified entries. The owner-facing 13-paper review list is
-[`notes/innovation/core-review-shortlist.md`](notes/innovation/core-review-shortlist.md).
+[`notes/innovation/core-review-shortlist.md`](notes/innovation/core-review-shortlist.md),
+with a direct claim-to-prose guide in
+[`notes/writing/core-review-to-prose-map.md`](notes/writing/core-review-to-prose-map.md).
 
 A transparent Ridge-ARX/nonlinear reference supplement has completed outside the
 frozen P1 code package. The owner supplied `APPROVE P1-REF FREEZE` on 2026-09-21;

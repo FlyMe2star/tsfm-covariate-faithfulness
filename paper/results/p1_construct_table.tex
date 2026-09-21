@@ -1,0 +1,23 @@
+\begin{table*}[t]
+  \centering
+  \caption{Selected analytic fixtures used before checkpoint access. $G=D_1-D_8$.
+  The fixtures isolate gain error, fine-scale displacement, cross-block displacement,
+  smoothing, lobe deletion, sign reversal, and response omission.}
+  \label{tab:construct-validation}
+  \resizebox{\textwidth}{!}{%
+  \begin{tabular}{lrrrrl}
+    \toprule
+    Fixture & RGR & $D_1$ & $D_8$ & $G$ & Intended check \\
+    \midrule
+    Exact oracle & 1.000 & 0.000 & 0.000 & 0.000 & Identity \\
+    Positive gain $\times 0.70$ & 0.700 & 0.000 & 0.000 & 0.000 & Gain--shape separation \\
+    One-step within-block shift & 0.750 & 0.500 & 0.000 & 0.500 & Hidden fine displacement \\
+    Seven-step cross-block shift & 0.469 & 1.000 & 1.000 & 0.000 & Coarse-visible displacement \\
+    Temporal smoothing & 0.875 & 0.125 & 0.000 & 0.125 & Mass-preserving smoothing \\
+    Rebound deletion & 0.625 & 0.375 & 0.375 & 0.000 & Opposite-signed lobe loss \\
+    Sign flip & 1.000 & 1.000 & 1.000 & 0.000 & Directional inversion \\
+    Zero response & 0.000 & 1.000 & 1.000 & 0.000 & Complete omission \\
+    \bottomrule
+  \end{tabular}}
+\end{table*}
+

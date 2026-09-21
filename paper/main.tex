@@ -1,12 +1,13 @@
 \documentclass[conference]{IEEEtran}
 
-% Evidence-constrained manuscript scaffold.
-% Do not convert TODO blocks into factual prose without updating the evidence matrix.
+% Evidence-constrained manuscript draft. Factual claims trace to the frozen P1
+% decision, construct report, reference supplement, or verified citation ledger.
 
 \usepackage{booktabs}
 \usepackage{graphicx}
 \usepackage{multirow}
 \usepackage{amssymb}
+\usepackage{amsmath}
 
 \title{Beyond Direction and Gain: Multi-Resolution Covariate-Response
 Faithfulness in Time-Series Foundation Models}
@@ -36,27 +37,274 @@ misplacement despite good forecast skill and credible coarse response behavior.
 \end{abstract}
 
 \section{Introduction}
-% TODO: Motivation, precise question, and bounded contributions.
-% Allowed primary wording: for the tested checkpoints and mechanisms, a coarse
-% direction-and-gain audit concealed fine-resolution response-shape distortion.
+Time-series foundation models (TSFMs) increasingly provide zero-shot probabilistic
+forecasts across heterogeneous domains and sampling frequencies
+\cite{ansari2024chronos,das2024timesfm}. Newer checkpoints also accept past and
+known-future covariates, extending foundation forecasting beyond a target-only setting
+\cite{ansari2025chronos2,jain2026timesfm3}. This interface is consequential whenever a
+forecast is expected to react to a supplied future path rather than merely extrapolate
+the target history. Yet standard forecast scores answer whether a prediction is close
+to the realized target; they do not determine whether changing one covariate moves the
+forecast in the structurally appropriate direction, magnitude, and time location.
+
+Recent covariate-aware models and adapters have improved forecast accuracy through
+native conditioning, in-context use, synthetic-prior training, or lightweight
+adaptation \cite{arango2025chronosx,auer2025cosmic,han2025unica,
+dange2025tfmadapter,yamaguchi2025citras,yamaguchi2026citrasfm,
+potapczynski2026apollopfn}. Broad benchmarks likewise make covariate-rich predictive
+evaluation more systematic \cite{shchur2025fevbench}. These advances leave a distinct
+behavioral question open. A model may benefit from a known-future covariate on average
+while assigning its response to the wrong forecast horizons. Directional agreement and
+total response gain can also miss this error because both collapse the horizon-wise
+trajectory.
+
+Intervention-based analyses offer a route beyond observational accuracy, but adjacent
+work targets different objects. Existing TSFM causal analysis varies parameters of
+univariate generators \cite{jander2026causalanalysis}; causal prior-fitted networks are
+trained for interventional effect estimation \cite{thumm2026causaltimeprior}; and
+mechanistic studies intervene on internal representations or components
+\cite{wilinski2025representations,asiaee2026certified}. Counterfactual explanation and
+temporal attribution methods instead search for explanatory input changes or assign
+importance to observed inputs \cite{wang2023forecastcf,kinjo2025cetx,
+yan2023counts,jang2025timing}. These objectives do not directly ask whether a frozen
+forecaster reproduces the signed response trajectory induced by a controlled
+known-future covariate path.
+
+We address this gap with \emph{CovIntervene-SHAPE}, a paired black-box audit of
+covariate-response faithfulness across temporal resolutions. The audit replays factual
+and intervened structural worlds with shared history and innovations, compares their
+analytic target response with the difference between two median forecasts, and measures
+signed shape distance after aggregating the response in blocks of 1, 2, 4, and 8 time
+steps. Our contributions are threefold. First, we formulate a scale-invariant signed
+response distance and a hidden-distortion contrast that separates fine temporal error
+from coarse direction and gain. Second, we construct four response mechanisms and an
+analytic fixture ladder that validate metric selectivity before checkpoint access.
+Third, we report a complete frozen evaluation of Chronos-2 and TimesFM-3. For the tested
+checkpoints and mechanisms, three of eight cells exhibited fine response-shape
+distortion hidden by temporal aggregation while retaining credible coarse behavior and
+improved forecast skill. This is a bounded behavioral result, not a claim about TSFMs
+in general or causal effects in observational data.
 
 \section{Related Work}
-% VERIFIED GATE: 30 primary-source references are mapped in the literature ledger.
-% TODO: Draft after the owner checks the 13-item core shortlist.
+\subsection{Covariate-aware forecasting}
+
+Probabilistic autoregressive models and supervised architectures have long incorporated
+temporal context and known-future inputs \cite{salinas2020deepar,lim2021tft}. TSFMs
+shift this setting toward pretrained, zero-shot forecasting
+\cite{ansari2024chronos,das2024timesfm}. Chronos-2 and TimesFM-3 expose native
+covariate-aware interfaces, whereas ChronosX, UniCA, and TFMAdapter adapt pretrained
+representations to exogenous variables \cite{ansari2025chronos2,jain2026timesfm3,
+arango2025chronosx,han2025unica,dange2025tfmadapter}. COSMIC, CITRAS-FM, and ApolloPFN
+further expand zero-shot covariate handling through in-context learning or synthetic
+priors \cite{auer2025cosmic,yamaguchi2026citrasfm,potapczynski2026apollopfn}. Their
+central evaluation target is predictive performance. CovIntervene-SHAPE instead holds
+the forecasting model fixed and evaluates the function mapping a supplied future
+covariate path to a target-response trajectory.
+
+Robustness to missing, corrupted, or misaligned covariates is another related but
+separate objective. Exogenous Dropout, for example, evaluates and trains for prediction
+under covariate corruption \cite{hu2026exogenousdropout}. Our intervention remains
+within a frozen context-derived covariate envelope and is structurally valid by
+construction. The question is therefore fidelity to a valid perturbation, not
+robustness to an invalid input.
+
+\subsection{Interventions, counterfactuals, and explanation faithfulness}
+
+The closest conceptual work uses interventions to probe TSFMs or formalize causal
+claims. Jander et al. vary univariate generator parameters and evaluate scalar pattern
+responses, while interventional time-series priors train models explicitly for causal
+effect estimation \cite{jander2026causalanalysis,thumm2026causaltimeprior}. Other work
+studies representation steering inside TSFMs or certifies causal claims about internal
+model interventions \cite{wilinski2025representations,asiaee2026certified}. We instead
+intervene on an externally supplied known-future covariate, observe the full target
+forecast response, and compare it with an analytic horizon-wise response.
+
+Counterfactual forecasting methods generate plausible input changes that yield desired
+predictions \cite{wang2023forecastcf,kinjo2025cetx,yan2023counts}. Attribution methods
+such as TIMING assign signed temporal importance to inputs
+\cite{jang2025timing}. General explanation-faithfulness criteria and perturbation-based
+infidelity provide useful evaluation precedents \cite{dasgupta2022faithfulness,
+yeh2019infidelity}, but an attribution score is not the same estimand as an
+intervention-response trajectory. Methodologically, our emphasis on black-box
+capability tests is also related to behavioral testing beyond aggregate accuracy
+\cite{ribeiro2020checklist}. The distinguishing combination here is paired
+future-exogenous worlds, analytic signed response paths, and an explicit test of error
+that disappears under temporal aggregation.
 
 \section{Covariate-Response Shape Formulation}
-% TODO: Define paired response paths, DSA, RGR, D_b, and hidden-distortion gap.
+\subsection{Paired response paths}
+
+For series $i$, let a forecasting context contain target history $y_{i,-L+1:0}$ and
+covariate history $\mathbf{x}_{i,-L+1:0}$. Structural replay supplies a factual
+known-future path $\mathbf{x}^{(0)}_{i,1:H}$ and an intervened path
+$\mathbf{x}^{(1)}_{i,1:H}$. Target history, non-intervened inputs, and future
+innovations are identical across the two worlds. The structural oracle response and
+the predicted median-forecast response are
+\begin{equation}
+\Delta^{\star}_{i,h}=y^{(1)}_{i,h}-y^{(0)}_{i,h},\qquad
+\widehat{\Delta}_{i,h}=\widehat y^{(1)}_{i,h}-\widehat y^{(0)}_{i,h}.
+\label{eq:responses}
+\end{equation}
+Pairing removes future-noise differences from the estimand. The independent evaluation
+unit is the complete series response, not an individual horizon point.
+
+We retain Directional Sign Agreement (DSA) and Response Gain Ratio (RGR) as coarse
+eligibility checks. For oracle-active support
+$A_i=\{h:|\Delta^\star_{i,h}|\geq0.1\max_j|\Delta^\star_{i,j}|\}$,
+\begin{align}
+\mathrm{DSA}_i & = \frac{1}{|A_i|}\sum_{h\in A_i}
+\mathbb{1}\!\left[\operatorname{sign}(\widehat\Delta_{i,h})
+=\operatorname{sign}(\Delta^\star_{i,h})\right], \\
+\mathrm{RGR}_i & = \frac{\sum_{h\in A_i}|\widehat\Delta_{i,h}|}
+{\sum_{h\in A_i}|\Delta^\star_{i,h}|+\epsilon_i}.
+\end{align}
+DSA measures sign correctness and RGR measures absolute response mass. Neither records
+where that mass occurs within the forecast horizon.
+
+\subsection{Signed multi-resolution distance}
+
+For a block width $b$ that divides $H$, define contiguous signed block sums
+\begin{equation}
+B_b(v)_j=\sum_{h=(j-1)b+1}^{jb}v_h,\qquad
+z_b(v)=\frac{B_b(v)}{\|B_b(v)\|_1+\epsilon_i}.
+\end{equation}
+The signed shape distance is
+\begin{equation}
+D_{i,b}=\frac{1}{2}\left\|z_b(\widehat\Delta_i)-
+z_b(\Delta_i^\star)\right\|_1,\qquad b\in\{1,2,4,8\}.
+\label{eq:shape-distance}
+\end{equation}
+$D_{i,b}\in[0,1]$ and is invariant to a common positive rescaling. It is zero
+when the predicted response has the exact signed shape, even if its gain differs, and
+is one when a nonzero oracle response is omitted. Because opposite-signed response can
+cancel inside a block, we retain the sign rather than aggregate absolute mass.
+
+Our primary multi-resolution contrast is the hidden-distortion gap
+\begin{equation}
+G_i=D_{i,1}-D_{i,8}.
+\label{eq:hidden-gap}
+\end{equation}
+A positive $G_i$ indicates that width-8 aggregation conceals part of the
+fine-resolution error. Secondary diagnostics measure absolute response-mass transport,
+onset and peak-time error, separate positive and negative mass error, and the area under
+$D_{i,b}$ against $\log_2 b$. For the two-covariate mechanism, we additionally compute
+$D_1$ on the joint-minus-marginal interaction response. None of these diagnostics can
+replace $D_1$ or $G$ in the frozen decision.
 
 \section{CovIntervene-SHAPE Protocol}
-% TODO: Describe the four frozen mechanisms and paired replay.
+Each scenario follows
+\begin{equation}
+y_t=\phi_y y_{t-1}+\beta f_m(\mathbf{x}_{1:t};\theta_m)+\eta_t,
+\label{eq:generator}
+\end{equation}
+where covariates are autoregressive, $\eta_t$ is shared across paired worlds, and
+$f_m$ defines one of four untouched mechanisms. The target autoregressive coefficient,
+covariate persistence, response coefficient, and innovation scale are sampled from
+frozen ranges. Intervention directions and coefficient signs are balanced across
+series. A smooth pulse of length 3, 5, or 7 begins at horizon index 1, 7, or 13; its
+amplitude is $0.65$ context standard deviations and active values are clipped to the
+0.5th--99.5th context percentiles.
+
+\paragraph{Biphasic rebound.}
+The active covariate is convolved with an 11-step kernel containing an early positive
+lobe and a delayed opposite-signed lobe. Randomized lobe centers and rebound strength
+test whether a model preserves cancellation and rebound timing rather than only total
+gain.
+
+\paragraph{Dispersed delayed pulse.}
+The covariate enters through a positive 12-step delay kernel with randomized onset and
+dispersion. This isolates whether response onset, peak, and width follow the structural
+transmission path.
+
+\paragraph{Rate-asymmetric hysteresis.}
+A latent state obeys
+$s_t=\rho s_{t-1}+g(\Delta x_t)\Delta x_t$, where the gain differs for rising and
+falling covariate changes; $f_m=\tanh(s_t/s_0)$. Matched paths can therefore have equal
+total variation but different persistent responses.
+
+\paragraph{Two-covariate synergy.}
+The mechanism combines linear main effects with
+$\gamma\tanh(x_{1,t}/s)\tanh(x_{2,t}/s)$. Factual, A-only, B-only, and joint worlds are
+replayed with shared innovations. The structural interaction is
+\begin{equation}
+\Delta^{\star,\mathrm{int}}=\Delta^{\star,AB}-
+\Delta^{\star,A}-\Delta^{\star,B},
+\end{equation}
+with an analogous predicted contrast. Generator assertions reject negligible
+interaction responses.
+
+The four mechanisms, their parameter ranges, three generator seeds, metric code, model
+revisions, and decision thresholds were hash-locked before P1 model inference. P0
+arrays and estimates were excluded from their construction. Smoke notebooks could not
+compute the aggregate decision, while the analysis stage refused incomplete or
+hash-mismatched units. This separation prevented run-time inspection from changing the
+evaluation contract.
 
 \section{Construct Validation}
-% Verified: 11/11 blocking checks passed before model inference.
+Metric behavior was validated with analytic responses before either checkpoint was
+loaded. Exact-oracle and positive-gain fixtures established identity and gain--shape
+separation. Within-block and cross-block shifts tested the intended resolution
+dependence; smoothing, rebound deletion, sign reversal, zero response, and interaction
+omission tested distinct failure modes. Table~\ref{tab:construct-validation} reports
+the selected fixture values. In particular, a one-step shift yielded $D_1=0.5$ but
+$D_8=0$, whereas a seven-step shift remained visible at both resolutions. Positive
+gain scaling changed RGR to 0.70 without changing shape distance.
+
+\input{results/p1_construct_table}
+
+All 11 blocking assertions passed. The generator preflight then reproduced 768 finite,
+deterministic, nondegenerate scenarios---192 for each mechanism---with valid paired
+replay. Only after these checks were complete were the numerical bounds and inference
+configuration frozen. Thus, fixture results could shape the metric contract, whereas
+TSFM outcomes could not.
 
 \section{Experimental Protocol}
-% Verified scope: Chronos-2, TimesFM-3, horizon 24, seeds 101/307/911.
+\subsection{Models and evaluation matrix}
+
+We evaluated the official \texttt{amazon/chronos-2} and
+\texttt{google/timesfm-3.0-pytorch} checkpoints at pinned revisions through their
+native covariate interfaces \cite{ansari2025chronos2,jain2026timesfm3}. Both remained
+frozen and zero-shot: no weights, prompts, or covariate subsets were tuned. Each model
+received a 192-step context and produced a 24-step probabilistic forecast. A matched
+target-only call used the same checkpoint and target history.
+
+The primary matrix crossed two backbones with four mechanisms. Each cell contained 64
+series under each of seeds 101, 307, and 911, for 192 paired series and 1,536 primary
+series-level evaluations overall. We retained all eight cells regardless of outcome.
+Factual-world forecast skill was summarized with scaled quantile loss (SQL) and
+weighted quantile loss (WQL), using the quantiles returned by each frozen interface.
+Quantile loss is a proper probabilistic scoring construction
+\cite{gneiting2007proper}; scaling used context first differences to reduce dependence
+on series magnitude \cite{hyndman2006accuracy}. The covariate-aware versus target-only
+complement was
+$(\mathrm{SQL}_{\mathrm{cov}}-\mathrm{SQL}_{\mathrm{target}})/
+\mathrm{SQL}_{\mathrm{target}}$. Leakage and comparison controls followed standard
+forecast-evaluation discipline \cite{hewamalage2023evaluation}.
+
+\subsection{Uncertainty and frozen decision}
+
+DSA and SQL were aggregated by the mean; RGR, $D_b$, and $G$ by the median. We used
+5,000 deterministic percentile bootstrap replicates, resampling complete paired series
+within each generator seed. A cell passed only when all four predeclared conditions
+held: the DSA lower 95\% bound was at least 0.85; the complete RGR interval lay inside
+$[0.65,1.35]$; the $D_1$ lower bound was at least 0.08; and the $G$ lower bound was at
+least 0.03. The paper-level gate required at least two passing cells spanning two
+mechanisms or both backbones, plus one passing cell whose covariate-aware SQL was no
+worse than target-only by more than 2\%. All thresholds were frozen before the first
+P1 checkpoint call and could not be changed afterward.
+
+Ridge-ARX and nonlinear dynamic regression were later fitted separately using only
+each scenario's 192-step context; supervised rows began at context index 24. Ridge-ARX
+used target lags
+$\{1,2,3,6,12,24\}$ and covariate lags 0--12 with fixed ridge penalty 1
+\cite{hoerl1970ridge}. The nonlinear reference added fixed hyperbolic-tangent, square,
+same-lag interaction, and signed-difference features with the same penalty. This design
+was frozen only after the primary P1 outcome, used no future targets or TSFM outputs,
+and is reported strictly as post-primary descriptive context.
 
 \section{Results}
+\subsection{Resolution-hidden distortion under coarse eligibility}
+
 \input{results/p1_shape_primary_table}
 Three of eight cells passed the complete frozen rule: Chronos-2 on biphasic rebound
 and dispersed delayed pulse, and TimesFM-3 on biphasic rebound
@@ -66,6 +314,17 @@ $D_1$ was 0.185--0.198 and the hidden-distortion gap was 0.040--0.066, with all 
 95\% bounds above the corresponding frozen thresholds. Relative SQL was
 $-0.514$ to $-0.523$, so covariate-aware forecasts also improved on their matched
 target-only calls in these cells.
+
+The complete matrix also defines where the central claim does not apply. All eight
+cells had a $D_1$ lower bound above 0.08, and six had a $G$ lower bound above 0.03, but
+fine distortion alone was insufficient. Both synergy cells failed the coarse DSA/RGR
+eligibility requirements, and the two hysteresis cells did not establish positive
+resolution-hidden gaps. TimesFM-3 on the dispersed delayed pulse missed the complete
+rule because its RGR interval extended below 0.65 despite high DSA and a positive gap.
+These retained nonpassing cells prevent a generic claim that every response-shape
+error is hidden behind credible coarse behavior.
+
+\subsection{Post-primary transparent references}
 
 \input{results/p1_reference_table}
 The post-primary references provide a mechanism-level check rather than another
@@ -80,14 +339,65 @@ context length while also exposing mechanism-specific limitations; they do not e
 or modify the primary decision.
 
 \section{Analysis and Limitations}
-% Mandatory boundaries: synthetic mechanisms, two checkpoints, no real-world
-% causal claim, no universal model ranking, and post-freeze thresholds unchanged.
+The primary result separates predictive usefulness from structural response
+faithfulness. In the three passing cells, supplying covariates substantially reduced
+SQL and produced credible direction and total gain, yet the fine-resolution forecast
+response still differed from the oracle shape. This combination matters because forecast
+accuracy alone can reward a model for using the target history and covariates in any
+predictively useful way. It does not require the local response to a specific future
+path to match the response encoded by the data-generating mechanism.
+
+The finding complements, rather than contradicts, accuracy-centered covariate
+forecasting studies. ChronosX, COSMIC, UniCA, TFMAdapter, CITRAS-FM, and ApolloPFN ask
+how exogenous information can improve predictions or adaptation
+\cite{arango2025chronosx,auer2025cosmic,han2025unica,dange2025tfmadapter,
+yamaguchi2026citrasfm,potapczynski2026apollopfn}. Our evidence indicates that an
+additional response-level audit can reveal information not contained in an aggregate
+forecast score. It also narrows the connection to prior intervention studies: the
+tested object here is the external known-future path and the measured object is the
+signed target-response trajectory, rather than a generator parameter, internal
+representation, or optimized counterfactual.
+
+The fitted references help interpret attainability without defining a new primary
+comparison. Ridge-ARX's low shape distances on the two additive temporal mechanisms
+show that the metric does not impose uniformly unreachable fidelity under a 192-step
+context. Its failure on the registered interaction and the nonlinear reference's
+partial recovery indicate that mechanism structure matters. Because these references
+were specified after the primary outcome and fitted to each scenario, they cannot
+support a zero-shot superiority ranking against either TSFM.
+
+Four boundaries constrain the conclusion. First, analytic oracle responses are
+available because the mechanisms are synthetic. This provides internal structural
+validity but does not establish causal faithfulness on observational applications.
+Second, two public checkpoints support a cross-architecture result only for their
+pinned revisions; they do not establish a property of all TSFMs. Third, the 24-step
+horizon and widths $\{1,2,4,8\}$ operationalize one temporal scale. Other horizons or
+task-specific resolutions may change which errors are hidden. Fourth, the numerical
+bounds were adjusted once using only analytic fixtures, before model outputs existed,
+and were then frozen. The resulting test is auditable, but its thresholds should be
+treated as an explicit operating definition rather than a universal notion of
+practical significance.
+
+A useful next test would pair real interventions or controlled policy changes with a
+known-future covariate and an independently defensible response trajectory. Such data
+would test transport beyond synthetic mechanisms without pretending that ordinary
+observational correlations supply an oracle. A broader checkpoint study should
+likewise freeze interfaces, revisions, and decision rules before accessing new model
+outcomes.
 
 \section{Conclusion}
-% TODO: Restate only the bounded verified finding.
+CovIntervene-SHAPE audits how a frozen forecaster's response to a known-future
+covariate is distributed across the forecast horizon. Analytic fixtures established
+that the signed multi-resolution distance distinguishes gain error, temporal
+displacement, smoothing, rebound deletion, and interaction omission. In a frozen
+two-backbone, four-mechanism evaluation, three cells combined credible coarse response
+and improved forecast skill with fine shape distortion that weakened under temporal
+aggregation. The result shows that, for the tested checkpoints and mechanisms,
+direction, gain, and forecast accuracy do not fully characterize covariate-response
+faithfulness. Extending this conclusion to operational forecasting requires response
+oracles or controlled interventions beyond the synthetic setting.
 
-% The citation gate passed on 2026-09-20. Enable these lines once prose contains cites.
-% \bibliographystyle{IEEEtran}
-% \bibliography{ref}
+\bibliographystyle{IEEEtran}
+\bibliography{ref}
 
 \end{document}
