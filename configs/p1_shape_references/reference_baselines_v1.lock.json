@@ -1,0 +1,10 @@
+{
+  "schema_version": 1,
+  "canonical_sha256": "330e2317ffb7dcead45e4ef83bf830388ed835b1eb887ad59ae54eb7e5a22bb5",
+  "scientific_code_sha256": "a921a7858c663bb17e93c06398393ab4a5c3193b71c76dbaccd4f75d0bcf0ed5",
+  "approval_phrase": "APPROVE P1-REF FREEZE",
+  "approval_date": "2026-09-21",
+  "outcomes_authorized": true,
+  "evidence_role": "post_primary_supplementary_descriptive",
+  "primary_decision_mutation_allowed": false
+}

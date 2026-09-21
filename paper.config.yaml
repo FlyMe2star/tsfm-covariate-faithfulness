@@ -23,6 +23,8 @@ research_stage:
     verified_primary_sources: 30
     verified_on: "2026-09-20"
   transparent_reference_supplement:
-    status: draft_awaiting_owner_freeze
+    status: frozen_owner_approved_post_primary
     approval_phrase: "APPROVE P1-REF FREEZE"
+    approval_date: "2026-09-21"
+    config_sha256: 330e2317ffb7dcead45e4ef83bf830388ed835b1eb887ad59ae54eb7e5a22bb5
     evidence_role: post_primary_supplementary_descriptive

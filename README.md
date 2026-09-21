@@ -28,10 +28,15 @@ primary-source-verified entries. The owner-facing 13-paper review list is
 [`notes/innovation/core-review-shortlist.md`](notes/innovation/core-review-shortlist.md).
 
 A transparent Ridge-ARX/nonlinear reference supplement is now implemented and tested
-outside the frozen P1 code package. It remains outcome-blocked until the owner types
-`APPROVE P1-REF FREEZE`. The supplement is explicitly post-primary and descriptive; it
-cannot change the archived P1 decision. See
+outside the frozen P1 code package. The owner supplied `APPROVE P1-REF FREEZE` on
+2026-09-21, and the independent supplement config is now locked. The supplement is
+explicitly post-primary and descriptive; it cannot change the archived P1 decision. See
 [`plan/p1-reference-supplement-contract.md`](plan/p1-reference-supplement-contract.md).
+
+Run the frozen supplement on CPU with
+[`notebooks/07_p1_reference_supplement.ipynb`](notebooks/07_p1_reference_supplement.ipynb).
+It stores each mechanism-by-seed unit independently and safely resumes after a Colab
+disconnect. [Open the notebook directly in Colab](https://colab.research.google.com/github/FlyMe2star/tsfm-covariate-faithfulness/blob/main/notebooks/07_p1_reference_supplement.ipynb).
 
 ## P1-SHAPE workflow
 

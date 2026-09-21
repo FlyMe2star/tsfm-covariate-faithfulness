@@ -227,6 +227,30 @@ def _predict_one(
     return float(fitted.target_mean + fitted.target_scale * (design @ fitted.coefficients))
 
 
+def _predict_many(
+    fitted: FittedReference,
+    target_histories: FloatArray,
+    covariate_history: FloatArray,
+    index: int,
+) -> FloatArray:
+    """Vectorized one-step prediction for residual-bootstrap paths."""
+
+    row = _feature_row(
+        target_histories[0],
+        covariate_history,
+        index,
+        fitted.model_id,
+        fitted.covariate_scale,
+    )
+    matrix = np.broadcast_to(row, (target_histories.shape[0], row.size)).copy()
+    matrix[:, : len(TARGET_LAGS)] = np.column_stack(
+        [target_histories[:, index - lag] for lag in TARGET_LAGS]
+    )
+    standardized = (matrix - fitted.feature_mean) / fitted.feature_scale
+    design = np.column_stack([np.ones(standardized.shape[0]), standardized])
+    return fitted.target_mean + fitted.target_scale * (design @ fitted.coefficients)
+
+
 def forecast_reference(
     fitted: FittedReference,
     target_context: ArrayLike,
@@ -264,15 +288,13 @@ def forecast_reference(
         point_history[index] = _predict_one(fitted, point_history, all_covariates, index)
     point = point_history[target.size :].copy()
 
-    paths = np.empty((indices.shape[0], horizon), dtype=np.float64)
-    for path_index in range(indices.shape[0]):
-        history = np.empty(target.size + horizon, dtype=np.float64)
-        history[: target.size] = target
-        for step in range(horizon):
-            index = target.size + step
-            conditional_mean = _predict_one(fitted, history, all_covariates, index)
-            history[index] = conditional_mean + fitted.residuals[indices[path_index, step]]
-        paths[path_index] = history[target.size :]
+    histories = np.empty((indices.shape[0], target.size + horizon), dtype=np.float64)
+    histories[:, : target.size] = target[None, :]
+    for step in range(horizon):
+        index = target.size + step
+        conditional_mean = _predict_many(fitted, histories, all_covariates, index)
+        histories[:, index] = conditional_mean + fitted.residuals[indices[:, step]]
+    paths = histories[:, target.size :].copy()
     quantiles = np.quantile(paths, levels, axis=0).T
     if not np.all(np.isfinite(point)) or not np.all(np.isfinite(quantiles)):
         raise RuntimeError("reference forecast produced non-finite values")

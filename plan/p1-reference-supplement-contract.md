@@ -1,6 +1,6 @@
 # P1-REF transparent-reference supplement contract
 
-Status: **draft awaiting owner freeze**  
+Status: **frozen and owner-approved on 2026-09-21**
 Approval phrase: `APPROVE P1-REF FREEZE`
 
 ## 1. Evidence status

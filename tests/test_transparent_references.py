@@ -3,6 +3,7 @@ from __future__ import annotations
 import numpy as np
 import pytest
 
+from covfaith_refs.p1_ref import _write_csv_atomic, verify_reference_freeze
 from covfaith_refs.transparent import (
     MODEL_IDS,
     build_training_matrix,
@@ -73,3 +74,24 @@ def test_invalid_model_is_rejected() -> None:
     target, covariates = _fixture_context()
     with pytest.raises(ValueError, match="unsupported reference model"):
         build_training_matrix(target, covariates, "not_registered")
+
+
+def test_reference_freeze_preserves_primary_hash() -> None:
+    hashes = verify_reference_freeze(".")
+    assert hashes["config_hash"] == (
+        "330e2317ffb7dcead45e4ef83bf830388ed835b1eb887ad59ae54eb7e5a22bb5"
+    )
+    assert hashes["scientific_code_sha256"] == (
+        "a921a7858c663bb17e93c06398393ab4a5c3193b71c76dbaccd4f75d0bcf0ed5"
+    )
+    assert hashes["primary_scientific_code_sha256"] == (
+        "fc1cf6d73a59a4200deaa964f341a17b72d8fae75fa40b1086ed1c8c714f5925"
+    )
+
+
+def test_csv_writer_unions_optional_summary_fields(tmp_path) -> None:
+    path = tmp_path / "matrix.csv"
+    _write_csv_atomic(path, [{"model": "a", "core": 1}, {"model": "b", "extra": 2}])
+    text = path.read_text(encoding="utf-8")
+    assert text.splitlines()[0] == "model,core,extra"
+    assert "b,,2" in text

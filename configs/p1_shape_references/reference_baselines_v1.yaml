@@ -1,16 +1,18 @@
 schema_version: 1
-status: draft_awaiting_owner_freeze
+status: frozen_owner_approved_post_primary
 experiment: p1-shape-transparent-references-v1
 evidence_role: post_primary_supplementary_descriptive
 authorization:
   approval_phrase: "APPROVE P1-REF FREEZE"
-  outcomes_authorized: false
+  approval_date: "2026-09-21"
+  outcomes_authorized: true
   primary_decision_mutation_allowed: false
 isolation:
   implementation_package: covfaith_refs
   frozen_primary_code_directory_modified: false
   primary_config: configs/p1_shape/covintervene_shape_p1.yaml
   primary_config_sha256: 27826ad34bfe0acd8ee90ff4d0fbafb011a6b00aeea276dacaa9f9fe2a261918
+  primary_scientific_code_sha256: fc1cf6d73a59a4200deaa964f341a17b72d8fae75fa40b1086ed1c8c714f5925
 data:
   fitting_unit: individual_generated_scenario
   context_length: 192
@@ -62,6 +64,12 @@ metrics:
     - matrix_condition_number
     - residual_scale
     - wall_time_seconds
+uncertainty:
+  unit: paired_series
+  stratify_by_generator_seed: true
+  bootstrap_replicates: 5000
+  bootstrap_seed: 190926
+  interval: percentile_two_sided_95
 reporting:
   continuation_gate: none
   retain_all_units: true
@@ -69,3 +77,9 @@ reporting:
 runtime:
   accelerator_required: false
   dependency_policy: numpy_only
+artifacts:
+  private_root: private_google_drive/p1_shape_references_v1
+  unit_directory: units
+  complete_matrix: reference_complete_matrix.csv
+  series_metrics: reference_series_metrics.csv
+  analysis_report: p1_reference_report.json
