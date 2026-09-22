@@ -8,6 +8,7 @@
 \usepackage{multirow}
 \usepackage{amssymb}
 \usepackage{amsmath}
+\usepackage{xurl}
 
 \title{Beyond Direction and Gain: Multi-Resolution Covariate-Response
 Faithfulness in Time-Series Foundation Models}
@@ -26,14 +27,16 @@ paths at temporal widths 1, 2, 4, and 8. We evaluate frozen Chronos-2 and TimesF
 checkpoints on four synthetic mechanisms and 192 series per backbone--mechanism cell.
 Three of eight cells satisfied the predeclared complete rule: direction agreement was
 0.973--0.982 and gain-ratio intervals remained inside the coarse envelope, yet
-fine-resolution shape distance was 0.185--0.198 and the hidden-distortion gap was
-0.040--0.066. In these cells, covariate-aware scaled quantile loss was 51.4--52.3\%
+fine-resolution shape distance was 0.185--0.198 and the registered resolution
+contrast $D_1-D_8$ was 0.040--0.066. In these cells, covariate-aware scaled
+quantile loss was 51.4--52.3\%
 lower than for the matched target-only call, so the distortion was not merely gross
 forecast failure. Post-primary fitted references nearly recovered the additive linear
 mechanisms but not path-dependent hysteresis or covariate synergy; a frozen nonlinear
 feature expansion only partially recovered the interaction. For the tested checkpoints
-and mechanisms, temporal aggregation can therefore conceal horizon-wise response
-misplacement despite good forecast skill and credible coarse response behavior.
+and mechanisms, credible direction, gain, and forecast skill therefore did not preclude
+fine-scale response misplacement whose normalized discrepancy attenuated after temporal
+coarsening.
 \end{abstract}
 
 \section{Introduction}
@@ -76,13 +79,14 @@ and intervened structural worlds with shared history and innovations, compares t
 analytic target response with the difference between two median forecasts, and measures
 signed shape distance after aggregating the response in blocks of 1, 2, 4, and 8 time
 steps. Our contributions are threefold. First, we formulate a scale-invariant signed
-response distance and a hidden-distortion contrast that separates fine temporal error
-from coarse direction and gain. Second, we construct four response mechanisms and an
+response distance and a registered resolution contrast that quantifies how normalized
+shape discrepancy changes under temporal coarsening, beyond coarse direction and gain.
+Second, we construct four response mechanisms and an
 analytic fixture ladder that validate metric selectivity before checkpoint access.
 Third, we report a complete frozen evaluation of Chronos-2 and TimesFM-3. For the tested
 checkpoints and mechanisms, three of eight cells exhibited fine response-shape
-distortion hidden by temporal aggregation while retaining credible coarse behavior and
-improved forecast skill. This is a bounded behavioral result, not a claim about TSFMs
+distortion with positive resolution contrast while retaining credible coarse behavior
+and improved forecast skill. This is a bounded behavioral result, not a claim about TSFMs
 in general or causal effects in observational data.
 
 \section{Related Work}
@@ -156,7 +160,9 @@ $A_i=\{h:|\Delta^\star_{i,h}|\geq0.1\max_j|\Delta^\star_{i,j}|\}$,
 \mathbb{1}\!\left[\operatorname{sign}(\widehat\Delta_{i,h})
 =\operatorname{sign}(\Delta^\star_{i,h})\right], \\
 \mathrm{RGR}_i & = \frac{\sum_{h\in A_i}|\widehat\Delta_{i,h}|}
-{\sum_{h\in A_i}|\Delta^\star_{i,h}|+\epsilon_i}.
+ {\sum_{h\in A_i}|\Delta^\star_{i,h}|+\epsilon_{i,A}},\\
+ \epsilon_{i,A} & =10^{-8}\max\!\left(1,
+ \sum_{h\in A_i}|\Delta^\star_{i,h}|\right).
 \end{align}
 DSA measures sign correctness and RGR measures absolute response mass. Neither records
 where that mass occurs within the forecast horizon.
@@ -166,8 +172,13 @@ where that mass occurs within the forecast horizon.
 For a block width $b$ that divides $H$, define contiguous signed block sums
 \begin{equation}
 B_b(v)_j=\sum_{h=(j-1)b+1}^{jb}v_h,\qquad
-z_b(v)=\frac{B_b(v)}{\|B_b(v)\|_1+\epsilon_i}.
+z_b(v)=\frac{B_b(v)}{\|B_b(v)\|_1}.
 \end{equation}
+The normalization is evaluated only when the blocked mass exceeds the frozen numerical
+tolerance $\tau_i=10^{-8}\max(1,\|\Delta_i^\star\|_1)$. If the oracle blocked mass is
+below $\tau_i$, the distance is undefined; if only the predicted blocked mass is below
+$\tau_i$, the implementation assigns maximal distance one. Thus, $\tau_i$ is a
+zero-mass guard, not an additive normalization constant.
 The signed shape distance is
 \begin{equation}
 D_{i,b}=\frac{1}{2}\left\|z_b(\widehat\Delta_i)-
@@ -179,13 +190,15 @@ when the predicted response has the exact signed shape, even if its gain differs
 is one when a nonzero oracle response is omitted. Because opposite-signed response can
 cancel inside a block, we retain the sign rather than aggregate absolute mass.
 
-Our primary multi-resolution contrast is the hidden-distortion gap
+Our registered multi-resolution summary is the resolution contrast
 \begin{equation}
 G_i=D_{i,1}-D_{i,8}.
 \label{eq:hidden-gap}
 \end{equation}
-A positive $G_i$ indicates that width-8 aggregation conceals part of the
-fine-resolution error. Secondary diagnostics measure absolute response-mass transport,
+A positive $G_i$ indicates that the separately normalized signed-profile discrepancy is
+smaller after width-8 blocking. Because each resolution is normalized by its own
+post-blocking mass, $G_i$ is an empirical contrast rather than a generally monotone
+coarsening theorem and can be negative. Secondary diagnostics measure absolute response-mass transport,
 onset and peak-time error, separate positive and negative mass error, and the area under
 $D_{i,b}$ against $\log_2 b$. For the two-covariate mechanism, we additionally compute
 $D_1$ on the joint-minus-marginal interaction response. None of these diagnostics can
@@ -303,14 +316,14 @@ was frozen only after the primary P1 outcome, used no future targets or TSFM out
 and is reported strictly as post-primary descriptive context.
 
 \section{Results}
-\subsection{Resolution-hidden distortion under coarse eligibility}
+\subsection{Fine distortion and resolution contrast under coarse eligibility}
 
 \input{results/p1_shape_primary_table}
 Three of eight cells passed the complete frozen rule: Chronos-2 on biphasic rebound
 and dispersed delayed pulse, and TimesFM-3 on biphasic rebound
 (Table~\ref{tab:p1-shape-primary}). Across these cells, DSA was 0.973--0.982 and the
 complete RGR intervals remained inside the frozen $[0.65,1.35]$ envelope. Nevertheless,
-$D_1$ was 0.185--0.198 and the hidden-distortion gap was 0.040--0.066, with all lower
+$D_1$ was 0.185--0.198 and the registered resolution contrast was 0.040--0.066, with all lower
 95\% bounds above the corresponding frozen thresholds. Relative SQL was
 $-0.514$ to $-0.523$, so covariate-aware forecasts also improved on their matched
 target-only calls in these cells.
@@ -319,7 +332,7 @@ The complete matrix also defines where the central claim does not apply. All eig
 cells had a $D_1$ lower bound above 0.08, and six had a $G$ lower bound above 0.03, but
 fine distortion alone was insufficient. Both synergy cells failed the coarse DSA/RGR
 eligibility requirements, and the two hysteresis cells did not establish positive
-resolution-hidden gaps. TimesFM-3 on the dispersed delayed pulse missed the complete
+registered resolution contrasts. TimesFM-3 on the dispersed delayed pulse missed the complete
 rule because its RGR interval extended below 0.65 despite high DSA and a positive gap.
 These retained nonpassing cells prevent a generic claim that every response-shape
 error is hidden behind credible coarse behavior.
@@ -372,7 +385,7 @@ validity but does not establish causal faithfulness on observational application
 Second, two public checkpoints support a cross-architecture result only for their
 pinned revisions; they do not establish a property of all TSFMs. Third, the 24-step
 horizon and widths $\{1,2,4,8\}$ operationalize one temporal scale. Other horizons or
-task-specific resolutions may change which errors are hidden. Fourth, the numerical
+task-specific resolutions may change how strongly discrepancy attenuates. Fourth, the numerical
 bounds were adjusted once using only analytic fixtures, before model outputs existed,
 and were then frozen. The resulting test is auditable, but its thresholds should be
 treated as an explicit operating definition rather than a universal notion of
@@ -391,13 +404,14 @@ covariate is distributed across the forecast horizon. Analytic fixtures establis
 that the signed multi-resolution distance distinguishes gain error, temporal
 displacement, smoothing, rebound deletion, and interaction omission. In a frozen
 two-backbone, four-mechanism evaluation, three cells combined credible coarse response
-and improved forecast skill with fine shape distortion that weakened under temporal
-aggregation. The result shows that, for the tested checkpoints and mechanisms,
+and improved forecast skill with fine shape distortion and a positive registered
+resolution contrast. The result shows that, for the tested checkpoints and mechanisms,
 direction, gain, and forecast accuracy do not fully characterize covariate-response
 faithfulness. Extending this conclusion to operational forecasting requires response
 oracles or controlled interventions beyond the synthetic setting.
 
 \bibliographystyle{IEEEtran}
+\IEEEtriggeratref{20}
 \bibliography{ref}
 
 \end{document}

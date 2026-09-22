@@ -1,0 +1,11 @@
+{
+  "schema_version": 1,
+  "canonical_sha256": "7f7c27bc37ffc57ce3b2455877dab2a72d7d0d3255484042377cdaf90c27a284",
+  "scientific_code_sha256": "7178cf9bfa72d63a261765fdad333a30abd34ee0014c8bb082d160e6e7eebbe4",
+  "approval_phrase": "APPROVE P2 ROBUSTNESS FREEZE",
+  "approval_date": "2026-09-22",
+  "analysis_authorized": true,
+  "model_inference_authorized": false,
+  "evidence_role": "post_primary_robustness_and_visualization_support_only",
+  "primary_decision_mutation_allowed": false
+}

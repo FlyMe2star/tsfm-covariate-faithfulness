@@ -83,8 +83,10 @@ blocks and sum signed response inside each block:
 B_b(v)_j=\sum_{h\in j\text{th block}} v_h.
 \]
 
-Normalize a nonzero blocked response by signed L1 mass,
-\(z_b(v)=B_b(v)/(\|B_b(v)\|_1+\epsilon_i)\). The primary distance is
+Normalize a nonzero blocked response by its exact signed L1 mass,
+\(z_b(v)=B_b(v)/\|B_b(v)\|_1\). The frozen implementation uses
+\(\tau_i=10^{-8}\max(1,\|\Delta_i^\star\|_1)\) only to identify numerically zero
+blocked mass; it is not added to the normalization denominator. The primary distance is
 
 \[
 D_{i,b}=\tfrac12\|z_b(\widehat\Delta_i)-z_b(\Delta_i^\star)\|_1.
@@ -96,14 +98,21 @@ prediction is numerically zero, distance is one. Any block whose signed cancella
 makes the oracle block vector numerically zero is flagged; the absolute-mass transport
 diagnostic must still be reported.
 
-The primary hidden-distortion contrast is
+The registered resolution contrast is
 
 \[
 G_i=D_{i,1}-D_{i,8}.
 \]
 
-A positive value means temporal aggregation concealed part of the fine response error.
-The multi-resolution distortion AUC over \(\log_2 b\) is secondary.
+A positive value means the separately normalized signed-profile discrepancy is smaller
+after width-8 blocking. Because each width is normalized by its own post-blocking mass,
+this registered quantity is not a generally monotone coarsening theorem and may be
+negative. The multi-resolution distortion AUC over \(\log_2 b\) is secondary.
+
+> Documentation correction (2026-09-22): the earlier prose placed an additive
+> \(\epsilon_i\) in the shape-normalization denominator. The frozen code used exact L1
+> normalization and a separate zero-mass tolerance throughout inference. This correction
+> changes neither stored arrays nor any frozen threshold or decision.
 
 ## 5. Diagnostic shape metrics
 
@@ -118,7 +127,7 @@ The multi-resolution distortion AUC over \(\log_2 b\) is secondary.
 - **Interaction shape distance:** `D_1` applied to the joint-minus-marginal interaction
   contrast in M4.
 
-Only signed shape distance and hidden-distortion gap enter the primary continuation
+Only signed shape distance and the registered resolution contrast enter the primary continuation
 rule. Diagnostics cannot substitute for them.
 
 ## 6. Construct validation before model access
@@ -160,7 +169,8 @@ TSFM outputs existed during this review.
   series within seed.
 - Report every cell, including undefined diagnostics and null results.
 
-A cell supports **resolution-hidden shape distortion** only if all four conditions hold:
+A cell satisfies the frozen **fine-distortion plus positive-resolution-contrast** rule
+only if all four conditions hold:
 
 1. coarse DSA bound passes;
 2. coarse RGR interval passes;

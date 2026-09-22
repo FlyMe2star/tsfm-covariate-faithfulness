@@ -122,6 +122,16 @@ verified_result:
     The result supports hidden fine-resolution response-shape distortion only for the
     tested checkpoints, mechanisms, horizon, and intervention protocol. It does not
     establish universal TSFM behavior or real-world causal effects.
+  post_review_metric_clarification:
+    registered_name: resolution_contrast
+    definition: "G = D_1 - D_8"
+    interpretation: >-
+      Positive G means the separately normalized signed-profile discrepancy is smaller
+      at width 8 than at width 1. Because each width has its own post-blocking L1
+      normalization, G is not claimed to be nonnegative under arbitrary coarsening.
+    integrity_note: >-
+      This clarification changes terminology and interpretation only. It does not alter
+      the frozen metric implementation, thresholds, stored results, or primary decision.
 risk_factors:
   - Multi-resolution metrics may appear hand-crafted unless fixture selectivity is demonstrated before inference.
   - Synthetic response paths bound structural truth but do not establish real-world causality.

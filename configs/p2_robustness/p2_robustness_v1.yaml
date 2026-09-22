@@ -1,0 +1,91 @@
+schema_version: 1
+status: frozen_owner_approved_post_primary
+experiment: covintervene-shape-p2-robustness-v1
+authorization:
+  required_phrase: "APPROVE P2 ROBUSTNESS FREEZE"
+  approval_date: "2026-09-22"
+scope:
+  role: post_primary_analysis_only
+  model_inference_allowed: false
+  primary_arrays_mutable: false
+  registered_metrics_or_thresholds_mutable: false
+  primary_decision_recomputation_allowed: false
+source_primary:
+  config_hash: 27826ad34bfe0acd8ee90ff4d0fbafb011a6b00aeea276dacaa9f9fe2a261918
+  scientific_code_sha256: fc1cf6d73a59a4200deaa964f341a17b72d8fae75fa40b1086ed1c8c714f5925
+  decision_artifact: evidence/p1_shape/results/p1_shape_decision.json
+  series_per_mechanism_per_seed: 64
+  generator_seeds: [101, 307, 911]
+  backbones: [chronos_2, timesfm_3]
+  mechanisms:
+    - biphasic_rebound
+    - dispersed_delayed_pulse
+    - rate_asymmetric_hysteresis
+    - two_covariate_synergy
+analysis:
+  resolution_widths: [1, 2, 4, 8]
+  monotone_diagnostic:
+    name: fixed_fine_normalized_signed_distance
+    role: post_primary_robustness
+    registered_p1_replacement: false
+    coarse_width: 8
+  metric_fixture_comparison:
+    fixtures:
+      - exact_oracle
+      - positive_gain_0p70
+      - within_width8_shift_1
+      - cross_width8_shift_7
+      - temporal_smoothing
+      - rebound_deleted
+      - sign_flip
+      - zero_response
+    comparators:
+      - normalized_rmse
+      - cosine_distance
+      - correlation_distance
+      - normalized_dtw
+      - absolute_mass_transport
+      - onset_error
+      - peak_time_error
+      - response_gain_ratio
+  threshold_sensitivity:
+    d1_lower_thresholds: [0.04, 0.06, 0.08, 0.10, 0.12, 0.14, 0.16]
+    registered_g_lower_thresholds: [0.01, 0.02, 0.03, 0.04, 0.05, 0.06, 0.07, 0.08]
+  representative_selection:
+    eligible_cells: all_registered_p1_passing_cells
+    rule: minimum_MAD_standardized_distance_to_cell_medians_of_D1_and_registered_G
+    tie_break: lexical_series_id
+  complete_wql_reporting: true
+uncertainty:
+  unit: paired_series
+  stratify_by_generator_seed: true
+  bootstrap_replicates: 5000
+  bootstrap_seed: 220926
+reporting:
+  binary_success_gate: none
+  all_cells_retained: true
+  negative_and_null_results_retained: true
+  paper_role: robustness_and_visualization_support_only
+figures:
+  contract: paper/figures/STYLE.md
+  backend: python
+  library: matplotlib
+  final_width_mm:
+    single_column: 89
+    double_column: 183
+  vector_formats: [pdf, svg]
+  raster_format: png
+  raster_dpi: 600
+  default_vector_for:
+    - line_plot
+    - bar_plot
+    - scatter_plot
+    - threshold_map_with_vector_cells
+  raster_only_when_needed:
+    - sample_image
+    - dense_heatmap
+  planned_outputs:
+    - representative_response_paths
+    - monotone_resolution_curves
+    - threshold_sensitivity_map
+    - analytic_metric_comparison
