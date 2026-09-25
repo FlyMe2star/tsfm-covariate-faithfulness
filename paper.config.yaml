@@ -40,7 +40,7 @@ research_stage:
     model_inference_performed: false
     primary_decision_modified: false
   p3_semisynthetic_extension:
-    status: v1_construct_gate_failed_revision_required
+    status: v1_construct_gate_failed_v2_transfer_not_supported
     approval_phrase: "APPROVE P3 DESIGN"
     approval_date: "2026-09-25"
     design: notes/design/p3_semisynthetic_design.md
@@ -50,7 +50,7 @@ research_stage:
     construct_report_sha256: 9364eceb386c2d9bb6a585f0d0b75733582bfde649de6231186f40507f14787c
     model_inference_authorized: false
     v2_candidate:
-      status: owner_reported_full_units_complete_analysis_pending
+      status: verified_post_primary_descriptive_nonreplication
       approval_phrase: "APPROVE P3-V2 DESIGN"
       approval_date: "2026-09-25"
       approval_receipt: configs/p3_semisynthetic/p3_v2_design_approval.json
@@ -68,5 +68,14 @@ research_stage:
       analysis_notebook: notebooks/10_p3_v2_analyze.ipynb
       cpu_construct_preflight_authorized: true
       model_inference_authorized: true
-      model_inference_completed: owner_reported_pending_private_archive_audit
-      aggregate_result_status: planned
+      model_inference_completed: owner_reported_full_units_complete_private_arrays_not_locally_reaudited
+      aggregate_result_status: verified_bounded_transfer_not_supported
+      aggregate_report: evidence/p3_semisynthetic/v2_results/p3_v2_analysis_report.json
+      aggregate_report_sha256: 374af7297a4fb24e712ef1457ebce6a0ac94f57767849ec60390a41491e43813
+      complete_matrix: evidence/p3_semisynthetic/v2_results/complete_twelve_cell_matrix.csv
+      complete_matrix_sha256: 210e9b1a15a6ffd58477a2a272a1bae19b1b782f3cc14bff317186f84756531f
+      analysis_code_sha256: 3437e70884319a228305f0a91db92460e4bfeb3e29a4e944dacfe5afe3e44791
+      passing_complete_cells: 3
+      passing_sources: [traffic_daily]
+      two_source_transfer_supported: false
+      lower_link_relative_sql_available: false

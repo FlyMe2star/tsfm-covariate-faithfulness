@@ -2,14 +2,16 @@
 
 The owner pasted completion receipts for both frozen backbones on 2026-09-25:
 18 of 18 full units and 571 valid scenarios per backbone, with identical
-configuration, selection, construct-report, and runner-code hashes. These are
-completion claims, not yet verified model outcomes. No P3-v2 result is added
-to the manuscript at this stage.
+configuration, selection, construct-report, and runner-code hashes. The later
+author-supplied [aggregate](../../evidence/p3_semisynthetic/v2_results/README.md)
+was SHA-256 verified on import and added to the manuscript as bounded,
+post-primary evidence. The private per-unit arrays remain outside public Git.
 
 The separate CPU-only analysis replays source-ID/origin selection and all 576
 construct scenarios from pinned private Parquet, then verifies each of the 36
 full prediction arrays and its manifest against its SHA-256 and exact scenario
-order, factual target, paired oracle, sham subset, and lower-link oracle. It
+order, float64-roundoff-bounded factual target and paired oracle replay, exact
+sham subset, and roundoff-bounded lower-link oracle replay. It
 refuses incomplete or modified archives and never calls either checkpoint.
 
 For each of the twelve backbone × source × family cells, it computes DSA,
@@ -28,3 +30,9 @@ lower-link relative SQL is **unavailable**, not zero or imputed. The main
 analysis report and CSV must explicitly retain this omission, the failed
 P3-v1 construct pilot, and all null/adverse P3-v2 cells. Private source IDs,
 windows, and forecast arrays remain outside public Git.
+
+The completed aggregate reported three passing cells, all on traffic, and
+therefore failed the two-source transfer condition. The report records hashes
+for 74 private artifacts; the author supplied only the aggregate report and
+source-ID-free CSV for public import, so the private arrays were not locally
+re-audited during manuscript back-fill. No P1 decision or threshold changed.

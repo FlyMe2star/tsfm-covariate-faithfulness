@@ -1,0 +1,1761 @@
+{
+  "analysis_code_sha256": "3437e70884319a228305f0a91db92460e4bfeb3e29a4e944dacfe5afe3e44791",
+  "cells": [
+    {
+      "backbone": "chronos_2",
+      "complete_cell": true,
+      "dataset": "traffic_daily",
+      "diagnostic_and_controls": {
+        "d2": {
+          "cluster_count": 32,
+          "estimate": 0.24045078116012472,
+          "lower": 0.2261336534503564,
+          "n": 96,
+          "replicates": 5000,
+          "seed": 250926,
+          "undefined": 0,
+          "upper": 0.2684572265189801
+        },
+        "d4": {
+          "cluster_count": 32,
+          "estimate": 0.21339498388678713,
+          "lower": 0.2022846465603937,
+          "n": 96,
+          "replicates": 5000,
+          "seed": 250926,
+          "undefined": 0,
+          "upper": 0.23085817202211262
+        },
+        "d8": {
+          "cluster_count": 32,
+          "estimate": 0.18499424263171363,
+          "lower": 0.12187700285112552,
+          "n": 96,
+          "replicates": 5000,
+          "seed": 250926,
+          "undefined": 0,
+          "upper": 0.20943208951460857
+        },
+        "lower_d1": {
+          "cluster_count": 12,
+          "estimate": 0.32075591563436484,
+          "lower": 0.2555015402655387,
+          "n": 36,
+          "replicates": 5000,
+          "seed": 250926,
+          "undefined": 0,
+          "upper": 0.3889454064693928
+        },
+        "lower_dsa": {
+          "cluster_count": 12,
+          "estimate": 0.9198717948717949,
+          "lower": 0.8675213675213675,
+          "n": 36,
+          "replicates": 5000,
+          "seed": 250926,
+          "undefined": 0,
+          "upper": 1.0
+        },
+        "lower_g": {
+          "cluster_count": 12,
+          "estimate": 0.08009577145667567,
+          "lower": 0.06435487765086517,
+          "n": 36,
+          "replicates": 5000,
+          "seed": 250926,
+          "undefined": 0,
+          "upper": 0.11678133047842654
+        },
+        "lower_rgr": {
+          "cluster_count": 12,
+          "estimate": 0.6938484768148647,
+          "lower": 0.5814899759117447,
+          "n": 36,
+          "replicates": 5000,
+          "seed": 250926,
+          "undefined": 0,
+          "upper": 0.8509486140593114
+        },
+        "sham_ratio": {
+          "cluster_count": 12,
+          "estimate": 0.20549087048815576,
+          "lower": 0.1667251865147959,
+          "n": 36,
+          "replicates": 5000,
+          "seed": 250926,
+          "undefined": 0,
+          "upper": 0.23219945639580067
+        }
+      },
+      "family": "biphasic_rebound",
+      "lower_link_relative_sql": null,
+      "lower_link_sql_status": "unavailable_lower_quantiles_not_archived_no_imputation",
+      "primary": {
+        "d1": {
+          "cluster_count": 32,
+          "estimate": 0.2609127381762776,
+          "lower": 0.24586443264117042,
+          "n": 96,
+          "replicates": 5000,
+          "seed": 250926,
+          "undefined": 0,
+          "upper": 0.2928612696715903
+        },
+        "dsa": {
+          "cluster_count": 32,
+          "estimate": 0.9510018627206128,
+          "lower": 0.9315234216015467,
+          "n": 96,
+          "replicates": 5000,
+          "seed": 250926,
+          "undefined": 0,
+          "upper": 0.9685880287247475
+        },
+        "g": {
+          "cluster_count": 32,
+          "estimate": 0.11589722032190371,
+          "lower": 0.09047105102392144,
+          "n": 96,
+          "replicates": 5000,
+          "seed": 250926,
+          "undefined": 0,
+          "upper": 0.13267507568375728
+        },
+        "rgr": {
+          "cluster_count": 32,
+          "estimate": 0.6904589451334794,
+          "lower": 0.6613432802855504,
+          "n": 96,
+          "replicates": 5000,
+          "seed": 250926,
+          "undefined": 0,
+          "upper": 0.7421456047609667
+        }
+      },
+      "relative_sql": -0.4731357536611072,
+      "relative_wql": -0.46040856374259,
+      "source_id_cluster_count": 32,
+      "unchanged_p1_descriptive_checks": {
+        "distortion_hidden_by_aggregation": true,
+        "dsa_coarse_eligible": true,
+        "fine_shape_distorted": true,
+        "rgr_coarse_eligible": true,
+        "sql_complement": true
+      },
+      "valid_scenario_count": 96
+    },
+    {
+      "backbone": "chronos_2",
+      "complete_cell": true,
+      "dataset": "traffic_daily",
+      "diagnostic_and_controls": {
+        "d2": {
+          "cluster_count": 32,
+          "estimate": 0.2553634008876258,
+          "lower": 0.23203499900511998,
+          "n": 95,
+          "replicates": 5000,
+          "seed": 250926,
+          "undefined": 0,
+          "upper": 0.2681380525544765
+        },
+        "d4": {
+          "cluster_count": 32,
+          "estimate": 0.20291482714395756,
+          "lower": 0.1834815575556299,
+          "n": 95,
+          "replicates": 5000,
+          "seed": 250926,
+          "undefined": 0,
+          "upper": 0.2141269184678663
+        },
+        "d8": {
+          "cluster_count": 32,
+          "estimate": 0.1459372290590582,
+          "lower": 0.12471820484295154,
+          "n": 95,
+          "replicates": 5000,
+          "seed": 250926,
+          "undefined": 0,
+          "upper": 0.16722525591731202
+        },
+        "lower_d1": {
+          "cluster_count": 12,
+          "estimate": 0.27179071201528743,
+          "lower": 0.23693687601237368,
+          "n": 35,
+          "replicates": 5000,
+          "seed": 250926,
+          "undefined": 0,
+          "upper": 0.3291104765172425
+        },
+        "lower_dsa": {
+          "cluster_count": 12,
+          "estimate": 1.0,
+          "lower": 1.0,
+          "n": 35,
+          "replicates": 5000,
+          "seed": 250926,
+          "undefined": 0,
+          "upper": 1.0
+        },
+        "lower_g": {
+          "cluster_count": 12,
+          "estimate": 0.1135758497292287,
+          "lower": 0.09524280641541541,
+          "n": 35,
+          "replicates": 5000,
+          "seed": 250926,
+          "undefined": 0,
+          "upper": 0.13409045084964616
+        },
+        "lower_rgr": {
+          "cluster_count": 12,
+          "estimate": 0.8620928792408538,
+          "lower": 0.757994051934993,
+          "n": 35,
+          "replicates": 5000,
+          "seed": 250926,
+          "undefined": 0,
+          "upper": 0.8886040021766942
+        },
+        "sham_ratio": {
+          "cluster_count": 12,
+          "estimate": 0.20026291211147618,
+          "lower": 0.18704888656015822,
+          "n": 35,
+          "replicates": 5000,
+          "seed": 250926,
+          "undefined": 0,
+          "upper": 0.21592477987219677
+        }
+      },
+      "family": "dispersed_delayed_pulse",
+      "lower_link_relative_sql": null,
+      "lower_link_sql_status": "unavailable_lower_quantiles_not_archived_no_imputation",
+      "primary": {
+        "d1": {
+          "cluster_count": 32,
+          "estimate": 0.2601110416699533,
+          "lower": 0.24544263054483972,
+          "n": 95,
+          "replicates": 5000,
+          "seed": 250926,
+          "undefined": 0,
+          "upper": 0.28186924452191187
+        },
+        "dsa": {
+          "cluster_count": 32,
+          "estimate": 0.9698615419668051,
+          "lower": 0.9564063914611453,
+          "n": 95,
+          "replicates": 5000,
+          "seed": 250926,
+          "undefined": 0,
+          "upper": 0.9807343544224842
+        },
+        "g": {
+          "cluster_count": 32,
+          "estimate": 0.11059208481511694,
+          "lower": 0.08918869321644551,
+          "n": 95,
+          "replicates": 5000,
+          "seed": 250926,
+          "undefined": 0,
+          "upper": 0.12763584014173923
+        },
+        "rgr": {
+          "cluster_count": 32,
+          "estimate": 0.7503186607171876,
+          "lower": 0.689233411344782,
+          "n": 95,
+          "replicates": 5000,
+          "seed": 250926,
+          "undefined": 0,
+          "upper": 0.7999788598416656
+        }
+      },
+      "relative_sql": -0.45901553854178,
+      "relative_wql": -0.45508070100428094,
+      "source_id_cluster_count": 32,
+      "unchanged_p1_descriptive_checks": {
+        "distortion_hidden_by_aggregation": true,
+        "dsa_coarse_eligible": true,
+        "fine_shape_distorted": true,
+        "rgr_coarse_eligible": true,
+        "sql_complement": true
+      },
+      "valid_scenario_count": 95
+    },
+    {
+      "backbone": "chronos_2",
+      "complete_cell": false,
+      "dataset": "workload_5min",
+      "diagnostic_and_controls": {
+        "d2": {
+          "cluster_count": 32,
+          "estimate": 0.5664648246132163,
+          "lower": 0.48536580319782413,
+          "n": 95,
+          "replicates": 5000,
+          "seed": 250926,
+          "undefined": 0,
+          "upper": 0.6351670260121921
+        },
+        "d4": {
+          "cluster_count": 32,
+          "estimate": 0.49489596306747413,
+          "lower": 0.4310388729626702,
+          "n": 95,
+          "replicates": 5000,
+          "seed": 250926,
+          "undefined": 0,
+          "upper": 0.5698529411764706
+        },
+        "d8": {
+          "cluster_count": 32,
+          "estimate": 0.38095238095238093,
+          "lower": 0.32555902646150453,
+          "n": 95,
+          "replicates": 5000,
+          "seed": 250926,
+          "undefined": 0,
+          "upper": 0.46040302672116085
+        },
+        "lower_d1": {
+          "cluster_count": 12,
+          "estimate": 0.6503185646771674,
+          "lower": 0.49088268087041,
+          "n": 36,
+          "replicates": 5000,
+          "seed": 250926,
+          "undefined": 0,
+          "upper": 0.7605803809773719
+        },
+        "lower_dsa": {
+          "cluster_count": 12,
+          "estimate": 0.7416666666666667,
+          "lower": 0.55,
+          "n": 36,
+          "replicates": 5000,
+          "seed": 250926,
+          "undefined": 0,
+          "upper": 0.8605769230769231
+        },
+        "lower_g": {
+          "cluster_count": 12,
+          "estimate": 0.1338041000619523,
+          "lower": 0.06382868583663426,
+          "n": 36,
+          "replicates": 5000,
+          "seed": 250926,
+          "undefined": 0,
+          "upper": 0.19063431153016752
+        },
+        "lower_rgr": {
+          "cluster_count": 12,
+          "estimate": 0.6727788718859229,
+          "lower": 0.35895751713035506,
+          "n": 36,
+          "replicates": 5000,
+          "seed": 250926,
+          "undefined": 0,
+          "upper": 0.9092098653513176
+        },
+        "sham_ratio": {
+          "cluster_count": 12,
+          "estimate": 0.3546847271418443,
+          "lower": 0.25425157125505604,
+          "n": 36,
+          "replicates": 5000,
+          "seed": 250926,
+          "undefined": 0,
+          "upper": 1.0697389487679412
+        }
+      },
+      "family": "biphasic_rebound",
+      "lower_link_relative_sql": null,
+      "lower_link_sql_status": "unavailable_lower_quantiles_not_archived_no_imputation",
+      "primary": {
+        "d1": {
+          "cluster_count": 32,
+          "estimate": 0.6123896496126842,
+          "lower": 0.5370809673231229,
+          "n": 95,
+          "replicates": 5000,
+          "seed": 250926,
+          "undefined": 0,
+          "upper": 0.6672476769031046
+        },
+        "dsa": {
+          "cluster_count": 32,
+          "estimate": 0.6950911661437976,
+          "lower": 0.6222549165291099,
+          "n": 95,
+          "replicates": 5000,
+          "seed": 250926,
+          "undefined": 0,
+          "upper": 0.7618803740119529
+        },
+        "g": {
+          "cluster_count": 32,
+          "estimate": 0.13628958157688686,
+          "lower": 0.08562659376531684,
+          "n": 95,
+          "replicates": 5000,
+          "seed": 250926,
+          "undefined": 0,
+          "upper": 0.17764584241380865
+        },
+        "rgr": {
+          "cluster_count": 32,
+          "estimate": 0.41276391999228895,
+          "lower": 0.28873647753666876,
+          "n": 95,
+          "replicates": 5000,
+          "seed": 250926,
+          "undefined": 0,
+          "upper": 0.5626241064439272
+        }
+      },
+      "relative_sql": -0.05485777084167773,
+      "relative_wql": 0.1159233305394457,
+      "source_id_cluster_count": 32,
+      "unchanged_p1_descriptive_checks": {
+        "distortion_hidden_by_aggregation": true,
+        "dsa_coarse_eligible": false,
+        "fine_shape_distorted": true,
+        "rgr_coarse_eligible": false,
+        "sql_complement": true
+      },
+      "valid_scenario_count": 95
+    },
+    {
+      "backbone": "chronos_2",
+      "complete_cell": false,
+      "dataset": "workload_5min",
+      "diagnostic_and_controls": {
+        "d2": {
+          "cluster_count": 32,
+          "estimate": 0.4557289243522509,
+          "lower": 0.3730656784581695,
+          "n": 96,
+          "replicates": 5000,
+          "seed": 250926,
+          "undefined": 0,
+          "upper": 0.569673661574207
+        },
+        "d4": {
+          "cluster_count": 32,
+          "estimate": 0.40533667701766074,
+          "lower": 0.345907646650505,
+          "n": 96,
+          "replicates": 5000,
+          "seed": 250926,
+          "undefined": 0,
+          "upper": 0.4969936209278818
+        },
+        "d8": {
+          "cluster_count": 32,
+          "estimate": 0.30278920529170433,
+          "lower": 0.24630151729692515,
+          "n": 96,
+          "replicates": 5000,
+          "seed": 250926,
+          "undefined": 0,
+          "upper": 0.3958966283273981
+        },
+        "lower_d1": {
+          "cluster_count": 12,
+          "estimate": 0.5515675511870762,
+          "lower": 0.47095308967674926,
+          "n": 36,
+          "replicates": 5000,
+          "seed": 250926,
+          "undefined": 0,
+          "upper": 0.7379073161783019
+        },
+        "lower_dsa": {
+          "cluster_count": 12,
+          "estimate": 0.9128787878787878,
+          "lower": 0.75,
+          "n": 36,
+          "replicates": 5000,
+          "seed": 250926,
+          "undefined": 0,
+          "upper": 1.0
+        },
+        "lower_g": {
+          "cluster_count": 12,
+          "estimate": 0.16225528993450733,
+          "lower": 0.0775501607152177,
+          "n": 36,
+          "replicates": 5000,
+          "seed": 250926,
+          "undefined": 0,
+          "upper": 0.1989577669018664
+        },
+        "lower_rgr": {
+          "cluster_count": 12,
+          "estimate": 0.8086247509767521,
+          "lower": 0.3628636786404852,
+          "n": 36,
+          "replicates": 5000,
+          "seed": 250926,
+          "undefined": 0,
+          "upper": 1.4690678461377953
+        },
+        "sham_ratio": {
+          "cluster_count": 12,
+          "estimate": 0.5348439100925637,
+          "lower": 0.2835443663135948,
+          "n": 36,
+          "replicates": 5000,
+          "seed": 250926,
+          "undefined": 0,
+          "upper": 0.952650925965226
+        }
+      },
+      "family": "dispersed_delayed_pulse",
+      "lower_link_relative_sql": null,
+      "lower_link_sql_status": "unavailable_lower_quantiles_not_archived_no_imputation",
+      "primary": {
+        "d1": {
+          "cluster_count": 32,
+          "estimate": 0.500001614071125,
+          "lower": 0.40865302020621513,
+          "n": 96,
+          "replicates": 5000,
+          "seed": 250926,
+          "undefined": 0,
+          "upper": 0.6216277674928781
+        },
+        "dsa": {
+          "cluster_count": 32,
+          "estimate": 0.8133219789469791,
+          "lower": 0.7320034891323953,
+          "n": 96,
+          "replicates": 5000,
+          "seed": 250926,
+          "undefined": 0,
+          "upper": 0.884029384244228
+        },
+        "g": {
+          "cluster_count": 32,
+          "estimate": 0.16506161261553925,
+          "lower": 0.12156403135594052,
+          "n": 96,
+          "replicates": 5000,
+          "seed": 250926,
+          "undefined": 0,
+          "upper": 0.18646783303529751
+        },
+        "rgr": {
+          "cluster_count": 32,
+          "estimate": 0.4167480760066149,
+          "lower": 0.27257798268751343,
+          "n": 96,
+          "replicates": 5000,
+          "seed": 250926,
+          "undefined": 0,
+          "upper": 0.5817596592154306
+        }
+      },
+      "relative_sql": -0.059573546533194736,
+      "relative_wql": 0.13959060249677133,
+      "source_id_cluster_count": 32,
+      "unchanged_p1_descriptive_checks": {
+        "distortion_hidden_by_aggregation": true,
+        "dsa_coarse_eligible": false,
+        "fine_shape_distorted": true,
+        "rgr_coarse_eligible": false,
+        "sql_complement": true
+      },
+      "valid_scenario_count": 96
+    },
+    {
+      "backbone": "chronos_2",
+      "complete_cell": false,
+      "dataset": "solar_10min",
+      "diagnostic_and_controls": {
+        "d2": {
+          "cluster_count": 32,
+          "estimate": 0.5969107986120561,
+          "lower": 0.5511133257366767,
+          "n": 95,
+          "replicates": 5000,
+          "seed": 250926,
+          "undefined": 0,
+          "upper": 0.6140136016571305
+        },
+        "d4": {
+          "cluster_count": 32,
+          "estimate": 0.5436766715366699,
+          "lower": 0.5018910306839526,
+          "n": 95,
+          "replicates": 5000,
+          "seed": 250926,
+          "undefined": 0,
+          "upper": 0.5873103112504285
+        },
+        "d8": {
+          "cluster_count": 32,
+          "estimate": 0.5102040816326531,
+          "lower": 0.44729873278059756,
+          "n": 95,
+          "replicates": 5000,
+          "seed": 250926,
+          "undefined": 0,
+          "upper": 0.5595868212804919
+        },
+        "lower_d1": {
+          "cluster_count": 12,
+          "estimate": 0.6795633691016434,
+          "lower": 0.5701625626384892,
+          "n": 36,
+          "replicates": 5000,
+          "seed": 250926,
+          "undefined": 0,
+          "upper": 0.7816087043017887
+        },
+        "lower_dsa": {
+          "cluster_count": 12,
+          "estimate": 0.5,
+          "lower": 0.3798076923076923,
+          "n": 36,
+          "replicates": 5000,
+          "seed": 250926,
+          "undefined": 0,
+          "upper": 0.6
+        },
+        "lower_g": {
+          "cluster_count": 12,
+          "estimate": 0.13408231007387905,
+          "lower": 0.029406117199943516,
+          "n": 36,
+          "replicates": 5000,
+          "seed": 250926,
+          "undefined": 0,
+          "upper": 0.1808099836987549
+        },
+        "lower_rgr": {
+          "cluster_count": 12,
+          "estimate": 0.10686546685077365,
+          "lower": 0.08294525621460117,
+          "n": 36,
+          "replicates": 5000,
+          "seed": 250926,
+          "undefined": 0,
+          "upper": 0.13496500823990415
+        },
+        "sham_ratio": {
+          "cluster_count": 12,
+          "estimate": 0.14888871555879057,
+          "lower": 0.11300014484516269,
+          "n": 36,
+          "replicates": 5000,
+          "seed": 250926,
+          "undefined": 0,
+          "upper": 0.17578144596692477
+        }
+      },
+      "family": "biphasic_rebound",
+      "lower_link_relative_sql": null,
+      "lower_link_sql_status": "unavailable_lower_quantiles_not_archived_no_imputation",
+      "primary": {
+        "d1": {
+          "cluster_count": 32,
+          "estimate": 0.628272096038889,
+          "lower": 0.6107261862983087,
+          "n": 95,
+          "replicates": 5000,
+          "seed": 250926,
+          "undefined": 0,
+          "upper": 0.6609224950728824
+        },
+        "dsa": {
+          "cluster_count": 32,
+          "estimate": 0.57451995373048,
+          "lower": 0.5202018415281993,
+          "n": 95,
+          "replicates": 5000,
+          "seed": 250926,
+          "undefined": 0,
+          "upper": 0.6297955048629922
+        },
+        "g": {
+          "cluster_count": 32,
+          "estimate": 0.10381343220561812,
+          "lower": 0.0800598498095767,
+          "n": 95,
+          "replicates": 5000,
+          "seed": 250926,
+          "undefined": 0,
+          "upper": 0.14208649429650744
+        },
+        "rgr": {
+          "cluster_count": 32,
+          "estimate": 0.07823299370129778,
+          "lower": 0.06873609218370458,
+          "n": 95,
+          "replicates": 5000,
+          "seed": 250926,
+          "undefined": 0,
+          "upper": 0.09777265364578054
+        }
+      },
+      "relative_sql": -0.03931945916141601,
+      "relative_wql": -0.0558088204570834,
+      "source_id_cluster_count": 32,
+      "unchanged_p1_descriptive_checks": {
+        "distortion_hidden_by_aggregation": true,
+        "dsa_coarse_eligible": false,
+        "fine_shape_distorted": true,
+        "rgr_coarse_eligible": false,
+        "sql_complement": true
+      },
+      "valid_scenario_count": 95
+    },
+    {
+      "backbone": "chronos_2",
+      "complete_cell": false,
+      "dataset": "solar_10min",
+      "diagnostic_and_controls": {
+        "d2": {
+          "cluster_count": 32,
+          "estimate": 0.7591323479409847,
+          "lower": 0.6594257094127179,
+          "n": 94,
+          "replicates": 5000,
+          "seed": 250926,
+          "undefined": 0,
+          "upper": 0.8419295977673462
+        },
+        "d4": {
+          "cluster_count": 32,
+          "estimate": 0.7350121172341363,
+          "lower": 0.6410065585621616,
+          "n": 94,
+          "replicates": 5000,
+          "seed": 250926,
+          "undefined": 0,
+          "upper": 0.8200487358438724
+        },
+        "d8": {
+          "cluster_count": 32,
+          "estimate": 0.6806293651165188,
+          "lower": 0.5469521119739553,
+          "n": 94,
+          "replicates": 5000,
+          "seed": 250926,
+          "undefined": 0,
+          "upper": 0.8338342809509147
+        },
+        "lower_d1": {
+          "cluster_count": 12,
+          "estimate": 0.8398656096562814,
+          "lower": 0.7162183133718789,
+          "n": 35,
+          "replicates": 5000,
+          "seed": 250926,
+          "undefined": 0,
+          "upper": 0.9501662962460639
+        },
+        "lower_dsa": {
+          "cluster_count": 12,
+          "estimate": 0.23076923076923078,
+          "lower": 0.0625,
+          "n": 35,
+          "replicates": 5000,
+          "seed": 250926,
+          "undefined": 0,
+          "upper": 0.3875
+        },
+        "lower_g": {
+          "cluster_count": 12,
+          "estimate": 0.04240521774137773,
+          "lower": 0.006396362061524996,
+          "n": 35,
+          "replicates": 5000,
+          "seed": 250926,
+          "undefined": 0,
+          "upper": 0.16059076217159346
+        },
+        "lower_rgr": {
+          "cluster_count": 12,
+          "estimate": 0.07147226885171258,
+          "lower": 0.04453898259672369,
+          "n": 35,
+          "replicates": 5000,
+          "seed": 250926,
+          "undefined": 0,
+          "upper": 0.09022040025317275
+        },
+        "sham_ratio": {
+          "cluster_count": 12,
+          "estimate": 0.12281777052137868,
+          "lower": 0.10769483506986328,
+          "n": 35,
+          "replicates": 5000,
+          "seed": 250926,
+          "undefined": 0,
+          "upper": 0.14853299509406365
+        }
+      },
+      "family": "dispersed_delayed_pulse",
+      "lower_link_relative_sql": null,
+      "lower_link_sql_status": "unavailable_lower_quantiles_not_archived_no_imputation",
+      "primary": {
+        "d1": {
+          "cluster_count": 32,
+          "estimate": 0.7758199846944438,
+          "lower": 0.6765001209817401,
+          "n": 94,
+          "replicates": 5000,
+          "seed": 250926,
+          "undefined": 0,
+          "upper": 0.8687386040377951
+        },
+        "dsa": {
+          "cluster_count": 32,
+          "estimate": 0.4000006494687345,
+          "lower": 0.3316956537614432,
+          "n": 94,
+          "replicates": 5000,
+          "seed": 250926,
+          "undefined": 0,
+          "upper": 0.46377366144440224
+        },
+        "g": {
+          "cluster_count": 32,
+          "estimate": 0.03622777291579127,
+          "lower": 0.004420838579934916,
+          "n": 94,
+          "replicates": 5000,
+          "seed": 250926,
+          "undefined": 0,
+          "upper": 0.10364465452228294
+        },
+        "rgr": {
+          "cluster_count": 32,
+          "estimate": 0.042055707215357105,
+          "lower": 0.03253782744934517,
+          "n": 94,
+          "replicates": 5000,
+          "seed": 250926,
+          "undefined": 0,
+          "upper": 0.054890003901827474
+        }
+      },
+      "relative_sql": 0.008220425805907714,
+      "relative_wql": -0.004399307664930296,
+      "source_id_cluster_count": 32,
+      "unchanged_p1_descriptive_checks": {
+        "distortion_hidden_by_aggregation": false,
+        "dsa_coarse_eligible": false,
+        "fine_shape_distorted": true,
+        "rgr_coarse_eligible": false,
+        "sql_complement": true
+      },
+      "valid_scenario_count": 94
+    },
+    {
+      "backbone": "timesfm_3",
+      "complete_cell": true,
+      "dataset": "traffic_daily",
+      "diagnostic_and_controls": {
+        "d2": {
+          "cluster_count": 32,
+          "estimate": 0.2399121973529189,
+          "lower": 0.21392377200031304,
+          "n": 96,
+          "replicates": 5000,
+          "seed": 250926,
+          "undefined": 0,
+          "upper": 0.2744877893911972
+        },
+        "d4": {
+          "cluster_count": 32,
+          "estimate": 0.21002067439030783,
+          "lower": 0.19411083543422028,
+          "n": 96,
+          "replicates": 5000,
+          "seed": 250926,
+          "undefined": 0,
+          "upper": 0.24697938648895398
+        },
+        "d8": {
+          "cluster_count": 32,
+          "estimate": 0.16492254023813646,
+          "lower": 0.14253164860845446,
+          "n": 96,
+          "replicates": 5000,
+          "seed": 250926,
+          "undefined": 0,
+          "upper": 0.19720717904926305
+        },
+        "lower_d1": {
+          "cluster_count": 12,
+          "estimate": 0.2869579083645746,
+          "lower": 0.2611911690427573,
+          "n": 36,
+          "replicates": 5000,
+          "seed": 250926,
+          "undefined": 0,
+          "upper": 0.3612869102981956
+        },
+        "lower_dsa": {
+          "cluster_count": 12,
+          "estimate": 1.0,
+          "lower": 0.9642857142857143,
+          "n": 36,
+          "replicates": 5000,
+          "seed": 250926,
+          "undefined": 0,
+          "upper": 1.0
+        },
+        "lower_g": {
+          "cluster_count": 12,
+          "estimate": 0.06881026068586728,
+          "lower": 0.051621414748845296,
+          "n": 36,
+          "replicates": 5000,
+          "seed": 250926,
+          "undefined": 0,
+          "upper": 0.12839256621561573
+        },
+        "lower_rgr": {
+          "cluster_count": 12,
+          "estimate": 0.7676815549613811,
+          "lower": 0.596037282032471,
+          "n": 36,
+          "replicates": 5000,
+          "seed": 250926,
+          "undefined": 0,
+          "upper": 0.8550935051377625
+        },
+        "sham_ratio": {
+          "cluster_count": 12,
+          "estimate": 0.05539446787512092,
+          "lower": 0.04372896163030416,
+          "n": 36,
+          "replicates": 5000,
+          "seed": 250926,
+          "undefined": 0,
+          "upper": 0.08051555997508704
+        }
+      },
+      "family": "biphasic_rebound",
+      "lower_link_relative_sql": null,
+      "lower_link_sql_status": "unavailable_lower_quantiles_not_archived_no_imputation",
+      "primary": {
+        "d1": {
+          "cluster_count": 32,
+          "estimate": 0.26048637675211794,
+          "lower": 0.2329971462272617,
+          "n": 96,
+          "replicates": 5000,
+          "seed": 250926,
+          "undefined": 0,
+          "upper": 0.29172790836928486
+        },
+        "dsa": {
+          "cluster_count": 32,
+          "estimate": 0.9669268520831021,
+          "lower": 0.9541188650758963,
+          "n": 96,
+          "replicates": 5000,
+          "seed": 250926,
+          "undefined": 0,
+          "upper": 0.9785384349446851
+        },
+        "g": {
+          "cluster_count": 32,
+          "estimate": 0.08534296510172366,
+          "lower": 0.06938502231413068,
+          "n": 96,
+          "replicates": 5000,
+          "seed": 250926,
+          "undefined": 0,
+          "upper": 0.10505452668806028
+        },
+        "rgr": {
+          "cluster_count": 32,
+          "estimate": 0.7950692457626168,
+          "lower": 0.7386775728886014,
+          "n": 96,
+          "replicates": 5000,
+          "seed": 250926,
+          "undefined": 0,
+          "upper": 0.8518246291454825
+        }
+      },
+      "relative_sql": -0.5085495887469984,
+      "relative_wql": -0.49077521553034403,
+      "source_id_cluster_count": 32,
+      "unchanged_p1_descriptive_checks": {
+        "distortion_hidden_by_aggregation": true,
+        "dsa_coarse_eligible": true,
+        "fine_shape_distorted": true,
+        "rgr_coarse_eligible": true,
+        "sql_complement": true
+      },
+      "valid_scenario_count": 96
+    },
+    {
+      "backbone": "timesfm_3",
+      "complete_cell": false,
+      "dataset": "traffic_daily",
+      "diagnostic_and_controls": {
+        "d2": {
+          "cluster_count": 32,
+          "estimate": 0.3336050101359273,
+          "lower": 0.3073645754584541,
+          "n": 95,
+          "replicates": 5000,
+          "seed": 250926,
+          "undefined": 0,
+          "upper": 0.37153241122942393
+        },
+        "d4": {
+          "cluster_count": 32,
+          "estimate": 0.29607059000823344,
+          "lower": 0.24594789847887177,
+          "n": 95,
+          "replicates": 5000,
+          "seed": 250926,
+          "undefined": 0,
+          "upper": 0.33164228266906814
+        },
+        "d8": {
+          "cluster_count": 32,
+          "estimate": 0.1998773951427254,
+          "lower": 0.17026579274723042,
+          "n": 95,
+          "replicates": 5000,
+          "seed": 250926,
+          "undefined": 0,
+          "upper": 0.2305938886125527
+        },
+        "lower_d1": {
+          "cluster_count": 12,
+          "estimate": 0.37468036824837614,
+          "lower": 0.3329156518518439,
+          "n": 35,
+          "replicates": 5000,
+          "seed": 250926,
+          "undefined": 0,
+          "upper": 0.442506822425509
+        },
+        "lower_dsa": {
+          "cluster_count": 12,
+          "estimate": 1.0,
+          "lower": 1.0,
+          "n": 35,
+          "replicates": 5000,
+          "seed": 250926,
+          "undefined": 0,
+          "upper": 1.0
+        },
+        "lower_g": {
+          "cluster_count": 12,
+          "estimate": 0.1204528787673223,
+          "lower": 0.09571015383002357,
+          "n": 35,
+          "replicates": 5000,
+          "seed": 250926,
+          "undefined": 0,
+          "upper": 0.19602207847040423
+        },
+        "lower_rgr": {
+          "cluster_count": 12,
+          "estimate": 0.37196895961362736,
+          "lower": 0.15660209352669718,
+          "n": 35,
+          "replicates": 5000,
+          "seed": 250926,
+          "undefined": 0,
+          "upper": 0.7154825076807374
+        },
+        "sham_ratio": {
+          "cluster_count": 12,
+          "estimate": 0.08073180316924598,
+          "lower": 0.06347792955331417,
+          "n": 35,
+          "replicates": 5000,
+          "seed": 250926,
+          "undefined": 0,
+          "upper": 0.11204096205831961
+        }
+      },
+      "family": "dispersed_delayed_pulse",
+      "lower_link_relative_sql": null,
+      "lower_link_sql_status": "unavailable_lower_quantiles_not_archived_no_imputation",
+      "primary": {
+        "d1": {
+          "cluster_count": 32,
+          "estimate": 0.3457014589079933,
+          "lower": 0.31916998334472513,
+          "n": 95,
+          "replicates": 5000,
+          "seed": 250926,
+          "undefined": 0,
+          "upper": 0.3895000598578353
+        },
+        "dsa": {
+          "cluster_count": 32,
+          "estimate": 0.986118209276104,
+          "lower": 0.9732161366525643,
+          "n": 95,
+          "replicates": 5000,
+          "seed": 250926,
+          "undefined": 0,
+          "upper": 0.9958647369625988
+        },
+        "g": {
+          "cluster_count": 32,
+          "estimate": 0.10463685765085728,
+          "lower": 0.09349219996084346,
+          "n": 95,
+          "replicates": 5000,
+          "seed": 250926,
+          "undefined": 0,
+          "upper": 0.12429131886620559
+        },
+        "rgr": {
+          "cluster_count": 32,
+          "estimate": 0.4897186684189704,
+          "lower": 0.35311990424831535,
+          "n": 95,
+          "replicates": 5000,
+          "seed": 250926,
+          "undefined": 0,
+          "upper": 0.7222763729080215
+        }
+      },
+      "relative_sql": -0.36758277481604207,
+      "relative_wql": -0.3381826652124187,
+      "source_id_cluster_count": 32,
+      "unchanged_p1_descriptive_checks": {
+        "distortion_hidden_by_aggregation": true,
+        "dsa_coarse_eligible": true,
+        "fine_shape_distorted": true,
+        "rgr_coarse_eligible": false,
+        "sql_complement": true
+      },
+      "valid_scenario_count": 95
+    },
+    {
+      "backbone": "timesfm_3",
+      "complete_cell": false,
+      "dataset": "workload_5min",
+      "diagnostic_and_controls": {
+        "d2": {
+          "cluster_count": 32,
+          "estimate": 0.527887366132738,
+          "lower": 0.4813100143568318,
+          "n": 95,
+          "replicates": 5000,
+          "seed": 250926,
+          "undefined": 0,
+          "upper": 0.5906180978738632
+        },
+        "d4": {
+          "cluster_count": 32,
+          "estimate": 0.45523817329057076,
+          "lower": 0.40754016883978855,
+          "n": 95,
+          "replicates": 5000,
+          "seed": 250926,
+          "undefined": 0,
+          "upper": 0.5158632347991099
+        },
+        "d8": {
+          "cluster_count": 32,
+          "estimate": 0.3544797735903815,
+          "lower": 0.3039746676367741,
+          "n": 95,
+          "replicates": 5000,
+          "seed": 250926,
+          "undefined": 0,
+          "upper": 0.4335301433973292
+        },
+        "lower_d1": {
+          "cluster_count": 12,
+          "estimate": 0.6233325269383263,
+          "lower": 0.5121999063938524,
+          "n": 36,
+          "replicates": 5000,
+          "seed": 250926,
+          "undefined": 0,
+          "upper": 0.6801695800153218
+        },
+        "lower_dsa": {
+          "cluster_count": 12,
+          "estimate": 0.75,
+          "lower": 0.6,
+          "n": 36,
+          "replicates": 5000,
+          "seed": 250926,
+          "undefined": 0,
+          "upper": 0.8333333333333334
+        },
+        "lower_g": {
+          "cluster_count": 12,
+          "estimate": 0.1584485242441724,
+          "lower": 0.12231695138248505,
+          "n": 36,
+          "replicates": 5000,
+          "seed": 250926,
+          "undefined": 0,
+          "upper": 0.23598932149077098
+        },
+        "lower_rgr": {
+          "cluster_count": 12,
+          "estimate": 0.2832459976936392,
+          "lower": 0.12471974954198997,
+          "n": 36,
+          "replicates": 5000,
+          "seed": 250926,
+          "undefined": 0,
+          "upper": 0.819400147742909
+        },
+        "sham_ratio": {
+          "cluster_count": 12,
+          "estimate": 0.09185391194196263,
+          "lower": 0.07050985549744579,
+          "n": 36,
+          "replicates": 5000,
+          "seed": 250926,
+          "undefined": 0,
+          "upper": 0.17401150330718063
+        }
+      },
+      "family": "biphasic_rebound",
+      "lower_link_relative_sql": null,
+      "lower_link_sql_status": "unavailable_lower_quantiles_not_archived_no_imputation",
+      "primary": {
+        "d1": {
+          "cluster_count": 32,
+          "estimate": 0.578667712002274,
+          "lower": 0.5315478450090743,
+          "n": 95,
+          "replicates": 5000,
+          "seed": 250926,
+          "undefined": 0,
+          "upper": 0.6251686243821029
+        },
+        "dsa": {
+          "cluster_count": 32,
+          "estimate": 0.7463768103241787,
+          "lower": 0.6860913226185403,
+          "n": 95,
+          "replicates": 5000,
+          "seed": 250926,
+          "undefined": 0,
+          "upper": 0.803365265376984
+        },
+        "g": {
+          "cluster_count": 32,
+          "estimate": 0.14994150850311572,
+          "lower": 0.12330816706055142,
+          "n": 95,
+          "replicates": 5000,
+          "seed": 250926,
+          "undefined": 0,
+          "upper": 0.1932009003379499
+        },
+        "rgr": {
+          "cluster_count": 32,
+          "estimate": 0.1873781501880421,
+          "lower": 0.1302698158564934,
+          "n": 95,
+          "replicates": 5000,
+          "seed": 250926,
+          "undefined": 0,
+          "upper": 0.3023135973430443
+        }
+      },
+      "relative_sql": -0.09222378853616596,
+      "relative_wql": -0.01603605930207446,
+      "source_id_cluster_count": 32,
+      "unchanged_p1_descriptive_checks": {
+        "distortion_hidden_by_aggregation": true,
+        "dsa_coarse_eligible": false,
+        "fine_shape_distorted": true,
+        "rgr_coarse_eligible": false,
+        "sql_complement": true
+      },
+      "valid_scenario_count": 95
+    },
+    {
+      "backbone": "timesfm_3",
+      "complete_cell": false,
+      "dataset": "workload_5min",
+      "diagnostic_and_controls": {
+        "d2": {
+          "cluster_count": 32,
+          "estimate": 0.6487198322172709,
+          "lower": 0.5415218071882604,
+          "n": 96,
+          "replicates": 5000,
+          "seed": 250926,
+          "undefined": 0,
+          "upper": 0.7354038996495554
+        },
+        "d4": {
+          "cluster_count": 32,
+          "estimate": 0.5769971275435735,
+          "lower": 0.48302227907538703,
+          "n": 96,
+          "replicates": 5000,
+          "seed": 250926,
+          "undefined": 0,
+          "upper": 0.6940965186958923
+        },
+        "d8": {
+          "cluster_count": 32,
+          "estimate": 0.49149646134702746,
+          "lower": 0.42138553007937407,
+          "n": 96,
+          "replicates": 5000,
+          "seed": 250926,
+          "undefined": 0,
+          "upper": 0.6259421487058525
+        },
+        "lower_d1": {
+          "cluster_count": 12,
+          "estimate": 0.6754575163311883,
+          "lower": 0.500433218002127,
+          "n": 36,
+          "replicates": 5000,
+          "seed": 250926,
+          "undefined": 0,
+          "upper": 0.7755565508533027
+        },
+        "lower_dsa": {
+          "cluster_count": 12,
+          "estimate": 1.0,
+          "lower": 0.8333333333333334,
+          "n": 36,
+          "replicates": 5000,
+          "seed": 250926,
+          "undefined": 0,
+          "upper": 1.0
+        },
+        "lower_g": {
+          "cluster_count": 12,
+          "estimate": 0.1379614606711751,
+          "lower": 0.09007951633403022,
+          "n": 36,
+          "replicates": 5000,
+          "seed": 250926,
+          "undefined": 0,
+          "upper": 0.16913319926736536
+        },
+        "lower_rgr": {
+          "cluster_count": 12,
+          "estimate": 0.10408939412379783,
+          "lower": 0.05244716336558096,
+          "n": 36,
+          "replicates": 5000,
+          "seed": 250926,
+          "undefined": 0,
+          "upper": 0.35221238328717774
+        },
+        "sham_ratio": {
+          "cluster_count": 12,
+          "estimate": 0.13129325990210824,
+          "lower": 0.06848610471938027,
+          "n": 36,
+          "replicates": 5000,
+          "seed": 250926,
+          "undefined": 0,
+          "upper": 0.282725233562824
+        }
+      },
+      "family": "dispersed_delayed_pulse",
+      "lower_link_relative_sql": null,
+      "lower_link_sql_status": "unavailable_lower_quantiles_not_archived_no_imputation",
+      "primary": {
+        "d1": {
+          "cluster_count": 32,
+          "estimate": 0.6992328831862762,
+          "lower": 0.5894650210417871,
+          "n": 96,
+          "replicates": 5000,
+          "seed": 250926,
+          "undefined": 0,
+          "upper": 0.7899761356039401
+        },
+        "dsa": {
+          "cluster_count": 32,
+          "estimate": 0.7745314003126502,
+          "lower": 0.6828331585948775,
+          "n": 96,
+          "replicates": 5000,
+          "seed": 250926,
+          "undefined": 0,
+          "upper": 0.8586710294913419
+        },
+        "g": {
+          "cluster_count": 32,
+          "estimate": 0.11022754499410292,
+          "lower": 0.07163453314968318,
+          "n": 96,
+          "replicates": 5000,
+          "seed": 250926,
+          "undefined": 0,
+          "upper": 0.15146960398959108
+        },
+        "rgr": {
+          "cluster_count": 32,
+          "estimate": 0.04863959177722864,
+          "lower": 0.028527147942261032,
+          "n": 96,
+          "replicates": 5000,
+          "seed": 250926,
+          "undefined": 0,
+          "upper": 0.06524873337343524
+        }
+      },
+      "relative_sql": -0.04811286440390986,
+      "relative_wql": 0.04704508364641306,
+      "source_id_cluster_count": 32,
+      "unchanged_p1_descriptive_checks": {
+        "distortion_hidden_by_aggregation": true,
+        "dsa_coarse_eligible": false,
+        "fine_shape_distorted": true,
+        "rgr_coarse_eligible": false,
+        "sql_complement": true
+      },
+      "valid_scenario_count": 96
+    },
+    {
+      "backbone": "timesfm_3",
+      "complete_cell": false,
+      "dataset": "solar_10min",
+      "diagnostic_and_controls": {
+        "d2": {
+          "cluster_count": 32,
+          "estimate": 0.5374419450258769,
+          "lower": 0.4804676449502969,
+          "n": 95,
+          "replicates": 5000,
+          "seed": 250926,
+          "undefined": 0,
+          "upper": 0.5751756660008459
+        },
+        "d4": {
+          "cluster_count": 32,
+          "estimate": 0.49793904141524126,
+          "lower": 0.4607587365669188,
+          "n": 95,
+          "replicates": 5000,
+          "seed": 250926,
+          "undefined": 0,
+          "upper": 0.5479301152860154
+        },
+        "d8": {
+          "cluster_count": 32,
+          "estimate": 0.33342558454280147,
+          "lower": 0.29530705899344306,
+          "n": 95,
+          "replicates": 5000,
+          "seed": 250926,
+          "undefined": 0,
+          "upper": 0.39503366876024937
+        },
+        "lower_d1": {
+          "cluster_count": 12,
+          "estimate": 0.5873680379584634,
+          "lower": 0.5385323692466276,
+          "n": 36,
+          "replicates": 5000,
+          "seed": 250926,
+          "undefined": 0,
+          "upper": 0.6343955165108139
+        },
+        "lower_dsa": {
+          "cluster_count": 12,
+          "estimate": 0.6666666666666666,
+          "lower": 0.625,
+          "n": 36,
+          "replicates": 5000,
+          "seed": 250926,
+          "undefined": 0,
+          "upper": 0.7272727272727273
+        },
+        "lower_g": {
+          "cluster_count": 12,
+          "estimate": 0.15421070307760948,
+          "lower": 0.09649619980635671,
+          "n": 36,
+          "replicates": 5000,
+          "seed": 250926,
+          "undefined": 0,
+          "upper": 0.18034126747913848
+        },
+        "lower_rgr": {
+          "cluster_count": 12,
+          "estimate": 0.5251185303979364,
+          "lower": 0.2449243539474428,
+          "n": 36,
+          "replicates": 5000,
+          "seed": 250926,
+          "undefined": 0,
+          "upper": 0.6464874423670823
+        },
+        "sham_ratio": {
+          "cluster_count": 12,
+          "estimate": 0.22226140759062257,
+          "lower": 0.15721612433753235,
+          "n": 36,
+          "replicates": 5000,
+          "seed": 250926,
+          "undefined": 0,
+          "upper": 0.4500751865318823
+        }
+      },
+      "family": "biphasic_rebound",
+      "lower_link_relative_sql": null,
+      "lower_link_sql_status": "unavailable_lower_quantiles_not_archived_no_imputation",
+      "primary": {
+        "d1": {
+          "cluster_count": 32,
+          "estimate": 0.5710917303598029,
+          "lower": 0.5137000136674936,
+          "n": 95,
+          "replicates": 5000,
+          "seed": 250926,
+          "undefined": 0,
+          "upper": 0.5899757292052599
+        },
+        "dsa": {
+          "cluster_count": 32,
+          "estimate": 0.6533611125716389,
+          "lower": 0.6049448050287478,
+          "n": 95,
+          "replicates": 5000,
+          "seed": 250926,
+          "undefined": 0,
+          "upper": 0.7019891373246635
+        },
+        "g": {
+          "cluster_count": 32,
+          "estimate": 0.17145059901604548,
+          "lower": 0.12486786899351021,
+          "n": 95,
+          "replicates": 5000,
+          "seed": 250926,
+          "undefined": 0,
+          "upper": 0.19098635704354866
+        },
+        "rgr": {
+          "cluster_count": 32,
+          "estimate": 0.3479320860695131,
+          "lower": 0.21727158976980962,
+          "n": 95,
+          "replicates": 5000,
+          "seed": 250926,
+          "undefined": 0,
+          "upper": 0.6062231970195652
+        }
+      },
+      "relative_sql": 0.03132596472785576,
+      "relative_wql": 0.0188098933223894,
+      "source_id_cluster_count": 32,
+      "unchanged_p1_descriptive_checks": {
+        "distortion_hidden_by_aggregation": true,
+        "dsa_coarse_eligible": false,
+        "fine_shape_distorted": true,
+        "rgr_coarse_eligible": false,
+        "sql_complement": false
+      },
+      "valid_scenario_count": 95
+    },
+    {
+      "backbone": "timesfm_3",
+      "complete_cell": false,
+      "dataset": "solar_10min",
+      "diagnostic_and_controls": {
+        "d2": {
+          "cluster_count": 32,
+          "estimate": 0.7828222406427423,
+          "lower": 0.6982226332740624,
+          "n": 94,
+          "replicates": 5000,
+          "seed": 250926,
+          "undefined": 0,
+          "upper": 0.9149613348335657
+        },
+        "d4": {
+          "cluster_count": 32,
+          "estimate": 0.7850179263023135,
+          "lower": 0.6670139740813696,
+          "n": 94,
+          "replicates": 5000,
+          "seed": 250926,
+          "undefined": 0,
+          "upper": 0.9328447988376588
+        },
+        "d8": {
+          "cluster_count": 32,
+          "estimate": 0.7234455042418955,
+          "lower": 0.607878817382234,
+          "n": 94,
+          "replicates": 5000,
+          "seed": 250926,
+          "undefined": 0,
+          "upper": 0.9438445953861456
+        },
+        "lower_d1": {
+          "cluster_count": 12,
+          "estimate": 0.8251969990600483,
+          "lower": 0.6648061130129304,
+          "n": 35,
+          "replicates": 5000,
+          "seed": 250926,
+          "undefined": 0,
+          "upper": 0.9781934955819984
+        },
+        "lower_dsa": {
+          "cluster_count": 12,
+          "estimate": 0.6666666666666666,
+          "lower": 0.1,
+          "n": 35,
+          "replicates": 5000,
+          "seed": 250926,
+          "undefined": 0,
+          "upper": 0.9
+        },
+        "lower_g": {
+          "cluster_count": 12,
+          "estimate": 0.02180766686509039,
+          "lower": 1.1102230246251565e-16,
+          "n": 35,
+          "replicates": 5000,
+          "seed": 250926,
+          "undefined": 0,
+          "upper": 0.07214969361462131
+        },
+        "lower_rgr": {
+          "cluster_count": 12,
+          "estimate": 0.09645671893945067,
+          "lower": 0.06301317277714652,
+          "n": 35,
+          "replicates": 5000,
+          "seed": 250926,
+          "undefined": 0,
+          "upper": 0.1534143080712364
+        },
+        "sham_ratio": {
+          "cluster_count": 12,
+          "estimate": 0.1263522579057996,
+          "lower": 0.10603326003625688,
+          "n": 35,
+          "replicates": 5000,
+          "seed": 250926,
+          "undefined": 0,
+          "upper": 0.24634578663867676
+        }
+      },
+      "family": "dispersed_delayed_pulse",
+      "lower_link_relative_sql": null,
+      "lower_link_sql_status": "unavailable_lower_quantiles_not_archived_no_imputation",
+      "primary": {
+        "d1": {
+          "cluster_count": 32,
+          "estimate": 0.7857142514563051,
+          "lower": 0.7077265372025235,
+          "n": 94,
+          "replicates": 5000,
+          "seed": 250926,
+          "undefined": 0,
+          "upper": 0.9111461407189072
+        },
+        "dsa": {
+          "cluster_count": 32,
+          "estimate": 0.5635892771531069,
+          "lower": 0.4791041302078536,
+          "n": 94,
+          "replicates": 5000,
+          "seed": 250926,
+          "undefined": 0,
+          "upper": 0.6473133971291867
+        },
+        "g": {
+          "cluster_count": 32,
+          "estimate": 0.013811539384008531,
+          "lower": 0.00010784146537179407,
+          "n": 94,
+          "replicates": 5000,
+          "seed": 250926,
+          "undefined": 0,
+          "upper": 0.04078262076232392
+        },
+        "rgr": {
+          "cluster_count": 32,
+          "estimate": 0.055249635161907035,
+          "lower": 0.038528395643597155,
+          "n": 94,
+          "replicates": 5000,
+          "seed": 250926,
+          "undefined": 0,
+          "upper": 0.07899148659266438
+        }
+      },
+      "relative_sql": 0.058246680554707025,
+      "relative_wql": 0.07324134016043349,
+      "source_id_cluster_count": 32,
+      "unchanged_p1_descriptive_checks": {
+        "distortion_hidden_by_aggregation": false,
+        "dsa_coarse_eligible": false,
+        "fine_shape_distorted": true,
+        "rgr_coarse_eligible": false,
+        "sql_complement": false
+      },
+      "valid_scenario_count": 94
+    }
+  ],
+  "complete_matrix_sha256": "210e9b1a15a6ffd58477a2a272a1bae19b1b782f3cc14bff317186f84756531f",
+  "config_hash": "2d6226ee0155cd9decc8c95a6643f1fa93003c92b087601ea448b61eca30960e",
+  "counts": {
+    "complete_cell_count": 12,
+    "p3_v2_construct_exclusions": 5,
+    "valid_scenarios_per_backbone": 571
+  },
+  "created_at_utc": "2026-09-25T07:18:38.266972+00:00",
+  "decision": {
+    "bounded_transfer_supported": false,
+    "lower_link_sql_missing": true,
+    "next_action": "archive_bounded_nonreplication_with_all_twelve_cells",
+    "p1_primary_decision_recomputed_or_modified": false,
+    "passing_complete_cells": [
+      "chronos_2/traffic_daily/biphasic_rebound",
+      "chronos_2/traffic_daily/dispersed_delayed_pulse",
+      "timesfm_3/traffic_daily/biphasic_rebound"
+    ],
+    "passing_sources": [
+      "traffic_daily"
+    ],
+    "transfer_support_rule": "at_least_one_complete_cell_in_at_least_two_of_three_sources",
+    "v1_failed_pilot_disclosure_required": true
+  },
+  "experiment": "covintervene-shape-p3-v2-post-primary-analysis",
+  "model_runner_code_sha256": "c31de65097adeccd962ed587ef32d5715b8981735f485ea8160765c44940f68e",
+  "paper_eligibility": "bounded_secondary_evidence_only",
+  "result_status": "verified_post_primary_descriptive_analysis",
+  "schema_version": 1,
+  "scope": {
+    "model_inference_performed": false,
+    "p1_p2_or_p3_v1_modified": false,
+    "source_prediction_archives_modified": false
+  },
+  "source_archive_file_count": 74,
+  "source_archive_inventory_sha256": "a2c9e2fa99e0f594acf453c8ba1791845a821b651bad6328b9b83411f69d57d1",
+  "source_completion_sha256": {
+    "chronos_2": "bcdd6eb17aa2496754ada983cb5030da9f882406220ca99fb1d970a8faffbb24",
+    "timesfm_3": "f52402b9783f3e8a74eb82593da1740048337a8854796eaddc1b1e16bbe31418"
+  }
+}

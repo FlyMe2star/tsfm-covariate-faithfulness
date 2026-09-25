@@ -11,8 +11,11 @@ passed the registered gate. This addendum does not change the original design
 or retroactively authorize model inference. The owner then separately approved
 the [model freeze](../../configs/p3_semisynthetic/p3_v2_model_freeze_approval.json)
 with `APPROVE P3-V2 MODEL FREEZE`. The new checkpoint runner lives outside the
-locked construct package. Its smoke and full outputs remain pending, so this
-approval adds no model-result claim.
+locked construct package. After both full backbones completed, the separate
+[post-primary aggregate](../../evidence/p3_semisynthetic/v2_results/p3_v2_analysis_report.json)
+was supplied and archived. It found three complete cells on traffic only and
+failed the registered two-source transfer rule. This later outcome does not
+change the original design or the P1 primary result.
 
 ## Why another attempt is scientifically defensible
 

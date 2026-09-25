@@ -1,3 +1,5 @@
 evidence/p2_robustness/results/*.csv -text whitespace=cr-at-eol
 evidence/p2_robustness/results/*.json -text
+evidence/p3_semisynthetic/v2_results/*.csv -text whitespace=cr-at-eol
+evidence/p3_semisynthetic/v2_results/*.json -text
 paper/figures/generated/*.svg whitespace=-trailing-space

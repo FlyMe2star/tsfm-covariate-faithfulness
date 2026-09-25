@@ -42,3 +42,13 @@ figure from `monotone_cell_summary.csv`; the threshold map from
 the report before regenerating the vector PDF/SVG figures. The original P1 pass
 column is unchanged. The P2 ZIP supplied by the author is retained privately
 outside Git; these small derived artifacts contain no licensed dataset images.
+
+The post-primary P3-v2 transfer table comes from the author-supplied,
+SHA-256-verified aggregate report and complete 12-cell CSV archived under
+`evidence/p3_semisynthetic/v2_results/`; see that directory's README for exact
+digests and the private-archive verification boundary. The displayed values
+are rounded from the CSV, not selected by outcome. Only three traffic cells
+passed the unchanged P1 cell rule; the predeclared two-source transfer rule
+failed. P3-v1's construct-only failure is disclosed. The lower-link SQL field
+is missing by design because lower-link quantiles were not archived, and no
+value has been inferred from medians.

@@ -1,0 +1,26 @@
+\begin{table*}[t]
+\caption{Post-primary semi-synthetic source transfer. Biphasic and Delayed denote biphasic rebound and dispersed delayed pulse. Each cell has 32 source-ID clusters and 94--96 valid scenarios. Subscript $L$ is the lower 95\% cluster-bootstrap bound; RGR shows its full interval. Negative $\Delta$SQL favors the covariate-aware forecast. ``Complete'' applies the unchanged P1 rule descriptively; transfer requires complete cells in at least two sources.}
+\label{tab:p3-v2-transfer}
+\centering
+\small
+\setlength{\tabcolsep}{4.5pt}
+\begin{tabular}{lllccrrrc}
+\toprule
+Model & Source & Mechanism & DSA$_L$ & RGR interval & $D_{1,L}$ & $G_L$ & $\Delta$SQL (\%) & Complete \\
+\midrule
+Chronos-2 & Traffic & Biphasic & 0.932 & [0.661, 0.742] & 0.246 & 0.090 & $-47.3$ & Yes \\
+Chronos-2 & Traffic & Delayed & 0.956 & [0.689, 0.800] & 0.245 & 0.089 & $-45.9$ & Yes \\
+Chronos-2 & Workload & Biphasic & 0.622 & [0.289, 0.563] & 0.537 & 0.086 & $-5.5$ & No \\
+Chronos-2 & Workload & Delayed & 0.732 & [0.273, 0.582] & 0.409 & 0.122 & $-6.0$ & No \\
+Chronos-2 & Solar & Biphasic & 0.520 & [0.069, 0.098] & 0.611 & 0.080 & $-3.9$ & No \\
+Chronos-2 & Solar & Delayed & 0.332 & [0.033, 0.055] & 0.677 & 0.004 & $+0.8$ & No \\
+\midrule
+TimesFM-3 & Traffic & Biphasic & 0.954 & [0.739, 0.852] & 0.233 & 0.069 & $-50.9$ & Yes \\
+TimesFM-3 & Traffic & Delayed & 0.973 & [0.353, 0.722] & 0.319 & 0.093 & $-36.8$ & No \\
+TimesFM-3 & Workload & Biphasic & 0.686 & [0.130, 0.302] & 0.532 & 0.123 & $-9.2$ & No \\
+TimesFM-3 & Workload & Delayed & 0.683 & [0.029, 0.065] & 0.589 & 0.072 & $-4.8$ & No \\
+TimesFM-3 & Solar & Biphasic & 0.605 & [0.217, 0.606] & 0.514 & 0.125 & $+3.1$ & No \\
+TimesFM-3 & Solar & Delayed & 0.479 & [0.039, 0.079] & 0.708 & 0.0001 & $+5.8$ & No \\
+\bottomrule
+\end{tabular}
+\end{table*}

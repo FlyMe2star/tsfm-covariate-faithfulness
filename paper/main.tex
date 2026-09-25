@@ -36,7 +36,8 @@ mechanisms but not path-dependent hysteresis or covariate synergy; a frozen nonl
 feature expansion only partially recovered the interaction. For the tested checkpoints
 and mechanisms, credible direction, gain, and forecast skill therefore did not preclude
 fine-scale response misplacement whose normalized discrepancy attenuated after temporal
-coarsening.
+coarsening. A post-primary semi-synthetic transfer audit passed only on traffic
+backgrounds (3/12 cells), not the prespecified two-source rule.
 \end{abstract}
 
 \section{Introduction}
@@ -87,7 +88,9 @@ Third, we report a complete frozen evaluation of Chronos-2 and TimesFM-3. For th
 checkpoints and mechanisms, three of eight cells exhibited fine response-shape
 distortion with positive resolution contrast while retaining credible coarse behavior
 and improved forecast skill. This is a bounded behavioral result, not a claim about TSFMs
-in general or causal effects in observational data.
+in general or causal effects in observational data. A separately registered,
+post-primary semi-synthetic transfer audit tests whether the complete conjunction
+persists on real-series target backgrounds; it is reported regardless of outcome.
 
 \section{Related Work}
 \subsection{Covariate-aware forecasting}
@@ -444,6 +447,39 @@ references therefore show that low response-shape error is attainable under the 
 context length while also exposing mechanism-specific limitations; they do not enter
 or modify the primary decision.
 
+\subsection{Post-primary semi-synthetic source transfer}
+The extension used real target-series backgrounds but synthetic covariates and
+structural responses; it was not an observational causal test. Its first,
+construct-only P3-v1 design failed the frozen 5\% exclusion ceiling in three of
+six source--mechanism cells: 38 of 864 attempted scenarios had insufficient
+oracle mass. No checkpoint was evaluated under that design. A disclosed P3-v2
+redesign increased the covariate pulse and moved dispersed-pulse starts using
+only this construct diagnostic, before P3-v2 model inference. The unchanged
+oracle-mass criterion then excluded five of 576 scenarios. Each frozen
+backbone was evaluated on the remaining 571 scenarios, drawn from 32
+previously unused original IDs per source and three new seeds. Intervals
+resampled original IDs with all their valid seeds together.
+
+\input{results/p3_v2_transfer_table}
+Three of the twelve evaluated cells passed the unchanged P1 complete-cell rule
+descriptively: both Chronos-2 traffic mechanisms and the TimesFM-3 traffic
+biphasic mechanism (Table~\ref{tab:p3-v2-transfer}). Their covariate-aware SQL
+was 45.9--50.9\% lower than the matched target-only SQL, while lower bounds on
+$D_1$ and $G$ remained positive and above the P1 thresholds. Yet no workload
+or solar cell passed. All twelve cells cleared the $D_1$ lower-bound threshold;
+outside traffic, the coarse direction and gain requirements generally failed.
+Because the predeclared transfer rule required a complete cell in at least two
+of the three sources, this extension \emph{did not} establish source transfer.
+It neither changes the P1 primary decision nor converts the traffic-only
+pattern into a generalization claim.
+
+Across cells, median sham responses amounted to 0.055--0.535 of active-oracle
+mass. This nonzero placebo response precludes a perfect-specificity claim.
+Lower-link medians and oracle paths support descriptive response
+shape summaries, but lower-link quantiles were not archived. Lower-link relative
+SQL is therefore unavailable rather than zero or imputed; no lower-link
+forecast-skill sensitivity claim is made.
+
 \section{Analysis and Limitations}
 The primary result separates predictive usefulness from structural response
 faithfulness. In the three passing cells, supplying covariates substantially reduced
@@ -472,7 +508,7 @@ partial recovery indicate that mechanism structure matters. Because these refere
 were specified after the primary outcome and fitted to each scenario, they cannot
 support a zero-shot superiority ranking against either TSFM.
 
-Four boundaries constrain the conclusion. First, analytic oracle responses are
+Five boundaries constrain the conclusion. First, analytic oracle responses are
 available because the mechanisms are synthetic. This provides internal structural
 validity but does not establish causal faithfulness on observational applications.
 Second, two public checkpoints support a cross-architecture result only for their
@@ -483,6 +519,12 @@ bounds were adjusted once using only analytic fixtures, before model outputs exi
 and were then frozen. The resulting test is auditable, but its thresholds should be
 treated as an explicit operating definition rather than a universal notion of
 practical significance.
+Fifth, the post-primary semi-synthetic audit did not meet its two-source
+transfer rule. Its traffic-only complete cells cannot establish response
+faithfulness across real-series backgrounds, especially with possible
+pretraining overlap, context-based activity selection, and only 32 original
+ID clusters per source. Source and checkpoint license terms may constrain
+redistribution of the private archives.
 
 A useful next test would pair real interventions or controlled policy changes with a
 known-future covariate and an independently defensible response trajectory. Such data
@@ -501,10 +543,12 @@ and improved forecast skill with fine shape distortion and a positive registered
 resolution contrast. The result shows that, for the tested checkpoints and mechanisms,
 direction, gain, and forecast accuracy do not fully characterize covariate-response
 faithfulness. Extending this conclusion to operational forecasting requires response
-oracles or controlled interventions beyond the synthetic setting.
+oracles or controlled interventions beyond the synthetic setting. The later
+semi-synthetic audit did not reproduce the complete pattern outside traffic;
+transfer across sources remains unestablished.
 
 \bibliographystyle{IEEEtran}
-\IEEEtriggeratref{20}
+\IEEEtriggeratref{26}
 \bibliography{ref}
 
 \end{document}
