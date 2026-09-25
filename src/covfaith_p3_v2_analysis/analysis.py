@@ -33,6 +33,46 @@ from covfaith_p3_v2_model.runner import (
     scientific_code_hash as model_code_hash,
 )
 
+_REPLAY_FLOAT64_EPSILON_MULTIPLIER = 128
+
+
+def _check_float_replay(
+    name: str,
+    actual: np.ndarray,
+    expected: np.ndarray,
+    *,
+    cancellation_scale: np.ndarray | None = None,
+) -> None:
+    """Admit only floating-point roundoff in cross-runtime construct replay.
+
+    The pinned inputs, identities, scenario ordering, shapes, and archive hashes
+    are checked separately and exactly. BLAS/libm can vary in the last few
+    float64 bits when the same frozen construct is replayed on another runtime.
+    An oracle is a difference of two targets, so its absolute roundoff must be
+    bounded against the target scale rather than the (possibly tiny) response.
+    """
+    if actual.shape != expected.shape or actual.dtype != np.float64 or expected.dtype != np.float64:
+        raise RuntimeError(f"{name}: replay shape or float64 dtype mismatch")
+    if not np.all(np.isfinite(actual)) or not np.all(np.isfinite(expected)):
+        raise RuntimeError(f"{name}: nonfinite value in model archive or construct replay")
+    scale = np.maximum(1.0, np.maximum(np.abs(actual), np.abs(expected)))
+    if cancellation_scale is not None:
+        if cancellation_scale.shape != actual.shape or not np.all(np.isfinite(cancellation_scale)):
+            raise RuntimeError(f"{name}: invalid cancellation scale")
+        scale = np.maximum(scale, np.abs(cancellation_scale))
+    absolute = np.abs(actual - expected)
+    scaled = absolute / scale
+    limit = _REPLAY_FLOAT64_EPSILON_MULTIPLIER * np.finfo(np.float64).eps
+    if np.any(scaled > limit):
+        raise RuntimeError(
+            f"{name}: model archive differs from frozen construct replay "
+            f"(mismatched_elements={int(np.count_nonzero(actual != expected))}/{actual.size}, "
+            f"max_abs={float(np.max(absolute)):.6g}, "
+            f"max_scaled={float(np.max(scaled)):.6g}, "
+            f"allowed_scaled={limit:.6g}, "
+            f"stored_dtype={actual.dtype}, replay_dtype={expected.dtype})"
+        )
+
 
 def _json_bytes(payload: Any) -> bytes:
     return (json.dumps(payload, indent=2, sort_keys=True, allow_nan=False) + "\n").encode()
@@ -237,16 +277,14 @@ def _check_unit_arrays(
     ):
         expected = np.stack([getattr(item, attribute) for item in scenarios])
         actual = arrays[name]
-        if not np.array_equal(actual, expected):
-            absolute = np.abs(actual.astype(np.float64) - expected.astype(np.float64))
-            scale = np.maximum(1.0, np.abs(expected.astype(np.float64)))
-            raise RuntimeError(
-                f"{name}: model archive differs from frozen construct replay "
-                f"(mismatched_elements={int(np.count_nonzero(actual != expected))}/{actual.size}, "
-                f"max_abs={float(np.max(absolute)):.6g}, "
-                f"max_scaled={float(np.max(absolute / scale)):.6g}, "
-                f"stored_dtype={actual.dtype}, replay_dtype={expected.dtype})"
-            )
+        _check_float_replay(
+            name,
+            actual,
+            expected,
+            cancellation_scale=(
+                arrays["target_future_factual"] if name == "oracle_response" else None
+            ),
+        )
     levels = arrays.get("quantile_levels")
     if levels is None or levels.ndim != 1 or not np.all((levels > 0) & (levels < 1)):
         raise RuntimeError("missing or invalid model quantile levels")
@@ -284,8 +322,12 @@ def _check_unit_arrays(
             config["mechanism"],
             multiplier_cap=float(config["effect_strength_sensitivity"]["lower_multiplier_cap"]),
         )
-        if not np.array_equal(arrays["lower_oracle_response"][position], lower.oracle_response):
-            raise RuntimeError("lower-link oracle differs from frozen construct")
+        _check_float_replay(
+            "lower_oracle_response",
+            arrays["lower_oracle_response"][position],
+            lower.oracle_response,
+            cancellation_scale=arrays["target_future_factual"][index],
+        )
 
 
 def _metric_values(record: dict[str, Any]) -> dict[str, float | None]:

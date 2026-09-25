@@ -91,6 +91,54 @@ def test_archived_worlds_and_control_subset_match_construct_replay() -> None:
         )
 
 
+def test_construct_replay_admits_float64_roundoff_but_not_data_changes() -> None:
+    config, _, window, scenario, arrays = _fixture()
+    rounded = {**arrays, "target_context": arrays["target_context"].copy()}
+    rounded["target_context"][0, 0] = np.nextafter(
+        rounded["target_context"][0, 0], np.inf
+    )
+    _check_unit_arrays(
+        rounded,
+        [scenario],
+        {window.source_id: window},
+        config,
+        horizon=24,
+        context_length=192,
+        seed_rank=0,
+    )
+    changed = {**rounded, "target_context": rounded["target_context"].copy()}
+    changed["target_context"][0, 0] += 1e-5
+    with pytest.raises(RuntimeError, match="target_context: model archive differs"):
+        _check_unit_arrays(
+            changed,
+            [scenario],
+            {window.source_id: window},
+            config,
+            horizon=24,
+            context_length=192,
+            seed_rank=0,
+        )
+
+
+def test_construct_replay_does_not_accept_nonfinite_or_wrong_dtype() -> None:
+    config, _, window, scenario, arrays = _fixture()
+    for replacement in (
+        np.full_like(arrays["target_context"], np.nan),
+        arrays["target_context"].astype(np.float32),
+    ):
+        changed = {**arrays, "target_context": replacement}
+        with pytest.raises(RuntimeError, match="target_context"):
+            _check_unit_arrays(
+                changed,
+                [scenario],
+                {window.source_id: window},
+                config,
+                horizon=24,
+                context_length=192,
+                seed_rank=0,
+            )
+
+
 def test_descriptive_summary_keeps_missing_lower_sql_explicit() -> None:
     config, p1, _, scenario, arrays = _fixture()
     cell = summarize_cell(
