@@ -1,0 +1,14 @@
+{
+  "schema_version": 1,
+  "approval_phrase": "APPROVE P3-V2 MODEL FREEZE",
+  "approved_candidate_sha256": "3f0cef1a67c640f4201ff4b0d2ac353107b802219f1dd4da0794dcfbe552e33d",
+  "approval_date": "2026-09-25",
+  "sealed_model_inference_authorized": true,
+  "scope": "pinned P3-v2 backbones and construct-held-out scenarios only",
+  "preconditions": [
+    "fake-adapter tests pass",
+    "one valid-scenario checkpoint smoke for each backbone before its full units",
+    "selection and construct counts match the frozen public receipt"
+  ],
+  "p1_p2_or_p3_v1_revision_authorized": false
+}

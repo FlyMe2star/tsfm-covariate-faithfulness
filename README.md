@@ -67,8 +67,18 @@ and places the delayed pulse fully inside the forecast horizon. Its [CPU constru
 receipt](evidence/p3_semisynthetic/v2_construct/p3_v2_construct_preflight.json)
 passes all six source-family gates: 5 exclusions among 576 attempted scenarios,
 with no source-ID overlap. This is **not** forecasting evidence. Model inference
-still requires a separate owner-approved [model freeze](configs/p3_semisynthetic/p3_v2_model_freeze_candidate.json)
-and smoke checks.
+was separately approved on 2026-09-25 in the [model-freeze receipt](configs/p3_semisynthetic/p3_v2_model_freeze_approval.json).
+The [resumable Colab notebook](notebooks/09_p3_v2_backbone_units.ipynb) is ready,
+but no P3-v2 checkpoint output or aggregate result is claimed yet. The runner
+reconstructs frozen source selection and construct exclusions before forecasting.
+
+For P3-v2, [open the notebook in Colab](https://colab.research.google.com/github/FlyMe2star/tsfm-covariate-faithfulness/blob/main/notebooks/09_p3_v2_backbone_units.ipynb)
+on T4. Run `MODE='checkpoint_smoke'` once with `BACKBONE='chronos_2'` and once
+with `BACKBONE='timesfm_3'`. Then set `MODE='full_units'` and repeat for each
+backbone; switch to A100 only if T4 is insufficient. The 18 full units per
+backbone resume individually in Google Drive. The notebook writes no aggregate
+paper decision; private Parquet and forecasts stay outside Git. Keep both smoke
+and full completion reports for the next read-only analysis stage.
 
 Reproduce the frozen supplement on CPU with
 [`notebooks/07_p1_reference_supplement.ipynb`](notebooks/07_p1_reference_supplement.ipynb).

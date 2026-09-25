@@ -8,7 +8,11 @@ post-pilot redesign, not a retroactive correction.
 Execution addendum (2026-09-25): the owner subsequently approved this candidate
 with `APPROVE P3-V2 DESIGN`. The [CPU construct report](../../evidence/p3_semisynthetic/v2_construct/p3_v2_construct_preflight.json)
 passed the registered gate. This addendum does not change the original design
-or authorize model inference; a separate model freeze is still required.
+or retroactively authorize model inference. The owner then separately approved
+the [model freeze](../../configs/p3_semisynthetic/p3_v2_model_freeze_approval.json)
+with `APPROVE P3-V2 MODEL FREEZE`. The new checkpoint runner lives outside the
+locked construct package. Its smoke and full outputs remain pending, so this
+approval adds no model-result claim.
 
 ## Why another attempt is scientifically defensible
 

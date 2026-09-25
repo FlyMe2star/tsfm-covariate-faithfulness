@@ -50,7 +50,7 @@ research_stage:
     construct_report_sha256: 9364eceb386c2d9bb6a585f0d0b75733582bfde649de6231186f40507f14787c
     model_inference_authorized: false
     v2_candidate:
-      status: construct_verified_model_freeze_pending
+      status: construct_verified_model_freeze_approved_runner_ready
       approval_phrase: "APPROVE P3-V2 DESIGN"
       approval_date: "2026-09-25"
       approval_receipt: configs/p3_semisynthetic/p3_v2_design_approval.json
@@ -62,5 +62,9 @@ research_stage:
       construct_report: evidence/p3_semisynthetic/v2_construct/p3_v2_construct_preflight.json
       construct_report_sha256: 0306da9ff4bff0abd20e123379e93571230388abaf941564b0f559abd097e030
       model_freeze_candidate: configs/p3_semisynthetic/p3_v2_model_freeze_candidate.json
+      model_freeze_approval_phrase: "APPROVE P3-V2 MODEL FREEZE"
+      model_freeze_approval_receipt: configs/p3_semisynthetic/p3_v2_model_freeze_approval.json
+      model_notebook: notebooks/09_p3_v2_backbone_units.ipynb
       cpu_construct_preflight_authorized: true
-      model_inference_authorized: false
+      model_inference_authorized: true
+      model_inference_completed: false
