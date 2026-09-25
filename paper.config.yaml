@@ -40,7 +40,12 @@ research_stage:
     model_inference_performed: false
     primary_decision_modified: false
   p3_semisynthetic_extension:
-    status: design_candidate_owner_review_pending
+    status: v1_construct_gate_failed_revision_required
+    approval_phrase: "APPROVE P3 DESIGN"
+    approval_date: "2026-09-25"
     design: notes/design/p3_semisynthetic_design.md
     candidate_config: configs/p3_semisynthetic/p3_design_candidate.yaml
+    approved_config_sha256: 5f9fe618a43d3cc732f6e7dd58145fab82c2a4370f83c2faf2d613451bcd8527
+    construct_report: evidence/p3_semisynthetic/construct/p3_v1_construct_preflight.json
+    construct_report_sha256: 9364eceb386c2d9bb6a585f0d0b75733582bfde649de6231186f40507f14787c
     model_inference_authorized: false

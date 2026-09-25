@@ -1,0 +1,9 @@
+{
+  "schema_version": 1,
+  "approval_phrase": "APPROVE P3 DESIGN",
+  "approval_date": "2026-09-25",
+  "approved_config_canonical_sha256": "5f9fe618a43d3cc732f6e7dd58145fab82c2a4370f83c2faf2d613451bcd8527",
+  "authorized_scope": "implementation_tests_and_cpu_construct_preflight_only",
+  "model_inference_authorized": false,
+  "separate_model_inference_freeze_required": true
+}

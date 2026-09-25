@@ -50,13 +50,16 @@ Matplotlib vector figures in [`paper/figures/generated/`](paper/figures/generate
 It added fixed-fine-normalization curves, analytic metric comparisons, WQL, and
 threshold sensitivity without new model inference or any change to the P1 gate.
 
-The next acceptance-critical extension, P3, is currently a **design candidate**:
+The proposed external-validity extension, P3, has an owner-approved design:
 [`notes/design/p3_semisynthetic_design.md`](notes/design/p3_semisynthetic_design.md)
 and [`configs/p3_semisynthetic/p3_design_candidate.yaml`](configs/p3_semisynthetic/p3_design_candidate.yaml).
 The data-only audit found enough eligible original traffic, cloud-workload, and
-solar series at one pinned public revision. No P3 checkpoint call or manuscript
-result claim is authorized yet. Owner design review, CPU construct validation,
-and a separate freeze must precede Colab inference.
+solar series at one pinned public revision. Its subsequent CPU construct preflight
+failed the registered 5%-maximum exclusion gate in three dispersed-delay cells;
+see the [adverse receipt](evidence/p3_semisynthetic/construct/p3_v1_construct_preflight.json)
+and [decision note](notes/design/p3_v1_construct_failure.md). No P3 checkpoint
+call or manuscript result claim is authorized. The failed pilot remains archived;
+the frozen P1/P2 evidence is unchanged.
 
 Reproduce the frozen supplement on CPU with
 [`notebooks/07_p1_reference_supplement.ipynb`](notebooks/07_p1_reference_supplement.ipynb).

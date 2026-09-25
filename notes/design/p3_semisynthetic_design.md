@@ -89,7 +89,7 @@ report DSA, RGR, $D_1,D_2,D_4,D_8$, registered $G=D_1-D_8$, relative SQL and WQL
 and all exclusions. Use 5,000 percentile bootstrap replicates, resampling the
 48 original source IDs within each cell while keeping all three synthetic seeds
 for an ID together. Show source-wise results and equal-source macro summaries;
-do not pool all 432 scenarios as independent observations. Include at least one
+do not pool source-by-seed observations as independent units. Include at least one
 predefined representative per source only if the corresponding cell is reported
 in full; use the P2 median-proximity rule, never manual case selection.
 

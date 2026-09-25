@@ -1,0 +1,3 @@
+# CPU-only P3 source/construct checks; no forecasting checkpoint dependencies.
+-e .
+pyarrow>=18,<26

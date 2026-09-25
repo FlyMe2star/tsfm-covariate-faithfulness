@@ -22,13 +22,15 @@ filter. No native dataset covariates are fed to the model in this extension: the
 background target is real, while the covariate and its causal response are injected.
 
 CPU-only feasibility scan: candidate origins are `range(max(192, floor(0.60*N)),
-N-24+1, 24)` for each source series. A 216-step window must have finite target
-values, exact nominal timestamp cadence, context target standard deviation above
+N-24+1, 24)` for each source series. Selection requires finite target values in
+the 192-step **context only**, exact nominal timestamp cadence across the 216-step
+window, context target standard deviation above
 `1e-6`, and context positive fraction at least 0.95 / 0.90 / 0.30 for traffic /
 Redset / solar. Redset additionally requires its last 24 context values to be
 positive; solar uses the origin timestamp's clock hour in `{10,11,12}`. These
 rules use **only historical target values and known timestamps**, never future
-target values. At least one eligible origin was found for 323 / 82 / 137 original
+target values. Future-target finiteness is checked only after selection, without
+replacement of an ID or origin. At least one eligible origin was found for 323 / 82 / 137 original
 series, respectively. No candidate window failed the cadence check. Thus, 48
 source-ID clusters per dataset are feasible without seeing any model outputs.
 

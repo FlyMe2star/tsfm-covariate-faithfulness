@@ -1,0 +1,66 @@
+{
+  "schema_version": 1,
+  "experiment": "covintervene-shape-p3-semisynthetic-candidate-v1",
+  "result_status": "revision_required",
+  "paper_eligibility": "not_model_outcome_evidence",
+  "config_hash": "5f9fe618a43d3cc732f6e7dd58145fab82c2a4370f83c2faf2d613451bcd8527",
+  "p3_scientific_code_sha256": "388a1c57e6cbe5a9621443f300d36a2c0926c3eace6d249b2336135149647bfd",
+  "p1_scientific_code_sha256": "fc1cf6d73a59a4200deaa964f341a17b72d8fae75fa40b1086ed1c8c714f5925",
+  "selection_manifest_sha256": "186bbe7804424da467a46b698130cb2f1715b7d56cf6a63cd39d083a79a844ee",
+  "construct_units_sha256": "c562ef530331886f98b67c5f8798ad7bdf029eb97bfaa7f09b29cf24544fce74",
+  "scope": {
+    "model_inference_performed": false,
+    "forecast_accuracy_or_selection_metric_computed": false,
+    "future_target_values_used_for_selection": false,
+    "primary_p1_or_p2_modified": false
+  },
+  "sources": {
+    "traffic_daily": {
+      "parquet_sha256": "2f2e49f88c31f10e1e9040e7e0791ec179a953820fb67f3e284264a1f7aa1657",
+      "original_series_count": 323,
+      "eligible_source_id_count": 323,
+      "selected_source_id_count": 48
+    },
+    "workload_5min": {
+      "parquet_sha256": "022d25f70c67d08935ad08069ac9326c0bc43921030d4e8721ffee4d0aa9cd19",
+      "original_series_count": 118,
+      "eligible_source_id_count": 82,
+      "selected_source_id_count": 48
+    },
+    "solar_10min": {
+      "parquet_sha256": "0c3e80f5ac9edadaea8799abd79bd88cb5752599af5d5d4ef264c2a188551772",
+      "original_series_count": 137,
+      "eligible_source_id_count": 137,
+      "selected_source_id_count": 48
+    }
+  },
+  "counts": {
+    "selected_windows": 144,
+    "attempted_scenarios": 864,
+    "verified_scenarios": 826,
+    "excluded_scenarios": 38,
+    "sham_construct_checks": 208,
+    "lower_cap_construct_checks": 208
+  },
+  "cells": {
+    "traffic_daily/biphasic_rebound": {"attempted": 144, "excluded": 0, "excluded_fraction": 0.0},
+    "traffic_daily/dispersed_delayed_pulse": {"attempted": 144, "excluded": 10, "excluded_fraction": 0.06944444444444445},
+    "workload_5min/biphasic_rebound": {"attempted": 144, "excluded": 2, "excluded_fraction": 0.013888888888888888},
+    "workload_5min/dispersed_delayed_pulse": {"attempted": 144, "excluded": 10, "excluded_fraction": 0.06944444444444445},
+    "solar_10min/biphasic_rebound": {"attempted": 144, "excluded": 5, "excluded_fraction": 0.034722222222222224},
+    "solar_10min/dispersed_delayed_pulse": {"attempted": 144, "excluded": 11, "excluded_fraction": 0.0763888888888889}
+  },
+  "exclusion_reasons": {"insufficient oracle mass": 38},
+  "decision": {
+    "maximum_excluded_fraction_per_cell": 0.05,
+    "construct_gate_passed": false,
+    "model_inference_authorized": false,
+    "next_action": "stop_and_submit_revised_candidate_design_for_owner_review"
+  },
+  "runtime": {
+    "created_at_utc": "2026-09-25T04:22:53.803521+00:00",
+    "python": "3.14.0",
+    "numpy": "2.2.6",
+    "platform": "Windows-11-10.0.22631-SP0"
+  }
+}
