@@ -1,0 +1,73 @@
+{
+  "schema_version": 1,
+  "experiment": "covintervene-shape-p2-robustness-v1",
+  "result_status": "verified_post_primary_analysis_only",
+  "config_hash": "7f7c27bc37ffc57ce3b2455877dab2a72d7d0d3255484042377cdaf90c27a284",
+  "scientific_code_sha256": "7178cf9bfa72d63a261765fdad333a30abd34ee0014c8bb082d160e6e7eebbe4",
+  "scope": {
+    "model_inference_performed": false,
+    "primary_arrays_modified": false,
+    "registered_metrics_or_thresholds_modified": false,
+    "primary_decision_recomputed": false
+  },
+  "counts": {
+    "source_unit_count": 24,
+    "cell_count": 8,
+    "representative_response_count": 3,
+    "fixture_count": 8,
+    "threshold_grid_count": 56
+  },
+  "source_primary": {
+    "config_hash": "27826ad34bfe0acd8ee90ff4d0fbafb011a6b00aeea276dacaa9f9fe2a261918",
+    "scientific_code_sha256": "fc1cf6d73a59a4200deaa964f341a17b72d8fae75fa40b1086ed1c8c714f5925",
+    "decision_sha256": "077322e808fffe62af99feda3363220670eac96ba3f43eb6ef0758da2a7373a7",
+    "unit_sha256": {
+      "chronos_2/biphasic_rebound/seed_00101": "40201ffc5e8b4e1e74e075c64f4552b89e1a03b068158992aba27fcfe8238efc",
+      "chronos_2/biphasic_rebound/seed_00307": "59a8c7e736882bbcf83607baf7ba8ed55f7fda9d85c3f4a5c9e783a6560fdde2",
+      "chronos_2/biphasic_rebound/seed_00911": "6309d2ef4512159e1c275e3cc0289afa649113608f91f05ccb6fd7e1934a1621",
+      "chronos_2/dispersed_delayed_pulse/seed_00101": "10de6325eeeec56032b70fafe8d3077adc21666b47d7faa1bf2c5f8364586de9",
+      "chronos_2/dispersed_delayed_pulse/seed_00307": "c00d27be9e62ef9ea138085a5a090f064edcc004d48994223b0b97fbeaf453dc",
+      "chronos_2/dispersed_delayed_pulse/seed_00911": "28b2273316b771e057c4806a2b1bf12aece40f974c10e4e34017d7ba807c8193",
+      "chronos_2/rate_asymmetric_hysteresis/seed_00101": "f7af4e674173c850a487a403de529cd8bafe8176f6875296b8294b85a4620201",
+      "chronos_2/rate_asymmetric_hysteresis/seed_00307": "d319e40367a098daf9212bf244bc6da63a7c5b3d477b5d622fd07d8d2081f23e",
+      "chronos_2/rate_asymmetric_hysteresis/seed_00911": "8bd41f2571357ce2b924cae9f9e73a254f2cb4a83961ae3e6713f4cab58e0d7a",
+      "chronos_2/two_covariate_synergy/seed_00101": "5e8463c31248b6868488033f43df1ac4de0fccd55fb1a8811bc4d9aaa0e9daf9",
+      "chronos_2/two_covariate_synergy/seed_00307": "bda401d56a5e48a8db6b326dae143c1fa1a6b9ee4bfd2c184f71d7e2c4ac7de9",
+      "chronos_2/two_covariate_synergy/seed_00911": "9e87c08af3ab7fdde157484681cfeed7f87146fe98263b15d285ad2bd117fdd4",
+      "timesfm_3/biphasic_rebound/seed_00101": "a3fa28fa34733bc9bdff5c42dfd21b3aad0adedc0c9ee15f7f1ff3e95065d4d0",
+      "timesfm_3/biphasic_rebound/seed_00307": "6694d8cf25c8c941e8b39749e026bf41acdead5d2066396e2c28a4a7623b2e6f",
+      "timesfm_3/biphasic_rebound/seed_00911": "ae966723dcac80f4af31cfca4764cee53e447eb9f3e942fcbcbbfc5f3ecb7088",
+      "timesfm_3/dispersed_delayed_pulse/seed_00101": "f468e683ef94f24aaad6a815a6e0c6f1079516050be7f532d6c1f47222642758",
+      "timesfm_3/dispersed_delayed_pulse/seed_00307": "4485c2e268a417aa50668116f5bbc15efa27ca4255f8a00c07bcbe6d29b77340",
+      "timesfm_3/dispersed_delayed_pulse/seed_00911": "021a5401958a2c9328439c5f93c8aacc927555b5dd6a61e1f1eccfb3ee59b907",
+      "timesfm_3/rate_asymmetric_hysteresis/seed_00101": "35345dbf8761f32cc795d014d69a2cea6d897141ade6d4c3e63bdb9a9eeea614",
+      "timesfm_3/rate_asymmetric_hysteresis/seed_00307": "a3b6932812a4f49b237dae154b851cb69ea0436cf936c9a53fe0e7c84770eaf8",
+      "timesfm_3/rate_asymmetric_hysteresis/seed_00911": "663ae72c95826a33d703965e25bb1843c80010b5c7090c84648bb54e33a99348",
+      "timesfm_3/two_covariate_synergy/seed_00101": "b0a28f8d7c7950d442286e187d6c89f3d3988ff796c9964fc9e221e01d0384f1",
+      "timesfm_3/two_covariate_synergy/seed_00307": "55870495cf9e65f1a4a9df35bac94049858f074b05efe8af1efd692a72f3910c",
+      "timesfm_3/two_covariate_synergy/seed_00911": "3a1738d43737e17fec78e4102be93fca0ba569f6aa406c4c71a61d922d6a8cfd"
+    }
+  },
+  "artifacts": {
+    "metric_fixture_comparison.csv": {
+      "sha256": "f1dc6ef74c0a119063ea1456e5043c366296a4b3053ee654bba509c2e596441b",
+      "row_count": 8
+    },
+    "monotone_cell_summary.csv": {
+      "sha256": "cb28ac6c29090428c91fd96fa66983d7a252ad202d1d4c0f8f06573af01319f6",
+      "row_count": 8
+    },
+    "threshold_sensitivity.csv": {
+      "sha256": "142737a497eb3ea1ec61d261a1632aad12e6d4fe40ab0677bf214ee163e371b0",
+      "row_count": 56
+    },
+    "wql_cell_summary.csv": {
+      "sha256": "aa1f67d07ac52ea816d397dba729197b7c9c53c7611b84a638e63a0f9162de6c",
+      "row_count": 8
+    },
+    "representative_responses.json": {
+      "sha256": "c6a96428eee7936ecf3ebcecf8fca808c15d7374f818ab5852edb39c15244090",
+      "item_count": 3
+    }
+  }
+}

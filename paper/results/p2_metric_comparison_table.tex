@@ -1,0 +1,20 @@
+\begin{table}[t]
+  \centering
+  \caption{Descriptive comparison on selected analytic fixtures. $G$ is the
+  registered resolution contrast; NRMSE, DTW, and transport use their own
+  scales. The full eight-fixture, 12-metric matrix is archived.}
+  \label{tab:p2-metric-comparison}
+  \resizebox{\columnwidth}{!}{%
+  \begin{tabular}{lrrrrr}
+    \toprule
+    Fixture & RGR & $D_1$ & $G$ & NRMSE & DTW \\
+    \midrule
+    Positive gain (0.70) & 0.70 & 0.00 & 0.00 & 0.30 & 0.30 \\
+    Shift within width 8 & 0.75 & 0.50 & 0.50 & 0.82 & 0.00 \\
+    Shift across width 8 & 0.47 & 1.00 & 0.00 & 1.61 & 0.00 \\
+    Temporal smoothing & 0.87 & 0.12 & 0.12 & 0.25 & 0.25 \\
+    Rebound deleted & 0.62 & 0.38 & 0.00 & 0.51 & 0.37 \\
+    Sign flip & 1.00 & 1.00 & 0.00 & 2.00 & 1.25 \\
+    \bottomrule
+  \end{tabular}}
+\end{table}

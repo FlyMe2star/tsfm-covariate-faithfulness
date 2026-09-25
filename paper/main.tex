@@ -204,6 +204,21 @@ $D_{i,b}$ against $\log_2 b$. For the two-covariate mechanism, we additionally c
 $D_1$ on the joint-minus-marginal interaction response. None of these diagnostics can
 replace $D_1$ or $G$ in the frozen decision.
 
+To separate the effect of blocking from repeated normalization, we subsequently
+defined a \emph{post-primary} fixed-fine-normalization diagnostic. For nonzero
+responses, let $p_i=\widehat\Delta_i/\|\widehat\Delta_i\|_1$ and
+$o_i=\Delta_i^\star/\|\Delta_i^\star\|_1$, and set
+\begin{equation}
+C_{i,b}=\tfrac12\|B_b(p_i-o_i)\|_1,\qquad H_i=C_{i,1}-C_{i,8}.
+\label{eq:fixed-fine}
+\end{equation}
+For a numerically zero prediction, $C_{i,b}=1$ at every width, matching the
+primary zero-response convention. Unlike $D_{i,b}$, $C_{i,b}$ is nonincreasing
+over nested widths: $B_{2b}=B_2\circ B_b$ and the triangle inequality gives
+$\|B_2u\|_1\leq\|u\|_1$. This algebraic contraction does not imply that the
+registered $G_i$ is always nonnegative. The new diagnostic was applied only to
+archived responses and did not change the primary endpoint or gate.
+
 \section{CovIntervene-SHAPE Protocol}
 Each scenario follows
 \begin{equation}
@@ -328,6 +343,19 @@ $D_1$ was 0.185--0.198 and the registered resolution contrast was 0.040--0.066, 
 $-0.514$ to $-0.523$, so covariate-aware forecasts also improved on their matched
 target-only calls in these cells.
 
+\begin{figure*}[t]
+  \centering
+  \includegraphics[width=\textwidth]{figures/generated/p2_representative_paths.pdf}
+  \caption{Deterministically selected responses for all three registered passing
+  cells (one series per cell). The upper panels show signed, $L_1$-normalized
+  24-step oracle and predicted paths; the lower panels separately normalize
+  their signed width-8 sums, as in the registered $D_8$. Each representative
+  minimizes its MAD-standardized distance to the cell medians of $D_1$ and $G$,
+  with series ID as a tie-breaker. These paths illustrate, but do not estimate,
+  cell-level effects or uncertainty.}
+  \label{fig:p2-representatives}
+\end{figure*}
+
 The complete matrix also defines where the central claim does not apply. All eight
 cells had a $D_1$ lower bound above 0.08, and six had a $G$ lower bound above 0.03, but
 fine distortion alone was insufficient. Both synergy cells failed the coarse DSA/RGR
@@ -336,6 +364,71 @@ registered resolution contrasts. TimesFM-3 on the dispersed delayed pulse missed
 rule because its RGR interval extended below 0.65 despite high DSA and a positive gap.
 These retained nonpassing cells prevent a generic claim that every response-shape
 error is hidden behind credible coarse behavior.
+
+Figure~\ref{fig:p2-representatives} exposes the horizon-wise behavior behind the
+aggregate result without selecting an unusually vivid example: the frozen rule
+chooses one median-proximal series from each passing cell. The three examples have
+$D_1=0.178$, $0.192$, and $0.187$, respectively; their registered contrasts are
+$0.044$, $0.068$, and $0.040$. They are not average responses.
+
+\subsection{Post-primary metric and sensitivity checks}
+
+\begin{figure*}[t]
+  \centering
+  \includegraphics[width=\textwidth]{figures/generated/p2_resolution_curves.pdf}
+  \caption{Fixed-fine-normalization distance $C_b$ on all eight cells
+  (192 paired series per cell). Points are cell medians; whiskers are two-sided
+  95\% intervals from 5,000 seed-stratified paired-series bootstrap replicates.
+  Solid lines mark cells passing the original P1 rule; dashed lines retain all
+  nonpassing cells. This post-primary diagnostic is algebraically monotone under
+  nested blocking and is not the registered, separately normalized $D_b$ or $G$.}
+  \label{fig:p2-resolution}
+\end{figure*}
+
+The archived response arrays support the fixed-fine-normalization check in
+Eq.~\eqref{eq:fixed-fine}. All individual curves, and hence all eight displayed
+cell medians, were nonincreasing over widths 1, 2, 4, and 8
+(Fig.~\ref{fig:p2-resolution}). The median \emph{paired} contraction $H_i$ ranged
+from $0.041$ to $0.120$ across cells; its eight bootstrap lower bounds ranged
+from $0.034$ to $0.102$. These values are not obtained by subtracting the two
+reported marginal medians. In the three registered passing cells, the paired
+median contractions were $0.069$, $0.054$, and $0.053$. This check confirms that
+fine response discrepancies are reduced by signed blocking under a metric with a
+mathematical contraction guarantee, without retroactively reinterpreting $G$.
+
+The same analytic fixture ladder permits a descriptive comparison with common
+trajectory diagnostics (Table~\ref{tab:p2-metric-comparison}). Positive gain
+scaling yields RGR $0.70$ and NRMSE $0.30$ but $D_1=0$. A within-width-8 shift
+has $D_1=0.50$ and $G=0.50$, whereas normalized dynamic time warping (DTW)
+assigns zero to both one- and seven-step shifts in these fixtures. Conversely,
+deleting the rebound yields $D_1=0.38$ but $G=0$: a coarse-versus-fine contrast
+alone does not detect every structural omission. Absolute-mass transport assigns
+zero to the sign-flip fixture even though $D_1=1$. These are differences in
+metric invariance on constructed examples, not evidence of universal dominance.
+
+\input{results/p2_metric_comparison_table}
+
+From archived factual forecasts, relative WQL was negative in all eight cells
+(Table~\ref{tab:p1-shape-primary}); in the three registered passing cells it
+ranged from $-0.478$ to $-0.492$. Like the SQL complement, this describes
+predictive usefulness, not structural fidelity. A descriptive neighborhood scan
+of the already frozen $D_1$ and $G$ lower-bound thresholds retained the
+paper-level gate at 28 of 56 grid points (Fig.~\ref{fig:p2-thresholds}). The
+result was unchanged across $D_1$ thresholds $0.04$--$0.16$ but fell from three
+passing cells at $G\leq0.03$ to none at $G\geq0.07$. The original thresholds
+remain $D_1=0.08$ and $G=0.03$; this scan neither chooses new thresholds nor
+confers a post-hoc validation of the original choices.
+
+\begin{figure}[t]
+  \centering
+  \includegraphics[width=\columnwidth]{figures/generated/p2_threshold_sensitivity.pdf}
+  \caption{Descriptive threshold neighborhood from the immutable P1 cell
+  intervals. Each cell gives the number of complete-rule passing cells; the
+  outline marks the registered $(D_1,G)=(0.08,0.03)$ thresholds. The paper-level
+  condition holds at 28/56 grid points. These are alternative readings of the
+  same eight cells, not independent experiments.}
+  \label{fig:p2-thresholds}
+\end{figure}
 
 \subsection{Post-primary transparent references}
 
