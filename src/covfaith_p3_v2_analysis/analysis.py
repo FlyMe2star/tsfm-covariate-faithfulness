@@ -169,15 +169,20 @@ def _complete_records(
             with np.load(array_path, allow_pickle=False) as saved:
                 arrays = {key: saved[key] for key in saved.files}
             count = len(scenarios)
-            _check_unit_arrays(
-                arrays,
-                scenarios,
-                windows_by_dataset[dataset],
-                config,
-                horizon=horizon,
-                context_length=context_length,
-                seed_rank=seed_values.index(seed),
-            )
+            try:
+                _check_unit_arrays(
+                    arrays,
+                    scenarios,
+                    windows_by_dataset[dataset],
+                    config,
+                    horizon=horizon,
+                    context_length=context_length,
+                    seed_rank=seed_values.index(seed),
+                )
+            except RuntimeError as error:
+                raise RuntimeError(
+                    f"{backbone}/{dataset}/{family}/seed_{seed:05d}: {error}"
+                ) from error
             if manifest.get("sham_scenario_count") != len(arrays["sham_indices"]) or manifest.get(
                 "lower_link_scenario_count"
             ) != len(arrays["lower_indices"]):
@@ -230,10 +235,18 @@ def _check_unit_arrays(
         ("target_future_factual", "target_future_factual"),
         ("oracle_response", "oracle_response"),
     ):
-        if not np.array_equal(
-            arrays[name], np.stack([getattr(item, attribute) for item in scenarios])
-        ):
-            raise RuntimeError(f"{name}: model archive differs from frozen construct replay")
+        expected = np.stack([getattr(item, attribute) for item in scenarios])
+        actual = arrays[name]
+        if not np.array_equal(actual, expected):
+            absolute = np.abs(actual.astype(np.float64) - expected.astype(np.float64))
+            scale = np.maximum(1.0, np.abs(expected.astype(np.float64)))
+            raise RuntimeError(
+                f"{name}: model archive differs from frozen construct replay "
+                f"(mismatched_elements={int(np.count_nonzero(actual != expected))}/{actual.size}, "
+                f"max_abs={float(np.max(absolute)):.6g}, "
+                f"max_scaled={float(np.max(absolute / scale)):.6g}, "
+                f"stored_dtype={actual.dtype}, replay_dtype={expected.dtype})"
+            )
     levels = arrays.get("quantile_levels")
     if levels is None or levels.ndim != 1 or not np.all((levels > 0) & (levels < 1)):
         raise RuntimeError("missing or invalid model quantile levels")
