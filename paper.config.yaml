@@ -49,3 +49,12 @@ research_stage:
     construct_report: evidence/p3_semisynthetic/construct/p3_v1_construct_preflight.json
     construct_report_sha256: 9364eceb386c2d9bb6a585f0d0b75733582bfde649de6231186f40507f14787c
     model_inference_authorized: false
+    v2_candidate:
+      status: design_candidate_owner_review_pending
+      design: notes/design/p3_v2_design.md
+      candidate_config: configs/p3_semisynthetic/p3_v2_design_candidate.yaml
+      candidate_config_sha256: 2d6226ee0155cd9decc8c95a6643f1fa93003c92b087601ea448b61eca30960e
+      data_only_feasibility_report: evidence/p3_semisynthetic/v2_design/holdout_feasibility.json
+      data_only_feasibility_sha256: 222bd19803a9b68c213ff51d1c1936218e20ecdb6229a929e25426c0d10c793e
+      cpu_construct_preflight_authorized: false
+      model_inference_authorized: false

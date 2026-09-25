@@ -1,0 +1,38 @@
+{
+  "schema_version": 1,
+  "audit": "p3_v2_construct_heldout_source_feasibility",
+  "result_status": "verified_data_only_feasibility",
+  "audit_date": "2026-09-25",
+  "v1_selection_manifest_sha256": "186bbe7804424da467a46b698130cb2f1715b7d56cf6a63cd39d083a79a844ee",
+  "scope": {
+    "v2_scenario_oracles_computed": false,
+    "v2_source_ids_selected": false,
+    "model_inference_performed": false,
+    "future_target_values_used_for_eligibility": false
+  },
+  "sources": {
+    "traffic_daily": {
+      "parquet_sha256": "2f2e49f88c31f10e1e9040e7e0791ec179a953820fb67f3e284264a1f7aa1657",
+      "eligible_source_ids": 323,
+      "v1_selected_source_ids_excluded": 48,
+      "eligible_unused_source_ids": 275,
+      "v2_requested_source_ids": 32
+    },
+    "workload_5min": {
+      "parquet_sha256": "022d25f70c67d08935ad08069ac9326c0bc43921030d4e8721ffee4d0aa9cd19",
+      "eligible_source_ids": 82,
+      "v1_selected_source_ids_excluded": 48,
+      "eligible_unused_source_ids": 34,
+      "v2_requested_source_ids": 32
+    },
+    "solar_10min": {
+      "parquet_sha256": "0c3e80f5ac9edadaea8799abd79bd88cb5752599af5d5d4ef264c2a188551772",
+      "eligible_source_ids": 137,
+      "v1_selected_source_ids_excluded": 48,
+      "eligible_unused_source_ids": 89,
+      "v2_requested_source_ids": 32
+    }
+  },
+  "feasible": true,
+  "next_action": "owner_review_of_single_v2_design_before_construct_generation"
+}

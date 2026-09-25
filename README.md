@@ -61,6 +61,12 @@ and [decision note](notes/design/p3_v1_construct_failure.md). No P3 checkpoint
 call or manuscript result claim is authorized. The failed pilot remains archived;
 the frozen P1/P2 evidence is unchanged.
 
+An explicitly post-pilot, construct-held-out [P3-v2 design candidate](notes/design/p3_v2_design.md)
+is ready for owner review. It retains the v1 failure record and original
+thresholds, but excludes v1's source IDs and places the delayed pulse fully
+inside the forecast horizon. V2 has not undergone an oracle preflight or model
+inference; neither is authorized by the design document alone.
+
 Reproduce the frozen supplement on CPU with
 [`notebooks/07_p1_reference_supplement.ipynb`](notebooks/07_p1_reference_supplement.ipynb).
 It stores each mechanism-by-seed unit independently and safely resumes after a Colab

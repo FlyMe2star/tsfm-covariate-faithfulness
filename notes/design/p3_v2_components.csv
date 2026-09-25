@@ -1,0 +1,9 @@
+component_id,name,role,input_format,output_format,is_novel,replaceable_by,ablation_priority,notes
+P3V2-C01,Pinned source loader,Reuse v1 exact Parquet files and hashes,source config and revision,ID timestamp target arrays,no,N/A,high,No raw arrays in Git
+P3V2-C02,Construct-held-out selector,Exclude all v1 source IDs then select 32 IDs per source,v1 manifest and context-only eligible IDs,v2 selection manifest,yes,v1 overlap check,high,No future target or model output used
+P3V2-C03,One-SD bounded future pulse,Apply a single globally fixed context-SD perturbation,active synthetic covariate and context,perturbed future active path,yes,v1 0.65-SD setting as descriptive diagnostic,high,Historical quantile clipping unchanged
+P3V2-C04,Family-specific pulse timing,Fit delayed-kernel support within 24-step horizon,family and frozen source-seed rank,pulse start and length,yes,v1 late starts as adverse pilot,high,Dispersed starts 1 3 5; biphasic unchanged
+P3V2-C05,Matched structural worlds,Reuse v1 kernels and positive target link,real background and active synthetic path,factual and intervened target worlds,no,zero intervention identity,high,Exact oracle and shared background
+P3V2-C06,Construct gate,Verify effect mass and all paired invariants before model access,frozen v2 scenarios,gate receipt,no,N/A,high,Threshold 0.005 and exclusion ceiling 5% unchanged
+P3V2-C07,Frozen model adapters and response metrics,Reuse P1 checkpoints native APIs and registered metrics,paired scenarios and oracle,cell records,no,target-only matched call,high,No edits to frozen P1 or v1 code
+P3V2-C08,Source-ID cluster uncertainty,Keep three new seeds within original ID cluster,cell records,bootstrap intervals,no,unclustered diagnostic only,high,5000 replicates and complete null/adverse reporting
