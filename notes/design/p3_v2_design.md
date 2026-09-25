@@ -1,8 +1,14 @@
 # P3-v2 semi-synthetic extension: candidate for owner review
 
-Status: **candidate, not approved or frozen**. No v2 oracle/construct preflight
-or checkpoint inference has been run. The v1 adverse receipt remains immutable;
-this is one explicitly post-pilot redesign, not a retroactive correction.
+Original proposal status: **candidate, not approved or frozen**. At the time of
+this design, no v2 oracle/construct preflight or checkpoint inference had been
+run. The v1 adverse receipt remains immutable; this is one explicitly
+post-pilot redesign, not a retroactive correction.
+
+Execution addendum (2026-09-25): the owner subsequently approved this candidate
+with `APPROVE P3-V2 DESIGN`. The [CPU construct report](../../evidence/p3_semisynthetic/v2_construct/p3_v2_construct_preflight.json)
+passed the registered gate. This addendum does not change the original design
+or authorize model inference; a separate model freeze is still required.
 
 ## Why another attempt is scientifically defensible
 

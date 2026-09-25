@@ -61,11 +61,14 @@ and [decision note](notes/design/p3_v1_construct_failure.md). No P3 checkpoint
 call or manuscript result claim is authorized. The failed pilot remains archived;
 the frozen P1/P2 evidence is unchanged.
 
-An explicitly post-pilot, construct-held-out [P3-v2 design candidate](notes/design/p3_v2_design.md)
-is ready for owner review. It retains the v1 failure record and original
-thresholds, but excludes v1's source IDs and places the delayed pulse fully
-inside the forecast horizon. V2 has not undergone an oracle preflight or model
-inference; neither is authorized by the design document alone.
+The explicitly post-pilot, construct-held-out [P3-v2 design](notes/design/p3_v2_design.md)
+retains the v1 failure record and original thresholds, excludes v1's source IDs,
+and places the delayed pulse fully inside the forecast horizon. Its [CPU construct
+receipt](evidence/p3_semisynthetic/v2_construct/p3_v2_construct_preflight.json)
+passes all six source-family gates: 5 exclusions among 576 attempted scenarios,
+with no source-ID overlap. This is **not** forecasting evidence. Model inference
+still requires a separate owner-approved [model freeze](configs/p3_semisynthetic/p3_v2_model_freeze_candidate.json)
+and smoke checks.
 
 Reproduce the frozen supplement on CPU with
 [`notebooks/07_p1_reference_supplement.ipynb`](notebooks/07_p1_reference_supplement.ipynb).

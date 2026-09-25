@@ -1,0 +1,35 @@
+{
+  "schema_version": 1,
+  "status": "owner_model_freeze_review_pending",
+  "approval_phrase_required": "APPROVE P3-V2 MODEL FREEZE",
+  "sealed_model_inference_authorized": false,
+  "locked_evidence": {
+    "v2_config_canonical_sha256": "2d6226ee0155cd9decc8c95a6643f1fa93003c92b087601ea448b61eca30960e",
+    "v2_construct_report_sha256": "0306da9ff4bff0abd20e123379e93571230388abaf941564b0f559abd097e030",
+    "v2_construct_code_sha256": "dc1ff4ec2cd7a4933a58577b5f4089466a181ac83663ad1e3401a127c0544d51",
+    "v2_selection_manifest_sha256": "9658b5f3e864895ab1944d99f841faaa1ce9c8b24cb31fb3f898020ce8b3c864",
+    "v2_construct_units_sha256": "f6cf39cb37d7b728c3eaf5d665d707de7b0e2ba55133a439ae275c938986c33d",
+    "v1_failed_construct_report_sha256": "9364eceb386c2d9bb6a585f0d0b75733582bfde649de6231186f40507f14787c",
+    "v1_selection_manifest_sha256": "186bbe7804424da467a46b698130cb2f1715b7d56cf6a63cd39d083a79a844ee"
+  },
+  "locked_scientific_scope": {
+    "sources": 3,
+    "source_ids_per_source": 32,
+    "synthetic_seeds_per_source_id": 3,
+    "mechanism_families": ["biphasic_rebound", "dispersed_delayed_pulse"],
+    "backbones": ["chronos_2", "timesfm_3"],
+    "complete_result_cells": 12,
+    "v2_construct_exclusions": 5,
+    "replacement_after_oracle_check_allowed": false,
+    "metric_threshold_or_model_revision_changes_allowed": false,
+    "v1_failure_must_be_disclosed": true,
+    "p1_primary_decision_modification_allowed": false
+  },
+  "execution_conditions_after_owner_approval": [
+    "implement model runner outside locked construct package and record its code hash",
+    "pass fake-adapter and one-unit checkpoint smoke before full inference",
+    "run pinned backbones on the same frozen v2 source IDs and scenario seeds",
+    "archive all twelve cells and adverse or null outcomes",
+    "keep raw Parquet, source windows, and forecast arrays outside public Git"
+  ]
+}
