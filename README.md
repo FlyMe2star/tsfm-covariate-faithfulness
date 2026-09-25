@@ -80,6 +80,14 @@ backbone resume individually in Google Drive. The notebook writes no aggregate
 paper decision; private Parquet and forecasts stay outside Git. Keep both smoke
 and full completion reports for the next read-only analysis stage.
 
+The owner has reported both backbones at 18/18 units and 571 valid scenarios
+each, but those private arrays have not yet undergone the independent archive
+audit. Run the CPU-only [P3-v2 analysis notebook](notebooks/10_p3_v2_analyze.ipynb)
+([open in Colab](https://colab.research.google.com/github/FlyMe2star/tsfm-covariate-faithfulness/blob/main/notebooks/10_p3_v2_analyze.ipynb))
+to verify all 36 arrays and produce the twelve-cell descriptive matrix. The
+registered lower-link SQL cannot be computed from the archived median-only
+lower-link forecasts and is marked missing, never approximated.
+
 Reproduce the frozen supplement on CPU with
 [`notebooks/07_p1_reference_supplement.ipynb`](notebooks/07_p1_reference_supplement.ipynb).
 It stores each mechanism-by-seed unit independently and safely resumes after a Colab
