@@ -1,0 +1,140 @@
+schema_version: 1
+experiment: covintervene-shape-p3-semisynthetic-candidate-v1
+status: design_candidate_owner_review_pending
+authorization:
+  model_inference_allowed: false
+  primary_p1_or_p2_revision_allowed: false
+  next_gate: owner_design_review_then_cpu_construct_validation_then_separate_freeze
+parent_evidence:
+  p1_config_sha256: 27826ad34bfe0acd8ee90ff4d0fbafb011a6b00aeea276dacaa9f9fe2a261918
+  p1_scientific_code_sha256: fc1cf6d73a59a4200deaa964f341a17b72d8fae75fa40b1086ed1c8c714f5925
+  p1_decision_sha256: 077322e808fffe62af99feda3363220670eac96ba3f43eb6ef0758da2a7373a7
+  p2_report_sha256: 508ff811eefbecb507c217eb876c9474ba51d4c4820cc57005316febeaaf9951
+data:
+  repository: autogluon/fev_datasets
+  repository_type: dataset
+  revision: aee7d2c576582040339379984cc777abc7181919
+  sources:
+    - id: traffic_daily
+      config: LOOP_SEATTLE_1D
+      parquet_path: LOOP_SEATTLE/1D/train-00000-of-00001.parquet
+      target: target
+      frequency_seconds: 86400
+      context_positive_fraction_min: 0.95
+      parquet_sha256: 2f2e49f88c31f10e1e9040e7e0791ec179a953820fb67f3e284264a1f7aa1657
+    - id: workload_5min
+      config: redset_5T
+      parquet_path: redset/5T/train-00000-of-00001.parquet
+      target: target
+      frequency_seconds: 300
+      context_positive_fraction_min: 0.90
+      context_last_24_all_positive: true
+      parquet_sha256: 022d25f70c67d08935ad08069ac9326c0bc43921030d4e8721ffee4d0aa9cd19
+    - id: solar_10min
+      config: solar_10T
+      parquet_path: solar/10T/train-00000-of-00001.parquet
+      target: target
+      frequency_seconds: 600
+      context_positive_fraction_min: 0.30
+      origin_clock_hours_inclusive: [10, 11, 12]
+      parquet_sha256: 0c3e80f5ac9edadaea8799abd79bd88cb5752599af5d5d4ef264c2a188551772
+  context_length: 192
+  horizon: 24
+  source_ids_per_dataset: 48
+  one_origin_per_source_id: true
+  origin_region_start_fraction: 0.60
+  origin_stride: 24
+  future_target_values_used_for_selection: false
+  require_nominal_cadence: true
+  require_finite_values: true
+  context_standard_deviation_min: 1.0e-6
+  selection_salt: covintervene-shape-p3-v1
+  selection_rule: >-
+    Sort eligible source IDs by SHA256(salt|dataset|source_id), select first 48;
+    choose one eligible origin by SHA256(salt|dataset|source_id|origin) minimum.
+  scenario_seeds: [401, 709, 1213]
+  cluster_unit: original_source_id
+mechanism:
+  families: [biphasic_rebound, dispersed_delayed_pulse]
+  covariates: [active_synthetic, placebo_synthetic]
+  covariate_ar_range: [0.25, 0.72]
+  response_ar_range: [0.20, 0.58]
+  coefficient_magnitude_range: [0.35, 0.85]
+  burn_in: 96
+  intervention_scale_in_active_context_sd: 0.65
+  pulse_lengths: [3, 5, 7]
+  start_indices: [1, 7, 13]
+  clip_covariate_to_context_quantiles: [0.005, 0.995]
+  reuse_p1_kernel_parameter_ranges: true
+  kernel_parameter_ranges:
+    biphasic_rebound:
+      positive_center: [0.5, 1.5]
+      negative_center: [5.5, 8.0]
+      rebound_ratio: [0.45, 0.80]
+      positive_lobe_sd: 1.15
+      negative_lobe_sd: 1.45
+      kernel_length: 11
+    dispersed_delayed_pulse:
+      delay_onset_inclusive: [1, 3]
+      delay_scale: [0.8, 1.8]
+      kernel_length: 12
+  balance:
+    intervention_direction: alternate_by_frozen_source_rank
+    coefficient_sign: alternate_every_two_source_ranks
+    pulse_length: cycle_by_source_rank_plus_seed_rank
+    pulse_start: cycle_by_source_rank_plus_seed_rank
+  structural_innovations: zero_real_background_supplies_residual_variation
+  target_link: >-
+    y_t^world = b_t * exp(log(1.4) * tanh(r_t^world / s));
+    s = max(Q75(abs(r_context)), 1e-6), computed from context only.
+  paired_oracle: target_intervened_minus_target_factual_with_identical_background
+  scenario_preflight:
+    minimum_oracle_l1_over_factual_l1: 0.005
+    maximum_excluded_fraction_per_cell: 0.05
+    failure_action: stop_before_model_inference_and_seek_design_revision
+models:
+  - id: chronos_2
+    checkpoint: amazon/chronos-2
+    revision: 29ec3766d36d6f73f0696f85560a422f50e8498c
+    mode: frozen_zero_shot
+  - id: timesfm_3
+    checkpoint: google/timesfm-3.0-pytorch
+    revision: 43046b85ec22d584a13f8098c2ed39c889e129c2
+    mode: frozen_zero_shot_noncommercial_license_disclosed
+forecast_variants: [target_only, factual_covariates, active_intervention]
+sham_control:
+  enabled: true
+  source_ids_per_dataset: 12
+  selection: first_12_in_frozen_source_id_order
+  perturb: placebo_synthetic_only
+  oracle_response: zero
+effect_strength_sensitivity:
+  enabled: true
+  source_ids_per_dataset: 12
+  selection: first_12_in_frozen_source_id_order
+  main_multiplier_cap: 1.4
+  lower_multiplier_cap: 1.2
+  role: secondary_descriptive_no_reselection
+response_metrics:
+  primary_descriptive: [DSA, RGR, D1, D2, D4, D8, registered_G]
+  complement: [relative_SQL, relative_WQL]
+  sham: predicted_sham_l1_over_active_oracle_l1
+  uncertainty:
+    unit: original_source_id_with_all_three_synthetic_seeds
+    bootstrap_replicates: 5000
+    bootstrap_seed: 250925
+    interval: percentile_two_sided_95
+  no_threshold_or_metric_changes_from_p1: true
+descriptive_transfer_rule:
+  per_cell: unchanged_p1_complete_rule_and_sql_complement
+  support: at_least_one_complete_cell_in_at_least_two_of_three_sources
+  failure_action: report_bounded_nonreplication_and_all_twelve_cells
+  role: secondary_only_cannot_modify_p1_gate
+runtime:
+  platform: google_colab
+  start_accelerator: T4
+  upgrade_if_needed: A100
+  code_path: new_p3_package_outside_frozen_p1_hash
+artifacts:
+  public: [config_lock, source_hashes, selection_manifest_hash, aggregate_tables, code]
+  private: [raw_parquet, source_windows, paired_forecast_arrays]

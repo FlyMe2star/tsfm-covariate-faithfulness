@@ -44,6 +44,20 @@ the synergy interaction without uniformly improving shape or forecast error. The
 results contextualize mechanism difficulty and do not establish a preregistered
 reference-versus-TSFM comparison.
 
+The verified P2 analysis-only robustness supplement is now archived under
+[`evidence/p2_robustness/results/`](evidence/p2_robustness/results/), with
+Matplotlib vector figures in [`paper/figures/generated/`](paper/figures/generated/).
+It added fixed-fine-normalization curves, analytic metric comparisons, WQL, and
+threshold sensitivity without new model inference or any change to the P1 gate.
+
+The next acceptance-critical extension, P3, is currently a **design candidate**:
+[`notes/design/p3_semisynthetic_design.md`](notes/design/p3_semisynthetic_design.md)
+and [`configs/p3_semisynthetic/p3_design_candidate.yaml`](configs/p3_semisynthetic/p3_design_candidate.yaml).
+The data-only audit found enough eligible original traffic, cloud-workload, and
+solar series at one pinned public revision. No P3 checkpoint call or manuscript
+result claim is authorized yet. Owner design review, CPU construct validation,
+and a separate freeze must precede Colab inference.
+
 Reproduce the frozen supplement on CPU with
 [`notebooks/07_p1_reference_supplement.ipynb`](notebooks/07_p1_reference_supplement.ipynb).
 It stores each mechanism-by-seed unit independently and safely resumes after a Colab

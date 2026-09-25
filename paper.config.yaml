@@ -33,3 +33,14 @@ research_stage:
     report_sha256: c3ed3ebfb62a36413b59094d1bf158bc0b78f55e3a4038d2beadead48e2f543c
     unit_count: 12
     summary_cell_count: 8
+  p2_robustness_supplement:
+    status: verified_post_primary_analysis_only
+    report: evidence/p2_robustness/results/p2_robustness_report.json
+    report_sha256: 508ff811eefbecb507c217eb876c9474ba51d4c4820cc57005316febeaaf9951
+    model_inference_performed: false
+    primary_decision_modified: false
+  p3_semisynthetic_extension:
+    status: design_candidate_owner_review_pending
+    design: notes/design/p3_semisynthetic_design.md
+    candidate_config: configs/p3_semisynthetic/p3_design_candidate.yaml
+    model_inference_authorized: false

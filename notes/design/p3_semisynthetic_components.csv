@@ -1,0 +1,12 @@
+component_id,name,role,input_format,output_format,is_novel,replaceable_by,ablation_priority,notes
+P3-C01,Pinned public-background loader,Read exact hashed Parquet at immutable HF revision,source config and revision,ID timestamp target arrays,no,N/A,high,Raw data remain outside Git
+P3-C02,Deterministic source and origin selector,Choose 48 original IDs and one eligible window per ID,source arrays and selection salt,selection manifest,yes,N/A,high,Data-only selection before model loading
+P3-C03,Active and placebo covariate generator,Create matched synthetic known-future covariates,source ID and scenario seed,two aligned covariate paths,yes,active-only as diagnostic,medium,Numeric AR ranges reuse P1
+P3-C04,Two signed response filters,Create biphasic and delayed latent responses,active covariate and frozen parameters,latent r paths,yes,identity filter as CPU fixture,high,Numeric kernel ranges reuse P1
+P3-C05,Positive multiplicative target link,Retain nonnegative real background and insert response,background and latent response,factual and intervened targets,yes,lower link strength 1.2,high,Main cap 1.4 and lower-cap sensitivity predeclared
+P3-C06,Paired oracle constructor,Compute exact world difference with shared background,matched target worlds,oracle horizon response,yes,zero-intervention identity,high,CPU construct assertion before model inference
+P3-C07,Frozen model adapters,Reuse pinned Chronos-2 and TimesFM-3 native APIs,compatible paired scenarios,median and quantile forecasts,no,target-only matched call,high,Do not edit P1 scientific modules
+P3-C08,Registered response metrics,Reuse frozen P1 DSA RGR D_b and G definitions,paired oracle and predicted responses,per-source-seed metric records,no,N/A,high,No replacement metric or threshold
+P3-C09,Source-ID cluster bootstrap,Preserve all three seeds for each original source ID,per-source records,cell intervals,no,unclustered bootstrap diagnostic only,high,Five thousand replicates
+P3-C10,Placebo sham control,Probe spurious reaction to irrelevant future path,first 12 selected IDs per source,normalized sham response mass,yes,without sham,medium,Zero structural oracle and separate diagnostic
+P3-C11,Source and run integrity manifest,Lock source selection code model and result hashes,config source files and run outputs,public hash-only report,yes,N/A,high,No raw source target arrays in Git
