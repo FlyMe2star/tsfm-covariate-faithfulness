@@ -11,15 +11,18 @@ This analysis was specified after seeing P1/P2 results and is descriptive only.
 - Verify every unit manifest, config/scientific-code hash, array SHA-256, completion
   status, array shape, finite value, and series-ID uniqueness. Recompute the
   archived per-series RGR and timing diagnostics from raw responses.
-- Reconcile each cell's frozen DSA mean and RGR, D1, and G medians with the public
-  P1 decision before writing any new output.
+- Reconcile each cell's frozen DSA mean and RGR, D1, and G estimates with the
+  public P1 decision before writing any new output. The frozen point estimator
+  averages three within-seed means for DSA or three within-seed medians for RGR,
+  D1, and G. It is not generally the pooled 192-series median.
 - The independent descriptive unit is the paired synthetic series; generator seed
   is recorded as a stratum. No p-value, new confidence interval, or new gate is
   computed for this post-primary diagnostic.
 
 ## Complete-cell descriptive outputs
 
-For **all eight cells**, report the median, quartiles, and 90th percentile of:
+For **all eight cells**, report the pooled 192-series median, quartiles, and
+90th percentile of:
 
 1. archived per-series RGR on oracle-active support;
 2. unnormalized full-horizon L1 gain ratio, `sum(abs(predicted)) /

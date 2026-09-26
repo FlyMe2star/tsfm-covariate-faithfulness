@@ -164,18 +164,28 @@ def _cell_summary(
 
 
 def _reconcile_frozen_cell(
-    cell: str, arrays: dict[str, np.ndarray], decision: dict[str, Any]
+    cell: str,
+    arrays: dict[str, np.ndarray],
+    decision: dict[str, Any],
+    seed_labels: NDArray[np.int64],
 ) -> None:
     expected = decision["cells"][cell]
+    if seed_labels.shape != arrays["series_ids"].shape:
+        raise RuntimeError(f"{cell}: generator-seed labels do not match the series")
+    groups = [seed_labels == seed for seed in np.unique(seed_labels)]
+
+    def seed_equal(values: np.ndarray, statistic: Any) -> float:
+        return float(np.mean([statistic(values[group]) for group in groups]))
+
     checks = {
-        "dsa": (np.mean(arrays["dsa"]), expected["dsa"]["estimate"]),
-        "rgr": (np.median(arrays["rgr"]), expected["rgr"]["estimate"]),
+        "dsa": (seed_equal(arrays["dsa"], np.mean), expected["dsa"]["estimate"]),
+        "rgr": (seed_equal(arrays["rgr"], np.median), expected["rgr"]["estimate"]),
         "shape_d1": (
-            np.median(arrays["shape_distance_by_width"][:, 0]),
+            seed_equal(arrays["shape_distance_by_width"][:, 0], np.median),
             expected["shape_d1"]["estimate"],
         ),
         "hidden_gap": (
-            np.median(arrays["hidden_distortion_gap"]),
+            seed_equal(arrays["hidden_distortion_gap"], np.median),
             expected["hidden_gap"]["estimate"],
         ),
     }
@@ -297,7 +307,8 @@ def analyze_response_distribution(
             combined = {name: np.concatenate([unit[name] for unit in pieces]) for name in names}
             if np.unique(combined["series_ids"].astype(str)).size != count * len(pieces):
                 raise RuntimeError(f"{cell}: duplicate series IDs across generator seeds")
-            _reconcile_frozen_cell(cell, combined, decision)
+            seed_labels = np.repeat(np.asarray(data["generator_seeds"], dtype=np.int64), count)
+            _reconcile_frozen_cell(cell, combined, decision, seed_labels)
             summary = _cell_summary(combined, horizon, fraction)
             all_series[cell] = combined | {
                 "_full_l1_ratio": summary["_series_values"]["full_l1_ratio"]
@@ -389,6 +400,7 @@ def analyze_response_distribution(
             "model_inference_performed": False,
             "primary_decision_recomputed": False,
             "new_gate_or_interval_computed": False,
+            "frozen_point_estimates_replayed_for_integrity": True,
         },
         "created_at_utc": datetime.now(UTC).isoformat(),
         "config_hash": config_hash,
@@ -401,7 +413,15 @@ def analyze_response_distribution(
         "source_unit_sha256": source_hashes,
         "summary_csv_sha256": _sha256(csv_path),
         "definitions": {
-            "quantiles": "empirical linear-interpolation q25, median, q75, q90",
+            "quantiles": (
+                "empirical linear-interpolation q25, median, q75, q90 pooled "
+                f"over all {count * len(data['generator_seeds'])} series per cell"
+            ),
+            "frozen_primary_point_estimator": (
+                f"equal mean of {len(data['generator_seeds'])} within-seed estimates: "
+                "seed mean for DSA, "
+                "seed median for RGR, D1, and G; not generally the pooled median"
+            ),
             "rgr": "registered ratio of absolute response on oracle-active support",
             "full_l1_ratio": (
                 "sum(abs(predicted_response)) / sum(abs(oracle_response)) over all 24 steps"

@@ -121,10 +121,36 @@ def test_frozen_cell_reconciliation_rejects_changed_primary_median() -> None:
             }
         }
     }
-    _reconcile_frozen_cell("chronos_2/biphasic_rebound", arrays, decision)
+    seed_labels = np.asarray([101, 101], dtype=np.int64)
+    _reconcile_frozen_cell("chronos_2/biphasic_rebound", arrays, decision, seed_labels)
     decision["cells"]["chronos_2/biphasic_rebound"]["rgr"]["estimate"] += 0.1
     with pytest.raises(RuntimeError, match="frozen decision"):
-        _reconcile_frozen_cell("chronos_2/biphasic_rebound", arrays, decision)
+        _reconcile_frozen_cell("chronos_2/biphasic_rebound", arrays, decision, seed_labels)
+
+
+def test_frozen_seed_equal_medians_need_not_equal_pooled_median() -> None:
+    cell = "chronos_2/biphasic_rebound"
+    arrays = {
+        "series_ids": np.asarray([f"series-{index}" for index in range(6)]),
+        "dsa": np.asarray([0.0, 0.0, 1.0, 1.0, 1.0, 1.0]),
+        "rgr": np.asarray([0.0, 0.0, 10.0, 1.0, 1.0, 1.0]),
+        "shape_distance_by_width": np.asarray([[0.0], [0.0], [1.0], [0.2], [0.2], [0.2]]),
+        "hidden_distortion_gap": np.asarray([0.0, 0.0, 1.0, 0.2, 0.2, 0.2]),
+    }
+    labels = np.asarray([101, 101, 101, 307, 307, 307], dtype=np.int64)
+    decision = {
+        "cells": {
+            cell: {
+                "series_count": 6,
+                "dsa": {"estimate": 2 / 3},
+                "rgr": {"estimate": 0.5},
+                "shape_d1": {"estimate": 0.1},
+                "hidden_gap": {"estimate": 0.1},
+            }
+        }
+    }
+    assert np.median(arrays["rgr"]) == 1.0
+    _reconcile_frozen_cell(cell, arrays, decision, labels)
 
 
 def test_output_cannot_be_inside_source_archive(tmp_path: Path) -> None:
@@ -237,6 +263,8 @@ def test_complete_diagnostic_checks_all_units_and_is_idempotent(
     report = analyze_response_distribution(repo, source, output)
     assert report["scope"]["full_unit_count"] == 24
     assert report["scope"]["series_count"] == 48
+    assert "6 series per cell" in report["definitions"]["quantiles"]
+    assert "3 within-seed estimates" in report["definitions"]["frozen_primary_point_estimator"]
     assert len(report["cells"]) == 8
     assert len(report["representative_checks"]) == 3
     assert report["cells"][passing[0]]["full_l1_ratio"]["median"] == pytest.approx(0.75)
